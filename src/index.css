@@ -1,0 +1,228 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Light theme: MediCare-style — white surfaces, clinical blue, emerald success, violet accent
+ */
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji';
+  --color-surface: #ffffff;
+  --color-surface-muted: #f4f7fb;
+  --color-border: #e2e8f0;
+  --color-text: #0f172a;
+  --color-text-muted: #5b677a;
+  --color-primary: #0069cc;
+  --color-primary-hover: #0054a6;
+  --color-accent: #5b3cc9;
+  --shadow-card: 0 1px 3px rgb(15 23 42 / 0.05), 0 12px 40px -16px rgb(0 105 204 / 0.12);
+
+  /* Neutral panels (light) — cool gray with a hint of blue */
+  --color-slate-50: #f4f7fb;
+  --color-slate-100: #e9f0f7;
+  --color-slate-200: #d5e0ed;
+
+  /* Primary blue ramp */
+  --color-blue-50: #eef5fc;
+  --color-blue-100: #d8eaf8;
+  --color-blue-200: #b9dbf4;
+  --color-blue-300: #86c2ec;
+  --color-blue-400: #4da3e2;
+  --color-blue-500: #1d84d6;
+  --color-blue-600: #0069cc;
+  --color-blue-700: #0054a6;
+  --color-blue-800: #064785;
+  --color-blue-900: #0a396a;
+  --color-blue-950: #052647;
+
+  /* Success / accreditation green */
+  --color-emerald-50: #ecfdf8;
+  --color-emerald-100: #d0f7e8;
+  --color-emerald-200: #a6ecd4;
+  --color-emerald-500: #00a878;
+  --color-emerald-600: #009463;
+  --color-emerald-700: #007a52;
+
+  /* Brand purple (accents, pills) */
+  --color-violet-50: #f5f3ff;
+  --color-violet-100: #ede9fe;
+  --color-violet-200: #ddd6fe;
+  --color-violet-500: #6d4bd3;
+  --color-violet-600: #5b3cc9;
+  --color-violet-700: #4c32a8;
+  --color-violet-800: #3d2685;
+}
+
+/*
+ * GenArt-style dark palette (mockup): bg #0a0a0a / #121212, accents #0084ff, #a000ff, #00d084
+ */
+.dark {
+  --color-slate-950: #0a0a0a;
+  --color-slate-900: #121212;
+  --color-slate-800: #1a1a1e;
+  --color-slate-700: #27272a;
+  --color-slate-600: #52525b;
+  --color-slate-500: #71717a;
+  --color-slate-400: #a1a1aa;
+  --color-slate-300: #d4d4d8;
+
+  --color-blue-50: #0a1628;
+  --color-blue-100: #0f1f35;
+  --color-blue-400: #33a3ff;
+  --color-blue-500: #0084ff;
+  --color-blue-600: #0078e8;
+  --color-blue-950: #050810;
+
+  --color-violet-50: #16051f;
+  --color-violet-100: #1f0a2e;
+  --color-violet-400: #c44dff;
+  --color-violet-500: #a000ff;
+  --color-violet-600: #8b00e0;
+  --color-violet-950: #0c0512;
+
+  --color-emerald-400: #00d084;
+  --color-emerald-500: #00c278;
+  --color-emerald-600: #00a86a;
+  --color-emerald-950: #042818;
+
+  --color-rose-400: #fb7185;
+  --color-rose-500: #f43f5e;
+  --color-rose-950: #1a0a0e;
+
+  --color-zinc-400: #a1a1aa;
+  --color-zinc-500: #71717a;
+}
+
+/* —— Nền ambient: mesh mềm + chuyển động chậm (không lưới chấm “3D” lộ) —— */
+.ambient-dots-root {
+  contain: paint;
+}
+
+.ambient-dots-base {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(165deg, rgb(248 250 252) 0%, rgb(255 255 255) 42%, rgb(244 247 252) 100%);
+}
+
+.dark .ambient-dots-base {
+  background: linear-gradient(168deg, rgb(8 8 10) 0%, rgb(12 12 16) 45%, rgb(6 6 9) 100%);
+}
+
+/* Lớp ánh sáng lớn, mờ, chuyển động ease-in-out */
+.ambient-dots-glow {
+  position: absolute;
+  inset: -25%;
+  width: 150%;
+  height: 150%;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  opacity: 0.85;
+  background:
+    radial-gradient(ellipse 52% 42% at 18% 24%, rgb(0 105 204 / 0.09), transparent 58%),
+    radial-gradient(ellipse 48% 38% at 88% 16%, rgb(91 60 201 / 0.07), transparent 55%),
+    radial-gradient(ellipse 44% 48% at 52% 92%, rgb(0 168 120 / 0.05), transparent 52%);
+  animation: ambient-breathe-a 36s ease-in-out infinite alternate;
+}
+
+.dark .ambient-dots-glow {
+  opacity: 0.75;
+  background:
+    radial-gradient(ellipse 48% 40% at 22% 28%, rgb(160 0 255 / 0.11), transparent 56%),
+    radial-gradient(ellipse 44% 36% at 80% 20%, rgb(0 132 255 / 0.1), transparent 52%),
+    radial-gradient(ellipse 40% 44% at 48% 88%, rgb(0 208 132 / 0.06), transparent 50%);
+}
+
+.ambient-dots-glow2 {
+  position: absolute;
+  inset: -20%;
+  width: 140%;
+  height: 140%;
+  transform: translateZ(0);
+  opacity: 0.65;
+  background:
+    radial-gradient(ellipse 36% 32% at 72% 72%, rgb(0 105 204 / 0.06), transparent 50%),
+    radial-gradient(ellipse 34% 30% at 28% 68%, rgb(91 60 201 / 0.05), transparent 48%);
+  animation: ambient-breathe-b 52s ease-in-out infinite alternate;
+}
+
+.dark .ambient-dots-glow2 {
+  opacity: 0.55;
+  background:
+    radial-gradient(ellipse 34% 30% at 70% 70%, rgb(0 132 255 / 0.08), transparent 48%),
+    radial-gradient(ellipse 32% 28% at 30% 65%, rgb(160 0 255 / 0.07), transparent 46%);
+}
+
+/* Hạt cực nhỏ, chỉ ở vùng giữa — gợi depth nhẹ */
+.ambient-dots-fine {
+  position: absolute;
+  inset: 0;
+  opacity: 0.22;
+  background-image: radial-gradient(circle, rgb(15 23 42 / 0.055) 1px, transparent 1px);
+  background-size: 32px 32px;
+  -webkit-mask-image: radial-gradient(ellipse 72% 65% at 50% 44%, #000 0%, transparent 78%);
+  mask-image: radial-gradient(ellipse 72% 65% at 50% 44%, #000 0%, transparent 78%);
+}
+
+.dark .ambient-dots-fine {
+  opacity: 0.18;
+  background-image: radial-gradient(circle, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+}
+
+/* Viền rất nhẹ — không “bệt” trắng như vignette cũ */
+.ambient-dots-edge {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 92% 88% at 50% 48%,
+    transparent 0%,
+    rgb(255 255 255 / 0.14) 100%
+  );
+}
+
+.dark .ambient-dots-edge {
+  background: radial-gradient(
+    ellipse 90% 85% at 50% 45%,
+    transparent 0%,
+    rgb(0 0 0 / 0.35) 100%
+  );
+}
+
+@keyframes ambient-breathe-a {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(1.2%, -1.8%, 0) scale(1.04);
+  }
+}
+
+@keyframes ambient-breathe-b {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1.02);
+  }
+  100% {
+    transform: translate3d(-1.5%, 1.2%, 0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-dots-glow,
+  .ambient-dots-glow2 {
+    animation: none;
+  }
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth antialiased;
+  }
+  body {
+    @apply m-0 min-h-svh bg-white text-slate-900 font-sans dark:bg-slate-950 dark:text-white;
+  }
+  #root {
+    @apply relative min-h-svh;
+  }
+}
