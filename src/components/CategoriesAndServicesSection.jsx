@@ -2,8 +2,6 @@ import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { useI18n } from '../context/I18nContext'
 
-const SERVICE_KEYS = ['svc1', 'svc2', 'svc3']
-
 const CATEGORY_ICONS = {
   web: (
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
@@ -93,32 +91,6 @@ export default function CategoriesAndServicesSection({ categories, projects }) {
             )
           })}
         </ul>
-
-        <div id="services" className="scroll-mt-28">
-          <h3 className="mt-14 text-lg font-semibold text-slate-900 dark:text-white">
-            {t('categoriesSection.servicesHeading')}
-          </h3>
-          <ul className="mt-5 grid gap-4 md:grid-cols-3">
-            {SERVICE_KEYS.map((key) => (
-              <li key={key}>
-                <Link
-                  to="/contact"
-                  className="flex h-full flex-col rounded-2xl border border-violet-200/80 bg-gradient-to-br from-violet-50/90 to-white p-5 shadow-sm transition hover:border-violet-300 hover:shadow-md dark:border-violet-900/50 dark:from-violet-950/30 dark:to-slate-900 dark:hover:border-violet-700/60"
-                >
-                  <span className="font-semibold text-slate-900 dark:text-white">
-                    {t(`categoriesSection.${key}Title`)}
-                  </span>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                    {t(`categoriesSection.${key}Body`)}
-                  </p>
-                  <span className="mt-4 text-sm font-medium text-violet-700 dark:text-violet-400">
-                    {t('categoriesSection.contactCta')} →
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
       </div>
     </section>
   )

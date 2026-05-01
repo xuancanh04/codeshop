@@ -14,6 +14,7 @@ import CartPage from './pages/CartPage'
 import CheckoutPage from './pages/CheckoutPage'
 import ProfilePage from './pages/ProfilePage'
 import ContactPage from './pages/ContactPage'
+import ServicesPage from './pages/ServicesPage'
 import LegalNoticePage from './pages/LegalNoticePage'
 import AdminProductsPage from './pages/admin/AdminProductsPage'
 import AdminUsersPage from './pages/admin/AdminUsersPage'
@@ -34,6 +35,7 @@ export default function App() {
           <Route path="/product/:id" element={<ProductDetailPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/services" element={<ServicesPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/legal/:doc" element={<LegalNoticePage />} />
           <Route

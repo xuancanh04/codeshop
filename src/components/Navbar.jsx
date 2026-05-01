@@ -55,9 +55,9 @@ export default function Navbar() {
           <button type="button" className={sectionNavClass} onClick={() => goHomeSection('catalog')}>
             {t('nav.productList')}
           </button>
-          <button type="button" className={sectionNavClass} onClick={() => goHomeSection('services')}>
+          <NavLink to="/services" className={navLinkClass}>
             {t('nav.services')}
-          </button>
+          </NavLink>
           <NavLink to="/contact" className={navLinkClass}>
             {t('nav.contact')}
           </NavLink>
@@ -189,9 +189,9 @@ export default function Navbar() {
             <button type="button" className={sectionNavClass} onClick={() => goHomeSection('catalog')}>
               {t('nav.productList')}
             </button>
-            <button type="button" className={sectionNavClass} onClick={() => goHomeSection('services')}>
+            <NavLink to="/services" className={navLinkClass} onClick={() => setOpen(false)}>
               {t('nav.services')}
-            </button>
+            </NavLink>
             <NavLink to="/contact" className={navLinkClass} onClick={() => setOpen(false)}>
               {t('nav.contact')}
             </NavLink>

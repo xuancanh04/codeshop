@@ -18,6 +18,17 @@ export const messages = {
     'nav.user': 'Account',
     'nav.roleAdmin': 'Admin',
 
+    'services.kicker': 'Services',
+    'services.title': 'Services for your codebase',
+    'services.subtitle':
+      'We help you customize features, deploy smoothly, and keep the project maintained after handover.',
+    'services.ctaPrimary': 'Contact us',
+    'services.ctaSecondary': 'Browse products',
+    'services.packagesTitle': 'What we can help with',
+    'services.packagesSub': 'Choose a direction — we will propose scope, timeline, and deliverables.',
+    'services.askQuote': 'Request a quote',
+    'services.chat': 'Talk to support',
+
     'home.kicker': 'For students & junior developers',
     'home.title': 'Buy Ready-Made Source Code for IT Students',
     'home.subtitle':
@@ -417,6 +428,17 @@ export const messages = {
     'nav.menu': 'Menu',
     'nav.user': 'Tài khoản',
     'nav.roleAdmin': 'Quản trị',
+
+    'services.kicker': 'Dịch vụ',
+    'services.title': 'Dịch vụ cho dự án của bạn',
+    'services.subtitle':
+      'Hỗ trợ làm tính năng theo yêu cầu, triển khai mượt và bảo trì sau khi bàn giao source.',
+    'services.ctaPrimary': 'Liên hệ',
+    'services.ctaSecondary': 'Xem sản phẩm',
+    'services.packagesTitle': 'Chúng tôi hỗ trợ những gì',
+    'services.packagesSub': 'Chọn nhu cầu — chúng tôi sẽ đề xuất phạm vi, timeline và đầu ra.',
+    'services.askQuote': 'Nhận báo giá',
+    'services.chat': 'Nhắn hỗ trợ',
 
     'home.kicker': 'Dành cho sinh viên IT & developer junior',
     'home.title': 'Mua source code có sẵn dành cho sinh viên IT',
