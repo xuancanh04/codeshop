@@ -16,6 +16,7 @@ import ProfilePage from './pages/ProfilePage'
 import ContactPage from './pages/ContactPage'
 import ServicesPage from './pages/ServicesPage'
 import LegalNoticePage from './pages/LegalNoticePage'
+import AdminDashboardPage from './pages/admin/AdminDashboardPage'
 import AdminProductsPage from './pages/admin/AdminProductsPage'
 import AdminUsersPage from './pages/admin/AdminUsersPage'
 import AdminOrdersPage from './pages/admin/AdminOrdersPage'
@@ -81,7 +82,7 @@ export default function App() {
             </AdminProtectedRoute>
           }
         >
-          <Route index element={<Navigate to="products" replace />} />
+          <Route index element={<AdminDashboardPage />} />
           <Route path="products" element={<AdminProductsPage />} />
           <Route path="users" element={<AdminUsersPage />} />
           <Route path="orders" element={<AdminOrdersPage />} />
