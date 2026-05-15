@@ -78,12 +78,6 @@ export default function AdminLayout() {
             </p>
           )}
           <div className="flex flex-col gap-1">
-            <Link
-              to="/"
-              className="rounded-lg px-3 py-2 text-center text-sm font-medium text-blue-600 hover:bg-blue-50 dark:text-blue-400 dark:hover:bg-white/5"
-            >
-              {t('admin.navBack')}
-            </Link>
             <button
               type="button"
               onClick={() => logout()}

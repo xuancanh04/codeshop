@@ -81,8 +81,8 @@ function ProfileForm({ user, t, updateProfile, isAdmin }) {
       <div className="flex flex-wrap gap-3 pt-2">
         <Button type="submit">{t('profile.save')}</Button>
         {isAdmin ? (
-          <Button as={Link} to="/dashboard" variant="secondary">
-            {t('nav.dashboard')}
+          <Button as={Link} to="/admin" variant="secondary">
+            {t('nav.admin')}
           </Button>
         ) : (
           <Button as={Link} to="/" variant="secondary">

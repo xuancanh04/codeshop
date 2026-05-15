@@ -45,7 +45,7 @@ export default function HomePage() {
   const location = useLocation()
   const [searchParams, setSearchParams] = useSearchParams()
   const { projects, loading, error, refresh, getById } = useCatalog()
-  const { user, isAdmin } = useAuth()
+  const { user } = useAuth()
   const { recentIds } = useMarketplace()
 
   const [query, setQuery] = useState(() => searchParams.get('q') ?? '')
@@ -224,10 +224,10 @@ export default function HomePage() {
               <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">{t('home.recentSub')}</p>
             </div>
             <Link
-              to={user ? (isAdmin ? '/dashboard' : '/profile') : '/login'}
+              to={user ? '/profile' : '/login'}
               className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-400"
             >
-              {user ? (isAdmin ? t('nav.dashboard') : t('nav.profile')) : t('nav.login')}
+              {user ? t('nav.profile') : t('nav.login')}
             </Link>
           </div>
           <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

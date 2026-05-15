@@ -8,7 +8,6 @@ import HomePage from './pages/HomePage'
 import ProductDetailPage from './pages/ProductDetailPage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
-import DashboardPage from './pages/DashboardPage'
 import WishlistPage from './pages/WishlistPage'
 import CartPage from './pages/CartPage'
 import CheckoutPage from './pages/CheckoutPage'
@@ -39,14 +38,7 @@ export default function App() {
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/legal/:doc" element={<LegalNoticePage />} />
-          <Route
-            path="/dashboard"
-            element={
-              <AdminProtectedRoute>
-                <DashboardPage />
-              </AdminProtectedRoute>
-            }
-          />
+          <Route path="/dashboard" element={<Navigate to="/admin" replace />} />
           <Route path="/wishlist" element={<WishlistPage />} />
           <Route
             path="/cart"

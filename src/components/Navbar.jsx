@@ -21,7 +21,6 @@ export default function Navbar() {
   const navigate = useNavigate()
   const location = useLocation()
   const { user, isAdmin, logout } = useAuth()
-  const showDashboard = Boolean(user && isAdmin)
   const [open, setOpen] = useState(false)
   const { cartCount, theme, toggleTheme } = useMarketplace()
   const isDark = theme === 'dark'
@@ -64,11 +63,6 @@ export default function Navbar() {
           <NavLink to="/contact" className={navLinkClass}>
             {t('nav.contact')}
           </NavLink>
-          {showDashboard && (
-            <NavLink to="/dashboard" className={navLinkClass}>
-              {t('nav.dashboard')}
-            </NavLink>
-          )}
           {user && (
             <NavLink to="/profile" className={navLinkClass}>
               {t('nav.profile')}
@@ -207,11 +201,6 @@ export default function Navbar() {
             <NavLink to="/contact" className={navLinkClass} onClick={() => setOpen(false)}>
               {t('nav.contact')}
             </NavLink>
-            {showDashboard && (
-              <NavLink to="/dashboard" className={navLinkClass} onClick={() => setOpen(false)}>
-                {t('nav.dashboard')}
-              </NavLink>
-            )}
             {user && (
               <NavLink to="/profile" className={navLinkClass} onClick={() => setOpen(false)}>
                 {t('nav.profile')}
