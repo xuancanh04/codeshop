@@ -171,7 +171,7 @@ export default function HomePage() {
   }
 
   return (
-    <div>
+    <div className="min-w-0 overflow-x-clip">
       <section className="relative overflow-hidden border-b border-slate-100 bg-gradient-to-b from-white via-blue-50/35 to-white dark:border-white/[0.06] dark:from-[#0a0a0a] dark:via-[#100818] dark:to-[#0a0a0a]">
         <div
           className="pointer-events-none absolute left-1/2 top-[40%] hidden h-[min(110vw,40rem)] w-[min(110vw,40rem)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(160,0,255,0.32)_0%,rgba(0,132,255,0.14)_45%,transparent_70%)] blur-3xl dark:block"
@@ -189,10 +189,10 @@ export default function HomePage() {
           <p className="text-center text-sm font-medium uppercase tracking-wider text-blue-600 dark:text-blue-400">
             {t('home.kicker')}
           </p>
-          <h1 className="mx-auto mt-4 max-w-3xl text-center text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.25rem] lg:leading-tight dark:text-white">
+          <h1 className="mx-auto mt-4 max-w-3xl text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl sm:text-5xl lg:text-[3.25rem] lg:leading-tight dark:text-white">
             {t('home.title')}
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-center text-lg text-slate-600 dark:text-slate-400">
+          <p className="mx-auto mt-5 max-w-2xl text-center text-base text-slate-600 sm:text-lg dark:text-slate-400">
             {t('home.subtitle')}
           </p>
           <div className="mx-auto mt-10 max-w-xl">
@@ -218,14 +218,14 @@ export default function HomePage() {
 
       {recentProjects.length > 0 && (
         <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between gap-4">
-            <div>
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
+            <div className="min-w-0">
               <h2 className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">{t('home.recent')}</h2>
               <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">{t('home.recentSub')}</p>
             </div>
             <Link
               to={user ? '/profile' : '/login'}
-              className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-400"
+              className="shrink-0 text-sm font-medium text-blue-600 hover:underline dark:text-blue-400"
             >
               {user ? t('nav.profile') : t('nav.login')}
             </Link>

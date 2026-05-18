@@ -82,8 +82,8 @@ export default function ProductCard({ project, hideWishlistButton = false }) {
           </p>
         </div>
         <RatingStars value={rating} count={reviewCount} />
-        <div className="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 pt-4 dark:border-slate-800">
-          <div>
+        <div className="mt-auto flex flex-col gap-3 border-t border-slate-100 pt-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between dark:border-slate-800">
+          <div className="min-w-0">
             {typeof listPrice === 'number' && listPrice > price && price > 0 && (
               <p className="text-sm text-slate-400 line-through dark:text-slate-500">
                 ${listPrice}
@@ -103,25 +103,25 @@ export default function ProductCard({ project, hideWishlistButton = false }) {
               )}
             </p>
           </div>
-          <div className="flex flex-wrap justify-end gap-2">
-            <Button as={Link} to={`/product/${id}`} variant="secondary" size="sm">
+          <div className="grid w-full grid-cols-1 gap-2 min-[400px]:grid-cols-2 sm:flex sm:w-auto sm:flex-wrap sm:justify-end">
+            <Button as={Link} to={`/product/${id}`} variant="secondary" size="sm" className="w-full sm:w-auto">
               {t('product.viewDetails')}
             </Button>
             {user ? (
               <>
-                <Button type="button" variant="outline" size="sm" onClick={() => addToCart(id)}>
+                <Button type="button" variant="outline" size="sm" className="w-full sm:w-auto" onClick={() => addToCart(id)}>
                   {t('product.addToCart')}
                 </Button>
-                <Button as={Link} to={`/product/${id}`} size="sm">
+                <Button as={Link} to={`/product/${id}`} size="sm" className="w-full min-[400px]:col-span-2 sm:col-span-1 sm:w-auto">
                   {t('product.buyNow')}
                 </Button>
               </>
             ) : (
               <>
-                <Button as={Link} to="/login" state={{ from: location }} variant="outline" size="sm">
+                <Button as={Link} to="/login" state={{ from: location }} variant="outline" size="sm" className="w-full sm:w-auto">
                   {t('auth.loginToShop')}
                 </Button>
-                <Button as={Link} to="/login" state={{ from: location }} size="sm">
+                <Button as={Link} to="/login" state={{ from: location }} size="sm" className="w-full min-[400px]:col-span-2 sm:col-span-1 sm:w-auto">
                   {t('product.buyNow')}
                 </Button>
               </>

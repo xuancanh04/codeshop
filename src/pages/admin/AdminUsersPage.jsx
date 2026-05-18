@@ -74,11 +74,11 @@ export default function AdminUsersPage() {
         </Button>
       </div>
 
-      <div className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+      <div className="-mx-4 mt-8 overflow-hidden rounded-none border-y border-slate-200 bg-white shadow-sm sm:mx-0 sm:rounded-2xl sm:border dark:border-slate-800 dark:bg-slate-900">
         {rows.length === 0 ? (
           <p className="p-8 text-center text-sm text-slate-600 dark:text-slate-400">{t('admin.usersEmpty')}</p>
         ) : (
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto overscroll-x-contain">
             <table className="w-full min-w-[520px] text-left text-sm">
               <thead className="border-b border-slate-100 bg-slate-50 text-slate-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-400">
                 <tr>

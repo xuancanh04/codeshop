@@ -41,15 +41,14 @@ export default function Navbar() {
   )
 
   return (
-    <header className="sticky top-0 z-50 overflow-visible border-b border-slate-200/80 bg-white/90 backdrop-blur-md dark:border-white/[0.06] dark:bg-slate-950/80 dark:backdrop-blur-xl">
-      <div className="mx-auto flex min-w-0 max-w-6xl items-center justify-between gap-2 overflow-visible px-4 py-3 sm:gap-3 sm:px-6 lg:gap-4 lg:px-8">
-        {/* pr-* chừa chỗ cho logo scale (origin-left) để không đè lên nav giữa */}
-        <div className="relative z-[2] shrink-0 pr-4 sm:pr-6 md:pr-10">
+    <header className="sticky top-0 z-50 overflow-x-clip border-b border-slate-200/80 bg-white/90 backdrop-blur-md dark:border-white/[0.06] dark:bg-slate-950/80 dark:backdrop-blur-xl">
+      <div className="mx-auto flex min-w-0 max-w-6xl items-center justify-between gap-2 px-3 py-2.5 sm:gap-3 sm:px-6 sm:py-3 lg:gap-4 lg:px-8">
+        <div className="relative z-[2] min-w-0 max-w-[46%] shrink-0 sm:max-w-none">
           <BrandLogo
             size="md"
             fitHeader
             onClick={() => setOpen(false)}
-            className="overflow-visible rounded-xl outline-none transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-blue-400/40 dark:focus-visible:ring-offset-slate-950"
+            className="rounded-xl outline-none transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-blue-400/40 dark:focus-visible:ring-offset-slate-950"
           />
         </div>
 

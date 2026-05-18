@@ -14,8 +14,8 @@ export default function AdminProductsPage() {
         <Button>Add product</Button>
       </div>
 
-      <div className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-        <div className="overflow-x-auto">
+      <div className="-mx-4 mt-8 overflow-hidden rounded-none border-y border-slate-200 bg-white shadow-sm sm:mx-0 sm:rounded-2xl sm:border">
+        <div className="overflow-x-auto overscroll-x-contain">
           <table className="w-full min-w-[640px] text-left text-sm">
             <thead className="border-b border-slate-100 bg-slate-50 text-slate-500">
               <tr>

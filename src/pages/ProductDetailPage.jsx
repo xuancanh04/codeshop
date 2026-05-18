@@ -46,12 +46,14 @@ export default function ProductDetailPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-      <nav className="text-sm text-slate-500 dark:text-slate-400">
-        <Link to="/" className="hover:text-blue-600 dark:hover:text-blue-400">
+      <nav className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1 text-sm text-slate-500 dark:text-slate-400">
+        <Link to="/" className="shrink-0 hover:text-blue-600 dark:hover:text-blue-400">
           {t('nav.home')}
         </Link>
-        <span className="mx-2">/</span>
-        <span className="text-slate-800 dark:text-slate-200">{project.title}</span>
+        <span className="shrink-0" aria-hidden>
+          /
+        </span>
+        <span className="min-w-0 truncate text-slate-800 dark:text-slate-200">{project.title}</span>
       </nav>
 
       <div className="mt-8 grid gap-10 lg:grid-cols-2 lg:gap-12">

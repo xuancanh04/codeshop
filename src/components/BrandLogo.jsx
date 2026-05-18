@@ -3,31 +3,36 @@ import { SITE_LOGO_ALT, SITE_LOGO_SRC } from '../config/branding'
 
 const sizes = {
   md: {
-    img: 'h-20 max-h-20 w-auto sm:h-24 sm:max-h-24',
-    maxW: 'max-w-[min(640px,90vw)]',
+    img: 'h-12 max-h-12 w-auto sm:h-14 sm:max-h-14',
+    maxW: 'max-w-[min(280px,72vw)]',
     gap: 'gap-3',
   },
   sm: {
-    img: 'h-20 max-h-20 w-auto sm:h-24 sm:max-h-24 lg:h-28 lg:max-h-28 xl:h-32 xl:max-h-32',
-    maxW: 'max-w-[min(760px,96vw)]',
+    img: 'h-10 max-h-10 w-auto sm:h-12 sm:max-h-12',
+    maxW: 'max-w-[min(220px,65vw)]',
     gap: 'gap-3',
   },
 }
 
 /**
  * Logo thương hiệu — ảnh từ `SITE_LOGO_SRC` (object-contain).
- * @param {boolean} [fitHeader] — Giữ slot header cố định (h-10), phóng to bằng scale để thanh không cao thêm.
+ * @param {boolean} [fitHeader] — Kích thước gọn cho navbar, không scale (tránh tràn mobile).
  * @param {() => void} [onClick] — Ví dụ đóng menu mobile khi bấm logo.
  */
 export default function BrandLogo({ size = 'md', className = '', fitHeader = false, onClick }) {
   const s = sizes[size] ?? sizes.md
 
-  if (fitHeader && size === 'md') {
+  const headerBox =
+    size === 'sm'
+      ? 'h-8 max-h-8 w-[min(120px,38vw)] sm:h-9 sm:max-h-9 sm:w-[min(148px,32vw)]'
+      : 'h-9 max-h-9 w-[min(132px,40vw)] sm:h-10 sm:max-h-10 sm:w-[min(168px,36vw)]'
+
+  if (fitHeader) {
     return (
       <Link
         to="/"
         onClick={onClick}
-        className={`inline-flex h-10 max-h-10 items-center overflow-visible ${className}`}
+        className={`inline-flex shrink-0 items-center overflow-hidden ${headerBox} ${className}`}
       >
         <img
           src={SITE_LOGO_SRC}
@@ -35,7 +40,7 @@ export default function BrandLogo({ size = 'md', className = '', fitHeader = fal
           width={480}
           height={96}
           draggable={false}
-          className="h-10 max-h-10 w-auto max-w-[min(460px,68vw)] origin-left scale-[2.45] object-contain object-left will-change-transform sm:max-w-[min(600px,62vw)] sm:scale-[2.72] dark:opacity-[0.98]"
+          className="h-full w-full object-contain object-left dark:opacity-[0.98]"
         />
       </Link>
     )
@@ -45,7 +50,7 @@ export default function BrandLogo({ size = 'md', className = '', fitHeader = fal
     <Link
       to="/"
       onClick={onClick}
-      className={`inline-flex items-center ${s.gap} ${className}`}
+      className={`inline-flex max-w-full min-w-0 items-center overflow-hidden ${s.gap} ${className}`}
     >
       <img
         src={SITE_LOGO_SRC}

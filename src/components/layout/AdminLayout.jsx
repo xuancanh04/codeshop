@@ -15,21 +15,21 @@ export default function AdminLayout() {
   const { t } = useI18n()
 
   return (
-    <div className="flex min-h-svh bg-slate-100 dark:bg-slate-950">
-      <aside className="sticky top-0 flex w-full shrink-0 flex-col border-b border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 lg:w-60 lg:min-h-svh lg:border-b-0 lg:border-r">
-        <div className="flex items-center justify-between gap-2 border-b border-slate-100 px-4 py-4 dark:border-slate-800 lg:flex-col lg:items-stretch lg:gap-3">
+    <div className="flex min-h-svh min-w-0 flex-col overflow-x-clip bg-slate-100 lg:flex-row dark:bg-slate-950">
+      <aside className="sticky top-0 z-20 flex w-full shrink-0 flex-col border-b border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 lg:w-60 lg:min-h-svh lg:border-b-0 lg:border-r">
+        <div className="flex items-center justify-between gap-2 border-b border-slate-100 px-4 py-3 dark:border-slate-800 lg:flex-col lg:items-stretch lg:gap-3 lg:py-4">
           <Link
             to="/admin"
-            className="flex min-w-0 items-center gap-2 rounded-lg outline-none ring-offset-2 hover:opacity-90 focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-900"
+            className="flex min-w-0 max-w-[55%] items-center gap-2 rounded-lg outline-none ring-offset-2 hover:opacity-90 focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-white lg:max-w-none dark:focus-visible:ring-offset-slate-900"
           >
-            <BrandLogo size="sm" className="max-h-10 shrink-0 lg:max-h-11" />
+            <BrandLogo size="sm" fitHeader className="shrink-0" />
           </Link>
           <p className="hidden text-xs font-semibold uppercase tracking-wide text-slate-500 lg:block dark:text-slate-400">
             {t('admin.brand')}
           </p>
         </div>
 
-        <nav className="flex flex-1 flex-row gap-1 overflow-x-auto px-2 py-3 lg:flex-col lg:gap-0.5 lg:px-3 lg:py-4 [&::-webkit-scrollbar]:h-0">
+        <nav className="flex flex-1 flex-row gap-1 overflow-x-auto overscroll-x-contain px-2 py-2 lg:flex-col lg:gap-0.5 lg:overflow-visible lg:px-3 lg:py-4 [&::-webkit-scrollbar]:h-0">
           <NavLink to="/admin" end className={linkClass}>
             <svg className="h-5 w-5 shrink-0 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
               <path

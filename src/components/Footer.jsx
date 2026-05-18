@@ -152,24 +152,28 @@ export default function Footer() {
                   </span>
                 ))}
               </div>
-              <p className="text-neutral-600 dark:text-neutral-400">
-                <span className="font-medium text-neutral-800 dark:text-neutral-200">{t('footer.hotlinePrefix')}</span>{' '}
-                <a
-                  href={`tel:${contactChannels.phoneTel}`}
-                  className="whitespace-nowrap hover:text-blue-700 hover:underline dark:hover:text-blue-400"
-                >
-                  {contactChannels.phoneDisplay}
-                </a>
-                <span className="mx-2 text-neutral-300 dark:text-neutral-600" aria-hidden>
+              <p className="flex flex-col items-center gap-2 text-neutral-600 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-2 sm:gap-y-1 dark:text-neutral-400">
+                <span>
+                  <span className="font-medium text-neutral-800 dark:text-neutral-200">{t('footer.hotlinePrefix')}</span>{' '}
+                  <a
+                    href={`tel:${contactChannels.phoneTel}`}
+                    className="whitespace-nowrap hover:text-blue-700 hover:underline dark:hover:text-blue-400"
+                  >
+                    {contactChannels.phoneDisplay}
+                  </a>
+                </span>
+                <span className="hidden text-neutral-300 sm:inline dark:text-neutral-600" aria-hidden>
                   –
                 </span>
-                <span className="font-medium text-neutral-800 dark:text-neutral-200">{t('footer.emailPrefix')}</span>{' '}
-                <a
-                  href={`mailto:${contactChannels.supportEmail}`}
-                  className="break-all hover:text-blue-700 hover:underline dark:hover:text-blue-400"
-                >
-                  {contactChannels.supportEmail}
-                </a>
+                <span className="break-all text-center sm:text-left">
+                  <span className="font-medium text-neutral-800 dark:text-neutral-200">{t('footer.emailPrefix')}</span>{' '}
+                  <a
+                    href={`mailto:${contactChannels.supportEmail}`}
+                    className="hover:text-blue-700 hover:underline dark:hover:text-blue-400"
+                  >
+                    {contactChannels.supportEmail}
+                  </a>
+                </span>
               </p>
               <Link
                 to="/legal/privacy"

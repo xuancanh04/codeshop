@@ -42,7 +42,7 @@ export default function FloatingContactWidget() {
   }
 
   return (
-    <div className="pointer-events-none fixed bottom-6 right-4 z-[70] flex flex-col-reverse items-end gap-3 sm:right-6">
+    <div className="pointer-events-none fixed bottom-4 right-3 z-[70] flex flex-col-reverse items-end gap-2 pb-[env(safe-area-inset-bottom)] sm:bottom-6 sm:right-6 sm:gap-3">
       {open && (
         <div
           className="pointer-events-auto mb-1 flex max-h-[min(420px,70vh)] w-[min(calc(100vw-2rem),320px)] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl shadow-slate-900/15 dark:border-slate-700 dark:bg-slate-900 dark:shadow-black/40"

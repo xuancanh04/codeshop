@@ -218,11 +218,16 @@
 @layer base {
   html {
     @apply scroll-smooth antialiased;
+    overflow-x: clip;
   }
   body {
-    @apply m-0 min-h-svh bg-white text-slate-900 font-sans dark:bg-slate-950 dark:text-white;
+    @apply m-0 min-h-svh overflow-x-clip bg-white text-slate-900 font-sans dark:bg-slate-950 dark:text-white;
   }
   #root {
-    @apply relative min-h-svh;
+    @apply relative min-h-svh min-w-0 overflow-x-clip;
+  }
+  img,
+  video {
+    max-width: 100%;
   }
 }

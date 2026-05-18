@@ -35,7 +35,7 @@ export default function CatalogToolbar({
     <div
       className={`flex flex-col gap-3 rounded-2xl border border-slate-200/80 bg-white/80 p-4 shadow-sm backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/80 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 ${className}`}
     >
-      <label className="flex min-w-[160px] flex-1 flex-col gap-1 text-xs font-medium whitespace-nowrap text-slate-500 dark:text-slate-400">
+      <label className="flex min-w-0 w-full flex-1 flex-col gap-1 text-xs font-medium text-slate-500 sm:min-w-[140px] sm:whitespace-nowrap dark:text-slate-400">
         {t('catalog.sort')}
         <select
           value={sortBy}
@@ -49,7 +49,7 @@ export default function CatalogToolbar({
           ))}
         </select>
       </label>
-      <label className="flex min-w-[140px] flex-1 flex-col gap-1 text-xs font-medium whitespace-nowrap text-slate-500 dark:text-slate-400">
+      <label className="flex min-w-0 w-full flex-1 flex-col gap-1 text-xs font-medium text-slate-500 sm:min-w-[120px] sm:whitespace-nowrap dark:text-slate-400">
         {t('catalog.minRating')}
         <select
           value={String(minRating)}
@@ -63,7 +63,7 @@ export default function CatalogToolbar({
           ))}
         </select>
       </label>
-      <label className="flex min-w-[140px] flex-1 flex-col gap-1 text-xs font-medium whitespace-nowrap text-slate-500 dark:text-slate-400">
+      <label className="flex min-w-0 w-full flex-1 flex-col gap-1 text-xs font-medium text-slate-500 sm:min-w-[120px] sm:whitespace-nowrap dark:text-slate-400">
         {t('catalog.price')}
         <select
           value={maxPrice}
