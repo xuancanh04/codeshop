@@ -1,43 +1,6 @@
 import { Link } from 'react-router-dom'
-import { useI18n } from '../context/I18nContext'
 import BrandLogo from './BrandLogo'
 import { contactChannels } from '../config/contactChannels'
-
-const h3 = 'text-xs font-bold uppercase tracking-wide text-white'
-const link =
-  'text-neutral-300 transition hover:text-white hover:underline dark:text-neutral-400 dark:hover:text-white'
-const muted = 'text-neutral-300 dark:text-neutral-400'
-
-const LINK_COLS = [
-  {
-    titleKey: 'footer.colBuyers',
-    rows: [
-      { key: 'footer.buyer1', to: '/contact' },
-      { key: 'footer.buyer2', to: '/contact' },
-      { key: 'footer.buyer3', to: '/contact' },
-    ],
-  },
-  {
-    titleKey: 'footer.colSellers',
-    rows: [
-      { key: 'footer.seller1', to: '/legal/terms' },
-      { key: 'footer.seller2', to: '/contact' },
-      { key: 'footer.seller3' },
-      { key: 'footer.seller4', to: '/contact' },
-      { key: 'footer.seller5' },
-    ],
-  },
-  {
-    titleKey: 'footer.colServices',
-    rows: [
-      { key: 'footer.service1' },
-      { key: 'footer.service2' },
-      { key: 'footer.service3' },
-      { key: 'footer.service4' },
-      { key: 'footer.service5' },
-    ],
-  },
-]
 
 const SOCIAL = [
   {
@@ -54,55 +17,49 @@ const SOCIAL = [
   },
 ]
 
-function FooterColumn({ titleKey, rows, t }) {
-  return (
-    <div>
-      <h3 className={h3}>{t(titleKey)}</h3>
-      <ul className="mt-4 list-none space-y-2.5 text-sm">
-        {rows.map(({ key, to }) => (
-          <li key={key}>
-            {to ? (
-              <Link to={to} className={link}>
-                {t(key)}
-              </Link>
-            ) : (
-              <span className={muted}>{t(key)}</span>
-            )}
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
-}
+const FOOTER_NAV = [
+  {
+    title: 'Source Code',
+    links: [
+      { label: 'Source Code Web (React, Node, Vue)', to: '/?cat=web' },
+      { label: 'Source Code Mobile (Flutter, React Native)', to: '/?cat=mobile' },
+      { label: 'Source Code Trí tuệ nhân tạo & AI', to: '/?cat=ai' },
+      { label: 'Source Code Java & Spring Boot', to: '/?cat=java' },
+    ],
+  },
+  {
+    title: 'Hỗ trợ kỹ thuật',
+    links: [
+      { label: 'Dịch vụ cài đặt & Hỗ trợ demo', to: '/services' },
+      { label: 'Liên hệ tư vấn mua code', to: '/contact' },
+      { label: 'Chính sách bảo mật', to: '/legal/privacy' },
+      { label: 'Điều khoản sử dụng license', to: '/legal/terms' },
+    ],
+  },
+]
 
 export default function Footer() {
-  const { t } = useI18n()
   const year = new Date().getFullYear()
 
-  const bottomLinks = [
-    { to: '/contact', labelKey: 'footer.bottomIntro' },
-    { to: '/legal/terms', labelKey: 'footer.bottomRules' },
-    { labelKey: 'footer.bottomEvents', muted: true },
-  ]
-
   return (
-    <footer className="border-t border-neutral-200 dark:border-zinc-800">
-      <section className="bg-[#333333] py-10 text-white dark:bg-zinc-950">
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:gap-8 lg:px-8">
-          {LINK_COLS.map((col) => (
-            <FooterColumn key={col.titleKey} titleKey={col.titleKey} rows={col.rows} t={t} />
-          ))}
-
-          <div>
-            <h3 className={h3}>{t('footer.communityTitle')}</h3>
-            <div className="mt-3 flex gap-2">
+    <footer className="border-t border-slate-200/80 bg-slate-900 text-slate-300 dark:border-white/[0.08] dark:bg-[#07070a]">
+      {/* Main footer body */}
+      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Col 1: Brand & Bio */}
+          <div className="space-y-4 lg:col-span-2">
+            <BrandLogo size="md" fitHeader className="dark:opacity-95" />
+            <p className="max-w-md text-sm leading-relaxed text-slate-400">
+              Nền tảng học lập trình thực chiến và chia sẻ mã nguồn chất lượng cao dành cho học viên và sinh viên công nghệ thông tin. Lộ trình bài bản, hỗ trợ 1:1 tận tâm.
+            </p>
+            <div className="flex items-center gap-3 pt-2">
               {SOCIAL.map(({ href, label, bg, path }) => (
                 <a
                   key={label}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex h-8 w-8 items-center justify-center rounded-full text-white transition hover:opacity-90 ${bg}`}
+                  className={`flex h-9 w-9 items-center justify-center rounded-xl text-white shadow-md transition duration-200 hover:scale-105 ${bg}`}
                   aria-label={label}
                 >
                   <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -111,100 +68,40 @@ export default function Footer() {
                 </a>
               ))}
             </div>
-            <div className="mt-6 space-y-6 border-t border-white/10 pt-6">
-              <div>
-                <p className={h3}>{t('footer.deposit247Title')}</p>
-                <p className="mt-2 text-sm text-neutral-300 dark:text-neutral-400">{t('footer.deposit247Sub')}</p>
-              </div>
-              <div>
-                <p className={h3}>{t('footer.supportTeamTitle')}</p>
-                <p className="mt-2 text-sm text-neutral-300 dark:text-neutral-400">{t('footer.supportTeamHours')}</p>
-              </div>
-            </div>
           </div>
-        </div>
-      </section>
 
-      <section className="border-t border-neutral-200 bg-[#f5f5f5] dark:border-zinc-800 dark:bg-zinc-900/80">
-        <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-6">
-            <BrandLogo
-              size="sm"
-              className="shrink-0 self-start rounded-lg outline-none transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f5f5f5] dark:focus-visible:ring-offset-zinc-900"
-            />
-
-            <div className="flex min-w-0 flex-1 flex-col items-center gap-3 text-center text-sm text-neutral-700 lg:px-4 dark:text-neutral-300">
-              <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
-                {bottomLinks.map((item, i) => (
-                  <span key={item.labelKey} className="inline-flex items-center gap-x-3">
-                    {i > 0 && (
-                      <span className="text-neutral-400" aria-hidden>
-                        |
-                      </span>
-                    )}
-                    {item.to ? (
-                      <Link to={item.to} className="hover:text-blue-700 hover:underline dark:hover:text-blue-400">
-                        {t(item.labelKey)}
-                      </Link>
-                    ) : (
-                      <span className="cursor-default text-neutral-500 dark:text-neutral-500">{t(item.labelKey)}</span>
-                    )}
-                  </span>
+          {/* Col 2 & 3: Navigation Links */}
+          {FOOTER_NAV.map((col) => (
+            <div key={col.title}>
+              <h3 className="text-xs font-bold uppercase tracking-wider text-white">
+                {col.title}
+              </h3>
+              <ul className="mt-4 space-y-2.5 text-sm">
+                {col.links.map((lnk) => (
+                  <li key={lnk.label}>
+                    <Link
+                      to={lnk.to}
+                      className="text-slate-400 transition hover:text-white hover:underline"
+                    >
+                      {lnk.label}
+                    </Link>
+                  </li>
                 ))}
-              </div>
-              <p className="flex flex-col items-center gap-2 text-neutral-600 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-2 sm:gap-y-1 dark:text-neutral-400">
-                <span>
-                  <span className="font-medium text-neutral-800 dark:text-neutral-200">{t('footer.hotlinePrefix')}</span>{' '}
-                  <a
-                    href={`tel:${contactChannels.phoneTel}`}
-                    className="whitespace-nowrap hover:text-blue-700 hover:underline dark:hover:text-blue-400"
-                  >
-                    {contactChannels.phoneDisplay}
-                  </a>
-                </span>
-                <span className="hidden text-neutral-300 sm:inline dark:text-neutral-600" aria-hidden>
-                  –
-                </span>
-                <span className="break-all text-center sm:text-left">
-                  <span className="font-medium text-neutral-800 dark:text-neutral-200">{t('footer.emailPrefix')}</span>{' '}
-                  <a
-                    href={`mailto:${contactChannels.supportEmail}`}
-                    className="hover:text-blue-700 hover:underline dark:hover:text-blue-400"
-                  >
-                    {contactChannels.supportEmail}
-                  </a>
-                </span>
-              </p>
-              <Link
-                to="/legal/privacy"
-                className="text-sm text-neutral-600 hover:text-blue-700 hover:underline dark:text-neutral-400 dark:hover:text-blue-400"
-              >
-                {t('footer.privacy')}
-              </Link>
+              </ul>
             </div>
-
-            <div className="flex shrink-0 flex-col items-start gap-2 lg:items-end lg:text-right">
-              <p className="text-xs font-medium text-neutral-600 dark:text-neutral-400">
-                {t('footer.copyrightLine', { year })}
-              </p>
-              <p className="text-xs text-neutral-500 dark:text-neutral-500">{t('footer.protectedLine')}</p>
-              <div
-                className="inline-flex items-center gap-1 rounded border-2 border-green-600 bg-white px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-green-700 dark:border-green-500 dark:bg-green-950/40 dark:text-green-400"
-                title="Demo badge"
-              >
-                <svg className="h-3.5 w-3.5 text-green-600 dark:text-green-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                  <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
-                </svg>
-                {t('footer.dmcaBadge')}
-              </div>
-            </div>
-          </div>
-
-          <p className="mt-6 border-t border-neutral-200 pt-5 text-center text-[11px] text-neutral-400 dark:border-zinc-700 dark:text-neutral-600">
-            {t('footer.demoNote')}
-          </p>
+          ))}
         </div>
-      </section>
+
+        {/* Bottom bar */}
+        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-slate-800 pt-6 text-xs text-slate-500 sm:flex-row">
+          <p>© {year} CodeHub. Tất cả quyền được bảo lưu.</p>
+          <div className="flex flex-wrap items-center gap-4 text-slate-400">
+            <span>Hotline: <a href={`tel:${contactChannels.phoneTel}`} className="font-medium text-slate-300 hover:underline">{contactChannels.phoneDisplay}</a></span>
+            <span>•</span>
+            <span>Email: <a href={`mailto:${contactChannels.supportEmail}`} className="font-medium text-slate-300 hover:underline">{contactChannels.supportEmail}</a></span>
+          </div>
+        </div>
+      </div>
     </footer>
   )
 }

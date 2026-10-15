@@ -27,12 +27,12 @@ export default function ProductCard({ project, hideWishlistButton = false }) {
   const liked = isInWishlist(id)
 
   return (
-    <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm shadow-slate-200/50 transition-all duration-300 hover:border-blue-200 hover:shadow-lg hover:shadow-blue-600/12 dark:border-slate-800 dark:bg-slate-900 dark:shadow-none dark:hover:border-blue-800/60 dark:hover:shadow-blue-500/10">
+    <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm shadow-slate-200/50 transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-xl hover:shadow-blue-500/10 dark:border-slate-800 dark:bg-slate-900/90 dark:shadow-none dark:hover:border-blue-600/50 dark:hover:shadow-blue-500/15">
       <div className="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-800">
         <img
           src={image}
           alt=""
-          className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         />
         {!hideWishlistButton && (
           <button

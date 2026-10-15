@@ -26,14 +26,14 @@ export default function WhyChooseSection() {
           {keys.map((k, i) => (
             <li
               key={k}
-              className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900"
+              className="group relative flex flex-col rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-400/40 hover:shadow-xl hover:shadow-blue-500/10 dark:border-slate-800 dark:bg-slate-900/90 dark:hover:border-blue-500/30"
             >
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-950/50 dark:text-blue-400">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-500 text-white shadow-md shadow-blue-500/25 transition-transform duration-300 group-hover:scale-110">
                 <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
                   {ICONS[i]}
                 </svg>
               </div>
-              <h3 className="mt-4 font-semibold text-slate-900 dark:text-white">{t(`why.${k}Title`)}</h3>
+              <h3 className="mt-5 text-lg font-bold text-slate-900 dark:text-white">{t(`why.${k}Title`)}</h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{t(`why.${k}Body`)}</p>
             </li>
           ))}

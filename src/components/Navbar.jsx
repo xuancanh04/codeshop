@@ -7,14 +7,14 @@ import LanguageToggle from './LanguageToggle'
 import BrandLogo from './BrandLogo'
 
 const navLinkClass = ({ isActive }) =>
-  `inline-flex shrink-0 items-center whitespace-nowrap rounded-lg px-2.5 py-2 text-xs font-medium transition-colors lg:px-3 lg:text-sm ${
+  `relative inline-flex shrink-0 items-center whitespace-nowrap rounded-full px-4 py-2 text-xs font-semibold tracking-wide transition-all duration-300 lg:text-sm ${
     isActive
-      ? 'bg-blue-50 text-blue-700 dark:bg-violet-950/70 dark:text-blue-400'
-      : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white'
+      ? 'bg-blue-600 text-white shadow-md shadow-blue-500/30'
+      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70 dark:text-slate-300 dark:hover:text-white dark:hover:bg-white/10'
   }`
 
 const sectionNavClass =
-  'inline-flex shrink-0 items-center whitespace-nowrap rounded-lg px-2.5 py-2 text-left text-xs font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 lg:px-3 lg:text-sm dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white'
+  'relative inline-flex shrink-0 items-center whitespace-nowrap rounded-full px-4 py-2 text-xs font-semibold tracking-wide text-slate-600 transition-all duration-300 hover:text-slate-900 hover:bg-slate-100/70 lg:text-sm dark:text-slate-300 dark:hover:text-white dark:hover:bg-white/10'
 
 export default function Navbar() {
   const { t } = useI18n()
@@ -28,33 +28,44 @@ export default function Navbar() {
   const goHomeSection = useCallback(
     (elementId) => {
       setOpen(false)
+      const scrollToEl = () => {
+        const el = document.getElementById(elementId)
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+      }
+
       if (location.pathname === '/') {
-        navigate({ pathname: '/', search: location.search, hash: `#${elementId}` }, { replace: true })
-        window.requestAnimationFrame(() => {
-          document.getElementById(elementId)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        })
+        scrollToEl()
+        // Fallback with small timeout in case DOM or images shifting
+        setTimeout(scrollToEl, 100)
       } else {
-        navigate({ pathname: '/', hash: `#${elementId}` })
+        navigate(`/#${elementId}`)
       }
     },
-    [location.pathname, location.search, navigate],
+    [location.pathname, navigate],
   )
 
   return (
-    <header className="sticky top-0 z-50 overflow-x-clip border-b border-slate-200/80 bg-white/90 backdrop-blur-md dark:border-white/[0.06] dark:bg-slate-950/80 dark:backdrop-blur-xl">
-      <div className="mx-auto flex min-w-0 max-w-6xl items-center justify-between gap-2 px-3 py-2.5 sm:gap-3 sm:px-6 sm:py-3 lg:gap-4 lg:px-8">
-        <div className="relative z-[2] min-w-0 max-w-[46%] shrink-0 sm:max-w-none">
+    <header className="sticky top-0 z-50 px-3 py-2.5 sm:px-6">
+      <div className="mx-auto flex max-w-6xl items-center justify-between rounded-2xl border border-slate-200/80 bg-white/80 p-2 pl-4 pr-3 shadow-lg shadow-slate-200/40 backdrop-blur-xl dark:border-white/[0.08] dark:bg-slate-950/85 dark:shadow-black/40">
+        {/* Brand Logo */}
+        <div className="flex items-center gap-3">
           <BrandLogo
             size="md"
             fitHeader
             onClick={() => setOpen(false)}
-            className="rounded-xl outline-none transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-blue-400/40 dark:focus-visible:ring-offset-slate-950"
+            className="outline-none transition-transform duration-200 hover:scale-105"
           />
         </div>
 
-        <nav className="hidden min-w-0 flex-1 flex-nowrap items-center justify-center gap-0.5 overflow-x-auto pl-1 [scrollbar-width:none] md:flex md:justify-start md:pl-2 lg:justify-center lg:gap-1 [&::-webkit-scrollbar]:h-0 [&::-webkit-scrollbar]:w-0">
+        {/* Center Navigation Links - Floating Pill Island */}
+        <nav className="hidden items-center gap-1 rounded-full border border-slate-200/60 bg-slate-50/60 p-1 backdrop-blur-md md:flex dark:border-white/[0.06] dark:bg-slate-900/50">
+          <NavLink to="/" end className={navLinkClass}>
+            {t('nav.home')}
+          </NavLink>
           <button type="button" className={sectionNavClass} onClick={() => goHomeSection('catalog')}>
-            {t('nav.productList')}
+            {t('nav.courses')}
           </button>
           <NavLink to="/services" className={navLinkClass}>
             {t('nav.services')}
@@ -69,16 +80,19 @@ export default function Navbar() {
           )}
         </nav>
 
-        <div className="relative z-[2] hidden shrink-0 flex-nowrap items-center gap-1 sm:flex">
+        {/* Right Actions */}
+        <div className="hidden items-center gap-2 sm:flex">
           <LanguageToggle />
+
+          {/* Theme Switcher Button */}
           <button
             type="button"
             onClick={toggleTheme}
-            className="rounded-xl p-2.5 text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800"
+            className="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200/80 bg-slate-50/80 text-slate-600 transition hover:bg-slate-100 dark:border-slate-800 dark:bg-slate-900/80 dark:text-slate-300 dark:hover:bg-slate-800"
             aria-label={isDark ? t('nav.themeLight') : t('nav.themeDark')}
           >
             {isDark ? (
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -87,7 +101,7 @@ export default function Navbar() {
                 />
               </svg>
             ) : (
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -97,84 +111,87 @@ export default function Navbar() {
               </svg>
             )}
           </button>
+
+          {/* Cart Button */}
+          <NavLink
+            to="/cart"
+            className={({ isActive }) =>
+              `relative flex h-9 items-center gap-1.5 rounded-xl border px-3 text-xs font-semibold transition ${
+                isActive
+                  ? 'border-blue-500 bg-blue-50 text-blue-600 dark:bg-blue-950/60 dark:text-blue-400'
+                  : 'border-slate-200/80 bg-slate-50/80 text-slate-700 hover:bg-slate-100 dark:border-slate-800 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:bg-slate-800'
+              }`
+            }
+          >
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+              />
+            </svg>
+            <span>{t('nav.cart')}</span>
+            {cartCount > 0 && (
+              <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-blue-600 px-1 text-[11px] font-bold text-white shadow-xs">
+                {cartCount}
+              </span>
+            )}
+          </NavLink>
+
+          {/* User state */}
           {user ? (
-            <>
-              <NavLink
-                to="/cart"
-                className={({ isActive }) =>
-                  `inline-flex shrink-0 items-center whitespace-nowrap rounded-xl px-3 py-2 text-sm font-medium transition-colors lg:px-3.5 ${
-                    isActive
-                      ? 'bg-blue-50 text-blue-700 dark:bg-violet-950/70 dark:text-blue-400'
-                      : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white'
-                  }`
-                }
-              >
-                {t('nav.cart')}
-                {cartCount > 0 && (
-                  <span className="ml-1.5 rounded-full bg-blue-100 px-1.5 py-0.5 text-[10px] font-semibold text-blue-800 dark:bg-blue-900/60 dark:text-blue-200">
-                    {cartCount}
-                  </span>
-                )}
-              </NavLink>
+            <div className="flex items-center gap-2">
               {isAdmin && (
                 <NavLink
                   to="/admin"
-                  className={({ isActive }) =>
-                    `inline-flex shrink-0 items-center whitespace-nowrap rounded-xl px-3 py-2 text-sm font-medium transition-colors lg:px-3.5 ${
-                      isActive
-                        ? 'bg-blue-50 text-blue-700 dark:bg-violet-950/70 dark:text-blue-400'
-                        : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white'
-                    }`
-                  }
+                  className="rounded-xl border border-violet-200 bg-violet-50 px-2.5 py-1.5 text-xs font-bold text-violet-700 hover:bg-violet-100 dark:border-violet-800/60 dark:bg-violet-950/40 dark:text-violet-300"
                 >
-                  {t('nav.admin')}
+                  Admin
                 </NavLink>
               )}
-              <span
-                className="flex max-w-[min(200px,28vw)] items-center gap-2 truncate whitespace-nowrap px-1 text-sm text-slate-600 lg:max-w-[220px] dark:text-slate-400"
-                title={user.email}
+              <Link
+                to="/profile"
+                className="flex items-center gap-2 rounded-xl border border-slate-200/80 bg-slate-50/80 px-2.5 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-100 dark:border-slate-800 dark:bg-slate-900/80 dark:text-slate-200"
               >
-                <span className="truncate">{user.name || user.email}</span>
-                {isAdmin && (
-                  <span className="shrink-0 rounded bg-violet-100 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-violet-800 dark:bg-violet-900/60 dark:text-violet-200">
-                    {t('nav.roleAdmin')}
-                  </span>
-                )}
-              </span>
+                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-tr from-blue-600 to-indigo-600 text-[11px] font-bold text-white">
+                  {(user.name || user.email || 'U')[0].toUpperCase()}
+                </div>
+                <span className="max-w-[100px] truncate">{user.name || user.email}</span>
+              </Link>
               <button
                 type="button"
                 onClick={logout}
-                className="whitespace-nowrap rounded-xl px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 lg:px-4 dark:text-slate-400 dark:hover:bg-slate-800"
+                className="rounded-xl p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-200"
+                title={t('nav.logout')}
               >
-                {t('nav.logout')}
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
               </button>
-            </>
+            </div>
           ) : (
-            <>
-              <Link
-                to="/login"
-                className="whitespace-nowrap rounded-xl px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 lg:px-4 dark:text-slate-400 dark:hover:bg-slate-800"
-              >
-                {t('nav.login')}
-              </Link>
-              <Link
-                to="/register"
-                className="whitespace-nowrap rounded-xl bg-gradient-to-r from-blue-600 to-violet-600 px-3 py-2 text-sm font-medium text-white shadow-md shadow-blue-500/25 transition hover:from-blue-500 hover:to-violet-500 lg:px-4"
-              >
-                {t('nav.signup')}
-              </Link>
-            </>
+            <Link
+              to="/login"
+              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-2 text-xs font-bold text-white shadow-md shadow-blue-500/25 transition duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/35"
+            >
+              <span>{t('nav.login')}</span>
+              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </Link>
           )}
         </div>
 
+        {/* Mobile menu hamburger */}
         <button
           type="button"
-          className="rounded-lg p-2 text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 md:hidden"
+          className="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200/80 bg-slate-50/80 text-slate-600 hover:bg-slate-100 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 md:hidden"
           aria-expanded={open}
           aria-label={t('nav.menu')}
           onClick={() => setOpen((v) => !v)}
         >
-          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             {open ? (
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             ) : (
@@ -191,8 +208,11 @@ export default function Navbar() {
             <span className="text-xs text-slate-500 dark:text-slate-400">{t('nav.menu')}</span>
           </div>
           <nav className="flex flex-col gap-1">
+            <NavLink to="/" end className={navLinkClass} onClick={() => setOpen(false)}>
+              {t('nav.home')}
+            </NavLink>
             <button type="button" className={sectionNavClass} onClick={() => goHomeSection('catalog')}>
-              {t('nav.productList')}
+              {t('nav.courses')}
             </button>
             <NavLink to="/services" className={navLinkClass} onClick={() => setOpen(false)}>
               {t('nav.services')}
@@ -238,22 +258,13 @@ export default function Navbar() {
                 </button>
               </>
             ) : (
-              <>
-                <Link
-                  to="/login"
-                  className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400"
-                  onClick={() => setOpen(false)}
-                >
-                  {t('nav.login')}
-                </Link>
-                <Link
-                  to="/register"
-                  className="rounded-lg px-3 py-2 text-sm font-medium text-blue-700 dark:text-blue-400"
-                  onClick={() => setOpen(false)}
-                >
-                  {t('nav.signup')}
-                </Link>
-              </>
+              <Link
+                to="/login"
+                className="rounded-lg px-3 py-2 text-sm font-medium text-blue-700 dark:text-blue-400"
+                onClick={() => setOpen(false)}
+              >
+                {t('nav.login')}
+              </Link>
             )}
           </nav>
         </div>

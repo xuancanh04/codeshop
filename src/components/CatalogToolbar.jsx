@@ -33,14 +33,14 @@ export default function CatalogToolbar({
 
   return (
     <div
-      className={`flex flex-col gap-3 rounded-2xl border border-slate-200/80 bg-white/80 p-4 shadow-sm backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/80 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 ${className}`}
+      className={`flex flex-col gap-3 rounded-2xl border border-slate-200/80 bg-white/70 p-4 shadow-sm backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/60 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 ${className}`}
     >
-      <label className="flex min-w-0 w-full flex-1 flex-col gap-1 text-xs font-medium text-slate-500 sm:min-w-[140px] sm:whitespace-nowrap dark:text-slate-400">
-        {t('catalog.sort')}
+      <label className="flex min-w-0 w-full flex-1 flex-col gap-1.5 text-xs font-semibold text-slate-500 sm:min-w-[140px] sm:whitespace-nowrap dark:text-slate-400">
+        <span>{t('catalog.sort')}</span>
         <select
           value={sortBy}
           onChange={(e) => onSortChange(e.target.value)}
-          className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+          className="cursor-pointer rounded-xl border border-slate-200/90 bg-white px-3.5 py-2.5 text-xs font-semibold text-slate-800 shadow-xs transition hover:border-slate-300 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
         >
           {sortOptions.map((o) => (
             <option key={o.id} value={o.id}>
@@ -49,12 +49,12 @@ export default function CatalogToolbar({
           ))}
         </select>
       </label>
-      <label className="flex min-w-0 w-full flex-1 flex-col gap-1 text-xs font-medium text-slate-500 sm:min-w-[120px] sm:whitespace-nowrap dark:text-slate-400">
-        {t('catalog.minRating')}
+      <label className="flex min-w-0 w-full flex-1 flex-col gap-1.5 text-xs font-semibold text-slate-500 sm:min-w-[120px] sm:whitespace-nowrap dark:text-slate-400">
+        <span>{t('catalog.minRating')}</span>
         <select
           value={String(minRating)}
           onChange={(e) => onMinRatingChange(Number(e.target.value))}
-          className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+          className="cursor-pointer rounded-xl border border-slate-200/90 bg-white px-3.5 py-2.5 text-xs font-semibold text-slate-800 shadow-xs transition hover:border-slate-300 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
         >
           {ratingOptions.map((o) => (
             <option key={o.id} value={o.id}>

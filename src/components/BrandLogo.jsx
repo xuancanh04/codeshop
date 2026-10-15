@@ -3,13 +3,13 @@ import { SITE_LOGO_ALT, SITE_LOGO_SRC } from '../config/branding'
 
 const sizes = {
   md: {
-    img: 'h-12 max-h-12 w-auto sm:h-14 sm:max-h-14',
-    maxW: 'max-w-[min(280px,72vw)]',
+    img: 'h-16 max-h-16 w-auto sm:h-20 sm:max-h-20',
+    maxW: 'max-w-[min(380px,80vw)]',
     gap: 'gap-3',
   },
   sm: {
-    img: 'h-10 max-h-10 w-auto sm:h-12 sm:max-h-12',
-    maxW: 'max-w-[min(220px,65vw)]',
+    img: 'h-12 max-h-12 w-auto sm:h-14 sm:max-h-14',
+    maxW: 'max-w-[min(280px,70vw)]',
     gap: 'gap-3',
   },
 }
@@ -24,15 +24,15 @@ export default function BrandLogo({ size = 'md', className = '', fitHeader = fal
 
   const headerBox =
     size === 'sm'
-      ? 'h-8 max-h-8 w-[min(120px,38vw)] sm:h-9 sm:max-h-9 sm:w-[min(148px,32vw)]'
-      : 'h-9 max-h-9 w-[min(132px,40vw)] sm:h-10 sm:max-h-10 sm:w-[min(168px,36vw)]'
+      ? 'h-9 w-[min(140px,40vw)] sm:h-9.5 sm:w-[min(160px,34vw)]'
+      : 'h-10 w-[min(160px,44vw)] sm:h-10 sm:w-[min(180px,38vw)]'
 
   if (fitHeader) {
     return (
       <Link
         to="/"
         onClick={onClick}
-        className={`inline-flex shrink-0 items-center overflow-hidden ${headerBox} ${className}`}
+        className={`inline-flex shrink-0 items-center ${headerBox} ${className}`}
       >
         <img
           src={SITE_LOGO_SRC}
@@ -40,7 +40,7 @@ export default function BrandLogo({ size = 'md', className = '', fitHeader = fal
           width={480}
           height={96}
           draggable={false}
-          className="h-full w-full object-contain object-left dark:opacity-[0.98]"
+          className="h-12 sm:h-14 w-auto max-w-none object-contain object-left dark:opacity-[0.98]"
         />
       </Link>
     )

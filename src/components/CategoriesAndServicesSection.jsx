@@ -58,7 +58,7 @@ export default function CategoriesAndServicesSection({ categories, projects }) {
         <h3 className="mt-12 text-lg font-semibold text-slate-900 dark:text-white">
           {t('categoriesSection.productsHeading')}
         </h3>
-        <ul className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((c) => {
             const icon = CATEGORY_ICONS[c.id] ?? CATEGORY_ICONS.web
             const count = counts[c.id] ?? 0
@@ -66,26 +66,27 @@ export default function CategoriesAndServicesSection({ categories, projects }) {
               <li key={c.id}>
                 <Link
                   to={`/?cat=${encodeURIComponent(c.id)}`}
-                  className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-slate-50/80 p-5 shadow-sm transition hover:border-blue-300/80 hover:bg-white hover:shadow-md dark:border-slate-700 dark:bg-slate-900/60 dark:hover:border-blue-500/40 dark:hover:bg-slate-900"
+                  className="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-slate-200/80 bg-gradient-to-br from-white to-slate-50/50 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-400/50 hover:shadow-xl hover:shadow-blue-500/10 dark:border-slate-800/80 dark:from-slate-900/90 dark:to-slate-900/40 dark:hover:border-blue-500/40 dark:hover:shadow-blue-500/10"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-100 text-blue-700 dark:bg-blue-950/60 dark:text-blue-400">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 text-white shadow-md shadow-blue-500/20 transition-transform duration-300 group-hover:scale-110">
                       <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
                         {icon}
                       </svg>
                     </div>
                     <div className="min-w-0 flex-1">
-                      <span className="font-semibold text-slate-900 dark:text-white">
+                      <span className="text-base font-bold text-slate-900 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
                         {t(`catalog.cat.${c.id}`)}
                       </span>
-                      <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
+                      <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
                         {t('categoriesSection.countLabel', { count })}
                       </p>
                     </div>
                   </div>
-                  <span className="mt-4 text-sm font-medium text-blue-600 group-hover:underline dark:text-blue-400">
-                    {t('categoriesSection.viewCategory')} →
-                  </span>
+                  <div className="mt-6 flex items-center gap-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400">
+                    <span>{t('categoriesSection.viewCategory')}</span>
+                    <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+                  </div>
                 </Link>
               </li>
             )

@@ -67,10 +67,18 @@ export default function HomePage() {
   useEffect(() => {
     const anchorId = location.hash.replace(/^#/, '')
     if (!anchorId) return
-    const tid = window.setTimeout(() => {
-      document.getElementById(anchorId)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }, 50)
-    return () => window.clearTimeout(tid)
+    const scrollTarget = () => {
+      const el = document.getElementById(anchorId)
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }
+    const tid1 = window.setTimeout(scrollTarget, 100)
+    const tid2 = window.setTimeout(scrollTarget, 350)
+    return () => {
+      window.clearTimeout(tid1)
+      window.clearTimeout(tid2)
+    }
   }, [location.pathname, location.hash])
 
   const categoryId = useMemo(() => {
@@ -172,39 +180,72 @@ export default function HomePage() {
 
   return (
     <div className="min-w-0 overflow-x-clip">
-      <section className="relative overflow-hidden border-b border-slate-100 bg-gradient-to-b from-white via-blue-50/35 to-white dark:border-white/[0.06] dark:from-[#0a0a0a] dark:via-[#100818] dark:to-[#0a0a0a]">
+      <section className="relative overflow-hidden border-b border-slate-100/80 bg-gradient-to-b from-slate-50/50 via-white to-blue-50/20 py-8 dark:border-white/[0.06] dark:from-[#08080c] dark:via-[#0e0c18] dark:to-[#08080c]">
+        {/* Glow & Radial Background Orbs */}
         <div
-          className="pointer-events-none absolute left-1/2 top-[40%] hidden h-[min(110vw,40rem)] w-[min(110vw,40rem)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(160,0,255,0.32)_0%,rgba(0,132,255,0.14)_45%,transparent_70%)] blur-3xl dark:block"
+          className="pointer-events-none absolute left-1/2 top-1/4 h-[min(90vw,36rem)] w-[min(90vw,36rem)] -translate-x-1/2 -translate-y-1/2 animate-pulse-glow rounded-full bg-[radial-gradient(ellipse_at_center,rgba(56,189,248,0.22)_0%,rgba(168,85,247,0.18)_40%,transparent_70%)] blur-3xl"
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-blue-400/15 blur-3xl dark:bg-[#a000ff]/12"
+          className="pointer-events-none absolute -right-20 top-10 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl dark:bg-[#a000ff]/15"
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute -bottom-32 -left-24 h-80 w-80 rounded-full bg-blue-300/12 blur-3xl dark:bg-[#0084ff]/10"
+          className="pointer-events-none absolute -left-20 bottom-10 h-72 w-72 rounded-full bg-indigo-500/10 blur-3xl dark:bg-[#0084ff]/15"
           aria-hidden
         />
-        <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-          <p className="text-center text-sm font-medium uppercase tracking-wider text-blue-600 dark:text-blue-400">
-            {t('home.kicker')}
-          </p>
-          <h1 className="mx-auto mt-4 max-w-3xl text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl sm:text-5xl lg:text-[3.25rem] lg:leading-tight dark:text-white">
+
+        <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+          {/* Top Banner Tag */}
+          <div className="flex justify-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-blue-200/60 bg-blue-50/80 px-4 py-1.5 text-xs font-semibold text-blue-700 shadow-sm backdrop-blur-md transition-transform hover:scale-105 dark:border-blue-500/30 dark:bg-blue-950/50 dark:text-blue-300">
+              <span className="flex h-2 w-2 rounded-full bg-blue-500 animate-ping" />
+              <span className="tracking-wide uppercase">{t('home.kicker')}</span>
+              <span className="text-blue-400 dark:text-blue-500">•</span>
+              <span className="font-normal text-slate-600 dark:text-slate-300">Hot Deals 2026</span>
+            </div>
+          </div>
+
+          {/* Heading */}
+          <h1 className="text-gradient-hero mx-auto mt-6 max-w-4xl text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl lg:leading-[1.15]">
             {t('home.title')}
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-center text-base text-slate-600 sm:text-lg dark:text-slate-400">
+
+          {/* Subtitle */}
+          <p className="mx-auto mt-5 max-w-2xl text-center text-base leading-relaxed text-slate-600 sm:text-lg dark:text-slate-300">
             {t('home.subtitle')}
           </p>
-          <div className="mx-auto mt-10 max-w-xl">
-            <SearchBar
-              value={query}
-              onChange={setQuery}
-              placeholder={t('home.searchPlaceholder')}
-            />
-            <p className="mt-2 text-center text-xs text-slate-500 dark:text-slate-500">{t('home.urlShare')}</p>
+
+          {/* Floating Search Container */}
+          <div className="mx-auto mt-8 max-w-xl">
+            <div className="glass-card-hero rounded-2xl p-2 shadow-xl ring-1 ring-slate-900/5 transition duration-300 focus-within:ring-2 focus-within:ring-blue-500/40">
+              <SearchBar
+                value={query}
+                onChange={setQuery}
+                placeholder={t('home.searchPlaceholder')}
+              />
+            </div>
+            <p className="mt-2.5 text-center text-xs text-slate-500 dark:text-slate-400">
+              ⚡ {t('home.urlShare')}
+            </p>
           </div>
+
+          {/* Feature Highlights Pills */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-xs font-medium text-slate-600 sm:text-sm dark:text-slate-300">
+            <div className="flex items-center gap-1.5 rounded-lg bg-slate-100/70 px-3 py-1.5 backdrop-blur-sm dark:bg-white/[0.04]">
+              <span className="text-emerald-500">✓</span> Bản quyền vĩnh viễn
+            </div>
+            <div className="flex items-center gap-1.5 rounded-lg bg-slate-100/70 px-3 py-1.5 backdrop-blur-sm dark:bg-white/[0.04]">
+              <span className="text-blue-500">✓</span> Hỗ trợ cài đặt 1:1
+            </div>
+            <div className="flex items-center gap-1.5 rounded-lg bg-slate-100/70 px-3 py-1.5 backdrop-blur-sm dark:bg-white/[0.04]">
+              <span className="text-violet-500">✓</span> Cập nhật liên tục
+            </div>
+          </div>
+
+          {/* Category Filter Pills */}
           <div id="categories" className="mx-auto mt-10 max-w-3xl scroll-mt-24">
-            <p className="mb-3 text-center text-sm font-medium text-slate-500 dark:text-slate-400">
+            <p className="mb-3 text-center text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
               {t('home.categories')}
             </p>
             <CategoryPills items={categories} activeId={categoryId} onSelect={setCategoryId} className="justify-center" />
