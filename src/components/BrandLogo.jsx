@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
-import { SITE_LOGO_ALT, SITE_LOGO_SRC, SITE_BRAND_NAME } from '../config/branding'
+import { SITE_LOGO_ALT, SITE_LOGO_SRC } from '../config/branding'
 
-export default function BrandLogo({ className = '', fitHeader = false, onClick }) {
+export default function BrandLogo({ className = '', onClick }) {
   return (
     <Link
       to="/"

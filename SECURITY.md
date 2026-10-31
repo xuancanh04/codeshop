@@ -21,3 +21,4 @@ If you discover a security vulnerability within CodeHub, please follow these ste
    - Any suggested remediations or patches.
 
 We appreciate your efforts to responsibly disclose your findings and will make every effort to address security issues promptly.
+

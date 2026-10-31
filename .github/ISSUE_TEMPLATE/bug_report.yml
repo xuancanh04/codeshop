@@ -27,3 +27,4 @@ body:
       description: Please share steps or screenshots.
     validations:
       required: true
+

@@ -13,3 +13,4 @@ Please include a summary of the changes and the related issue.
 - [ ] I have commented my code, particularly in hard-to-understand areas
 - [ ] My changes generate no new warnings or build errors
 - [ ] `npm run build` completed successfully
+

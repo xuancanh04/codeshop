@@ -1,18 +1,13 @@
 import { useState } from 'react'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { useI18n } from '../context/I18nContext'
-import { useMarketplace } from '../context/MarketplaceContext'
 import { contactChannels } from '../config/contactChannels'
 import BrandLogo from './BrandLogo'
 
 export default function Navbar() {
   const { t } = useI18n()
   const navigate = useNavigate()
-  const { user, isAdmin, logout } = useAuth()
   const [open, setOpen] = useState(false)
-  const { theme, toggleTheme } = useMarketplace()
-  const isDark = theme === 'dark'
 
   const scrollToSection = (id) => {
     setOpen(false)
@@ -161,7 +156,7 @@ export default function Navbar() {
               rel="noopener noreferrer"
               className="flex items-center justify-center rounded-xl bg-blue-600 px-4 py-2.5 text-center text-sm font-bold text-white shadow-md"
             >
-              Tư vấn trực tiếp qua Zalo (088 888 9805)
+              Tư vấn trực tiếp qua Zalo ({contactChannels.phoneDisplay})
             </a>
           </div>
         </div>
