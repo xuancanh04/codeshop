@@ -1,121 +1,183 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useI18n } from '../context/I18nContext'
-import { useMarketplace } from '../context/MarketplaceContext'
-import Button from '../components/Button'
-import { bankTransferDemo } from '../config/bankTransferDemo'
 import { contactChannels } from '../config/contactChannels'
+import { SITE_BRAND_NAME } from '../config/branding'
 
 export default function ContactPage() {
-  const { t } = useI18n()
-  const { addToast } = useMarketplace()
   const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [message, setMessage] = useState('')
+  const [phone, setPhone] = useState('')
+  const [need, setNeed] = useState('Website Doanh Nghiệp')
+  const [note, setNote] = useState('')
+  const [submitted, setSubmitted] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (!name.trim() || !email.trim() || !message.trim()) {
-      addToast(t('auth.errorFill'), 'error')
-      return
-    }
-    addToast(t('contact.sent'), 'success')
-    setName('')
-    setEmail('')
-    setMessage('')
+    if (!name.trim() || !phone.trim()) return
+    setSubmitted(true)
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
-      <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">{t('contact.title')}</h1>
-      <p className="mt-2 text-slate-600 dark:text-slate-400">{t('contact.subtitle')}</p>
+    <div className="bg-slate-950 text-slate-100 py-16 sm:py-24">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">
+            LIÊN HỆ VỚI {SITE_BRAND_NAME.toUpperCase()}
+          </span>
+          <h1 className="mt-3 text-3xl font-extrabold sm:text-5xl text-white">
+            Nhận Tư Vấn Phương Án Website Miễn Phí
+          </h1>
+          <p className="mx-auto mt-4 max-w-2xl text-sm sm:text-base text-slate-400">
+            Trao đổi trực tiếp về mục tiêu kinh doanh, cấu trúc dự án và nhận bản demo phương án thiết kế phù hợp nhất cho doanh nghiệp của bạn.
+          </p>
+        </div>
 
-      <div className="mt-10 grid gap-10 lg:grid-cols-5">
-        <div className="rounded-2xl border border-slate-200 bg-slate-50/80 p-6 dark:border-slate-800 dark:bg-slate-900/60 lg:col-span-2">
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
-            {t('contact.direct')}
-          </h2>
-          <ul className="mt-4 space-y-4 text-sm text-slate-700 dark:text-slate-300">
-            <li>
-              <span className="block text-xs text-slate-500 dark:text-slate-400">{t('contact.phoneLabel')}</span>
-              <a
-                href={`tel:${contactChannels.phoneTel}`}
-                className="font-medium text-emerald-600 hover:underline dark:text-emerald-400"
-              >
-                {contactChannels.phoneDisplay}
-              </a>
-            </li>
-            <li>
-              <span className="block text-xs text-slate-500 dark:text-slate-400">{t('contact.zaloLabel')}</span>
+        <div className="mt-16 grid gap-10 lg:grid-cols-12">
+          {/* Cột thông tin liên hệ */}
+          <div className="lg:col-span-5 rounded-3xl border border-slate-800 bg-slate-900/50 p-8 backdrop-blur-xl">
+            <h3 className="text-xl font-bold text-white">Kênh Kết Nối Nhanh</h3>
+            <p className="mt-2 text-xs text-slate-400 leading-relaxed">
+              Đội ngũ kỹ thuật & tư vấn của {SITE_BRAND_NAME} luôn sẵn sàng hỗ trợ bạn xây dựng giải pháp số tối ưu.
+            </p>
+
+            <div className="mt-8 space-y-6 text-sm">
+              <div className="flex items-start gap-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-600/20 text-cyan-400">
+                  📞
+                </div>
+                <div>
+                  <span className="text-xs font-semibold uppercase text-slate-400">Hotline & Zalo</span>
+                  <p className="mt-1">
+                    <a
+                      href={`tel:${contactChannels.phoneTel}`}
+                      className="text-base font-bold text-cyan-400 hover:underline"
+                    >
+                      {contactChannels.phoneDisplay}
+                    </a>
+                  </p>
+                  <p className="text-[11px] text-slate-400 mt-0.5">Hỗ trợ tư vấn 24/7</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-600/20 text-indigo-400">
+                  ✉️
+                </div>
+                <div>
+                  <span className="text-xs font-semibold uppercase text-slate-400">Email</span>
+                  <p className="mt-1 text-xs text-slate-200">
+                    <a href={`mailto:${contactChannels.supportEmail}`} className="hover:underline">
+                      {contactChannels.supportEmail}
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 pt-6 border-t border-slate-800">
               <a
                 href={contactChannels.zaloUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-[#0068FF] hover:underline"
+                className="flex items-center justify-center gap-2 rounded-xl bg-blue-600 py-3 text-center text-xs font-bold text-white shadow-lg shadow-blue-500/25 hover:bg-blue-500"
               >
-                {t('contact.zaloOpen')}
+                Nhắn tin nhanh qua Zalo
               </a>
-            </li>
-            <li>
-              <span className="block text-xs text-slate-500 dark:text-slate-400">{t('contact.emailLabel')}</span>
-              <a href={`mailto:${bankTransferDemo.supportNote}`} className="font-medium text-blue-600 hover:underline dark:text-blue-400">
-                {bankTransferDemo.supportNote}
-              </a>
-            </li>
-            <li>
-              <span className="block text-xs text-slate-500 dark:text-slate-400">{t('contact.addressLabel')}</span>
-              <span>{t('footer.location')}</span>
-            </li>
-          </ul>
-          <p className="mt-6 text-xs leading-relaxed text-slate-500 dark:text-slate-400">{t('contact.note')}</p>
-        </div>
+            </div>
+          </div>
 
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 lg:col-span-3"
-        >
-          <div>
-            <label htmlFor="ct-name" className="block text-sm font-medium text-slate-700 dark:text-slate-300">
-              {t('auth.fullName')}
-            </label>
-            <input
-              id="ct-name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="mt-1 w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
-            />
+          {/* Cột Form đăng ký nhận tư vấn */}
+          <div className="lg:col-span-7 rounded-3xl border border-slate-800 bg-slate-900/30 p-8 backdrop-blur-xl">
+            {submitted ? (
+              <div className="flex flex-col items-center justify-center py-16 text-center">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20 text-3xl text-emerald-400">
+                  ✓
+                </div>
+                <h3 className="mt-4 text-2xl font-bold text-white">Yêu Cầu Đã Được Tiếp Nhận</h3>
+                <p className="mt-2 max-w-md text-sm text-slate-300">
+                  Cảm ơn bạn! Đội ngũ tư vấn {SITE_BRAND_NAME} sẽ liên hệ lại qua số điện thoại/Zalo <strong className="text-cyan-400">{phone}</strong> trong vòng 15-30 phút để hỗ trợ.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setSubmitted(false)}
+                  className="mt-6 rounded-xl border border-slate-700 bg-slate-800 px-6 py-2.5 text-xs font-semibold text-white hover:bg-slate-700"
+                >
+                  Gửi yêu cầu khác
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <h3 className="text-xl font-bold text-white">Gửi Thông Tin Dự Án Của Bạn</h3>
+                <p className="text-xs text-slate-400">
+                  Điền ngắn gọn thông tin dưới đây, chúng tôi sẽ chuẩn bị trước đề xuất và demo phù hợp.
+                </p>
+
+                <div>
+                  <label className="block text-xs font-medium text-slate-300">
+                    Họ và tên của bạn / Tên doanh nghiệp *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Ví dụ: Anh Tuấn (Công ty ABC)"
+                    className="mt-1.5 w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-blue-500 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-medium text-slate-300">
+                    Số điện thoại / Zalo nhận báo giá *
+                  </label>
+                  <input
+                    type="tel"
+                    required
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="09xx xxx xxx"
+                    className="mt-1.5 w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-blue-500 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-medium text-slate-300">
+                    Nhu cầu trọng tâm của bạn
+                  </label>
+                  <select
+                    value={need}
+                    onChange={(e) => setNeed(e.target.value)}
+                    className="mt-1.5 w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm text-white focus:border-blue-500 focus:outline-none"
+                  >
+                    <option value="Website Doanh Nghiệp">Thiết kế Website Doanh Nghiệp</option>
+                    <option value="Website Bán Hàng">Thiết kế Website Bán Hàng (E-Commerce)</option>
+                    <option value="Web App Theo Yêu Cầu">Lập trình Web App theo yêu cầu</option>
+                    <option value="Landing Page">Thiết kế Landing Page chạy Ads</option>
+                    <option value="Vận Hành Hàng Tháng">Gói Vận Hành & Chăm Sóc Hàng Tháng</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-medium text-slate-300">
+                    Mô tả yêu cầu hoặc website tham khảo (nếu có)
+                  </label>
+                  <textarea
+                    rows={4}
+                    value={note}
+                    onChange={(e) => setNote(e.target.value)}
+                    placeholder="Mục tiêu kinh doanh, tính năng cần có hoặc thời gian dự kiến ra mắt..."
+                    className="mt-1.5 w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-blue-500 focus:outline-none"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 py-3.5 text-sm font-bold text-white shadow-xl shadow-blue-600/25 transition hover:opacity-95"
+                >
+                  Gửi Yêu Cầu Tư Vấn Ngay
+                </button>
+              </form>
+            )}
           </div>
-          <div>
-            <label htmlFor="ct-email" className="block text-sm font-medium text-slate-700 dark:text-slate-300">
-              {t('auth.email')}
-            </label>
-            <input
-              id="ct-email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
-            />
-          </div>
-          <div>
-            <label htmlFor="ct-msg" className="block text-sm font-medium text-slate-700 dark:text-slate-300">
-              {t('contact.message')}
-            </label>
-            <textarea
-              id="ct-msg"
-              rows={4}
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              className="mt-1 w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
-            />
-          </div>
-          <div className="flex flex-wrap gap-3 pt-2">
-            <Button type="submit">{t('contact.send')}</Button>
-            <Button as={Link} to="/" variant="secondary">
-              {t('productDetail.back')}
-            </Button>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   )

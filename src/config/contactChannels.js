@@ -1,11 +1,13 @@
 /**
- * Hotline & Zalo — đổi số khi triển khai thật.
- * zaloUrl: dạng https://zalo.me/901234567 (bỏ số 0 đầu nếu dùng QR chính thức).
+ * Hotline & Zalo — XimiTech
  */
 export const contactChannels = {
-  phoneDisplay: '090 123 4567',
-  phoneTel: '+84901234567',
-  zaloUrl: 'https://zalo.me/901234567',
-  /** Email hiển thị footer / liên hệ công khai */
-  supportEmail: 'support@codehub.demo',
+  companyName: 'Công ty TNHH Giải pháp số XimiTech',
+  taxCode: '4101691382',
+  address: 'Tổ 2, Khu phố 12, Phường Quy Nhơn Bắc, Tỉnh Gia Lai, Việt Nam',
+  phoneDisplay: '088 888 9805',
+  phoneTel: '+84888889805',
+  zaloUrl: 'https://zalo.me/0888889805',
+  supportEmail: 'ximitech1309@gmail.com',
+  website: 'https://ximitech.vn',
 }

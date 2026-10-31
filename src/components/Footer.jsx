@@ -1,104 +1,139 @@
 import { Link } from 'react-router-dom'
 import BrandLogo from './BrandLogo'
 import { contactChannels } from '../config/contactChannels'
-
-const SOCIAL = [
-  {
-    href: 'https://facebook.com',
-    label: 'Facebook',
-    bg: 'bg-[#1877f2]',
-    path: 'M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z',
-  },
-  {
-    href: 'https://youtube.com',
-    label: 'YouTube',
-    bg: 'bg-[#ff0000]',
-    path: 'M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z',
-  },
-]
-
-const FOOTER_NAV = [
-  {
-    title: 'Source Code',
-    links: [
-      { label: 'Source Code Web (React, Node, Vue)', to: '/?cat=web' },
-      { label: 'Source Code Mobile (Flutter, React Native)', to: '/?cat=mobile' },
-      { label: 'Source Code Trí tuệ nhân tạo & AI', to: '/?cat=ai' },
-      { label: 'Source Code Java & Spring Boot', to: '/?cat=java' },
-    ],
-  },
-  {
-    title: 'Hỗ trợ kỹ thuật',
-    links: [
-      { label: 'Dịch vụ cài đặt & Hỗ trợ demo', to: '/services' },
-      { label: 'Liên hệ tư vấn mua code', to: '/contact' },
-      { label: 'Chính sách bảo mật', to: '/legal/privacy' },
-      { label: 'Điều khoản sử dụng license', to: '/legal/terms' },
-    ],
-  },
-]
+import { SITE_BRAND_NAME } from '../config/branding'
 
 export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-slate-200/80 bg-slate-900 text-slate-300 dark:border-white/[0.08] dark:bg-[#07070a]">
-      {/* Main footer body */}
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Col 1: Brand & Bio */}
+    <footer className="border-t border-slate-800 bg-slate-950 text-slate-400">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
+          {/* Thông tin công ty */}
           <div className="space-y-4 lg:col-span-2">
-            <BrandLogo size="md" fitHeader className="dark:opacity-95" />
-            <p className="max-w-md text-sm leading-relaxed text-slate-400">
-              Nền tảng học lập trình thực chiến và chia sẻ mã nguồn chất lượng cao dành cho học viên và sinh viên công nghệ thông tin. Lộ trình bài bản, hỗ trợ 1:1 tận tâm.
+            <BrandLogo />
+            <p className="max-w-sm text-xs leading-relaxed text-slate-400">
+              {SITE_BRAND_NAME} — Đơn vị tiên phong cung cấp giải pháp thiết kế website doanh nghiệp, Web App và vận hành số theo mô hình 2 tầng với triết lý coi website là tài sản số độc quyền của khách hàng.
             </p>
-            <div className="flex items-center gap-3 pt-2">
-              {SOCIAL.map(({ href, label, bg, path }) => (
+            <div className="space-y-2 text-xs text-slate-300">
+              <p>
+                <strong className="text-white">Hotline / Zalo:</strong>{' '}
                 <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`flex h-9 w-9 items-center justify-center rounded-xl text-white shadow-md transition duration-200 hover:scale-105 ${bg}`}
-                  aria-label={label}
+                  href={`tel:${contactChannels.phoneTel}`}
+                  className="font-bold text-cyan-400 hover:underline"
                 >
-                  <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d={path} />
-                  </svg>
+                  {contactChannels.phoneDisplay}
                 </a>
-              ))}
+              </p>
+              <p>
+                <strong className="text-white">Email:</strong>{' '}
+                <a
+                  href={`mailto:${contactChannels.supportEmail}`}
+                  className="text-slate-300 hover:underline"
+                >
+                  {contactChannels.supportEmail}
+                </a>
+              </p>
             </div>
           </div>
 
-          {/* Col 2 & 3: Navigation Links */}
-          {FOOTER_NAV.map((col) => (
-            <div key={col.title}>
-              <h3 className="text-xs font-bold uppercase tracking-wider text-white">
-                {col.title}
-              </h3>
-              <ul className="mt-4 space-y-2.5 text-sm">
-                {col.links.map((lnk) => (
-                  <li key={lnk.label}>
-                    <Link
-                      to={lnk.to}
-                      className="text-slate-400 transition hover:text-white hover:underline"
-                    >
-                      {lnk.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Dịch vụ cốt lõi */}
+          <div>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white">Dịch Vụ Cốt Lõi</h4>
+            <ul className="mt-4 space-y-2 text-xs">
+              <li>
+                <a href="/#tier-services" className="hover:text-white transition">
+                  Gói Setup Nền Móng (Đầu tư 1 lần)
+                </a>
+              </li>
+              <li>
+                <a href="/#tier-services" className="hover:text-white transition">
+                  Gói Vận Hành Hàng Tháng (Growth)
+                </a>
+              </li>
+              <li>
+                <a href="/#tier-services" className="hover:text-white transition">
+                  Gói Tăng Trưởng Doanh Thu (Performance)
+                </a>
+              </li>
+              <li>
+                <a href="/#projects" className="hover:text-white transition">
+                  Thiết kế Website Doanh Nghiệp
+                </a>
+              </li>
+              <li>
+                <a href="/#projects" className="hover:text-white transition">
+                  Phát triển Web App theo yêu cầu
+                </a>
+              </li>
+              <li>
+                <a href="/#projects" className="hover:text-white transition">
+                  Thiết kế Landing Page chuyển đổi cao
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Dự án tiêu biểu */}
+          <div>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white">Dự Án Nổi Bật</h4>
+            <ul className="mt-4 space-y-2 text-xs">
+              <li>
+                <Link to="/product/1" className="hover:text-white transition">
+                  VinFast Huy Hiệu (33+ Mẫu xe 360°)
+                </Link>
+              </li>
+              <li>
+                <Link to="/product/2" className="hover:text-white transition">
+                  HQN Group (Xây dựng & Kiến trúc)
+                </Link>
+              </li>
+              <li>
+                <Link to="/product/3" className="hover:text-white transition">
+                  Court Vision (Vợt Pickleball & NFC)
+                </Link>
+              </li>
+              <li>
+                <Link to="/product/4" className="hover:text-white transition">
+                  Aplus Billiards (Bàn bida thi đấu)
+                </Link>
+              </li>
+              <li>
+                <Link to="/product/5" className="hover:text-white transition">
+                  LOOP Beer Club (Giao diện Nightlife)
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Cam kết & Chính sách */}
+          <div>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white">Cam Kết {SITE_BRAND_NAME}</h4>
+            <ul className="mt-4 space-y-2 text-xs">
+              <li className="text-slate-300">✓ 100% Khách hàng làm chủ mã nguồn</li>
+              <li className="text-slate-300">✓ Tên miền đứng tên doanh nghiệp</li>
+              <li className="text-slate-300">✓ Báo giá minh bạch, không phí ẩn</li>
+              <li className="text-slate-300">✓ Hỗ trợ kỹ thuật tận tâm 24/7</li>
+              <li className="pt-2">
+                <Link to="/legal/privacy" className="hover:text-white transition">
+                  Chính sách bảo mật
+                </Link>
+              </li>
+              <li>
+                <Link to="/legal/terms" className="hover:text-white transition">
+                  Quy định sử dụng & Bàn giao
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-slate-800 pt-6 text-xs text-slate-500 sm:flex-row">
-          <p>© {year} CodeHub. Tất cả quyền được bảo lưu.</p>
-          <div className="flex flex-wrap items-center gap-4 text-slate-400">
-            <span>Hotline: <a href={`tel:${contactChannels.phoneTel}`} className="font-medium text-slate-300 hover:underline">{contactChannels.phoneDisplay}</a></span>
-            <span>•</span>
-            <span>Email: <a href={`mailto:${contactChannels.supportEmail}`} className="font-medium text-slate-300 hover:underline">{contactChannels.supportEmail}</a></span>
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-900 pt-6 text-[11px] text-slate-500 sm:flex-row">
+          <p>© {year} {SITE_BRAND_NAME}. All rights reserved.</p>
+          <div className="flex items-center gap-4 text-slate-400">
+            <span>Phong cách nền tảng số hiện đại</span>
           </div>
         </div>
       </div>
