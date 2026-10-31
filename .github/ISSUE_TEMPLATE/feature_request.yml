@@ -1,0 +1,21 @@
+name: Feature request
+description: Suggest an idea or new feature for CodeHub
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: Thank you for suggesting a new idea for CodeHub!
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Problem Statement / Context
+      description: Is your feature request related to a problem? Please describe.
+    validations:
+      required: true
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: A clear and concise description of what you want to happen.
+    validations:
+      required: true
