@@ -1,87 +1,88 @@
 import { Link } from 'react-router-dom'
-import { useI18n } from '../context/I18nContext'
-import Button from '../components/Button'
-
-const SERVICE_KEYS = ['svc1', 'svc2', 'svc3']
-const ICONS = [
-  <path key="1" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 6.75h4.5m-4.5 3h4.5m-4.5 3h4.5M6.75 3.75h10.5A2.25 2.25 0 0119.5 6v12a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 18V6a2.25 2.25 0 012.25-2.25z" />,
-  <path key="2" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6v6l4 2M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />,
-  <path key="3" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m7-1a9 9 0 11-18 0 9 9 0 0118 0z" />,
-]
+import { contactChannels } from '../config/contactChannels'
 
 export default function ServicesPage() {
-  const { t } = useI18n()
-
   return (
-    <div className="border-b border-slate-100 bg-white dark:border-slate-800 dark:bg-slate-950">
-      <section className="relative overflow-hidden">
-        <div
-          className="pointer-events-none absolute -right-28 -top-28 h-96 w-96 rounded-full bg-blue-400/15 blur-3xl dark:bg-[#a000ff]/12"
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute -bottom-32 -left-24 h-80 w-80 rounded-full bg-blue-300/12 blur-3xl dark:bg-[#0084ff]/10"
-          aria-hidden
-        />
-        <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-          <p className="text-center text-sm font-semibold uppercase tracking-wide text-blue-600 dark:text-blue-400">
-            {t('services.kicker')}
-          </p>
-          <h1 className="mx-auto mt-3 max-w-3xl text-center text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl dark:text-white">
-            {t('services.title')}
+    <div className="bg-slate-950 text-slate-100 py-16 sm:py-24">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">
+            DỊCH VỤ SỐ TOÀN DIỆN
+          </span>
+          <h1 className="mt-3 text-3xl font-extrabold sm:text-5xl text-white">
+            Giải Pháp Số & Xây Dựng Website Cho Doanh Nghiệp
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-center text-base leading-relaxed text-slate-600 sm:text-lg dark:text-slate-400">
-            {t('services.subtitle')}
+          <p className="mx-auto mt-4 max-w-2xl text-slate-400 text-sm sm:text-base">
+            XimiTech cung cấp đầy đủ các hạng mục dịch vụ số chuyên sâu, từ khởi tạo nền móng ban đầu đến vận hành gia tăng giá trị thương hiệu.
           </p>
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
-            <Button as={Link} to="/contact" variant="primary">
-              {t('services.ctaPrimary')}
-            </Button>
-            <Button as={Link} to="/#catalog" variant="secondary">
-              {t('services.ctaSecondary')}
-            </Button>
-          </div>
         </div>
-      </section>
 
-      <section className="border-t border-slate-200 bg-slate-50/80 dark:border-slate-800 dark:bg-slate-900/40">
-        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
-          <div className="flex flex-col items-center text-center">
-            <h2 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl dark:text-white">
-              {t('services.packagesTitle')}
-            </h2>
-            <p className="mt-3 max-w-2xl text-slate-600 dark:text-slate-400">{t('services.packagesSub')}</p>
+        <div className="mt-16 grid gap-8 md:grid-cols-2">
+          <div className="rounded-3xl border border-slate-800 bg-slate-900/40 p-8 backdrop-blur-xl">
+            <div className="text-3xl">🏢</div>
+            <h3 className="mt-4 text-2xl font-bold text-white">Thiết Kế Website Doanh Nghiệp</h3>
+            <p className="mt-2 text-sm text-slate-300">
+              Khẳng định năng lực và uy tín thương hiệu trên internet. Giao diện thiết kế độc bản theo chuẩn nhận diện doanh nghiệp, cấu trúc rõ ràng, tích hợp tải profile, danh mục dịch vụ và chứng nhận pháp lý.
+            </p>
+            <ul className="mt-4 space-y-2 text-xs text-slate-400">
+              <li>✓ Chuẩn SEO Technical on-page</li>
+              <li>✓ Tương thích 100% mọi thiết bị di động, tablet, desktop</li>
+              <li>✓ Bàn giao đầy đủ quyền quản trị & mã nguồn độc lập</li>
+            </ul>
           </div>
 
-          <ul className="mt-10 grid gap-6 md:grid-cols-3">
-            {SERVICE_KEYS.map((k, i) => (
-              <li
-                key={k}
-                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900"
-              >
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-50 text-violet-700 dark:bg-violet-950/50 dark:text-violet-300">
-                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
-                    {ICONS[i]}
-                  </svg>
-                </div>
-                <h3 className="mt-4 font-semibold text-slate-900 dark:text-white">{t(`categoriesSection.${k}Title`)}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                  {t(`categoriesSection.${k}Body`)}
-                </p>
-                <div className="mt-6 flex flex-wrap gap-3">
-                  <Button as={Link} to="/contact" variant="secondary" size="sm">
-                    {t('services.askQuote')}
-                  </Button>
-                  <Button as={Link} to="/contact" variant="outline" size="sm">
-                    {t('services.chat')}
-                  </Button>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <div className="rounded-3xl border border-slate-800 bg-slate-900/40 p-8 backdrop-blur-xl">
+            <div className="text-3xl">🛒</div>
+            <h3 className="mt-4 text-2xl font-bold text-white">Website Thương Mại Điện Tử (E-Commerce)</h3>
+            <p className="mt-2 text-sm text-slate-300">
+              Hệ thống bán hàng trực quan, tối ưu hành trình mua sắm từ xem sản phẩm, bộ lọc nâng cao, giỏ hàng đến thanh toán chuyển khoản quét mã VietQR tự động.
+            </p>
+            <ul className="mt-4 space-y-2 text-xs text-slate-400">
+              <li>✓ Trải nghiệm xem sản phẩm đa góc nhìn, biến thể màu sắc, size</li>
+              <li>✓ Tốc độ tải trang cực nhanh, tối đa tỷ lệ chuyển đổi</li>
+              <li>✓ Tích hợp hệ thống quản lý đơn hàng & tồn kho thông minh</li>
+            </ul>
+          </div>
+
+          <div className="rounded-3xl border border-slate-800 bg-slate-900/40 p-8 backdrop-blur-xl">
+            <div className="text-3xl">⚙️</div>
+            <h3 className="mt-4 text-2xl font-bold text-white">Phát Triển Web App Nghiệp Vụ Theo Yêu Cầu</h3>
+            <p className="mt-2 text-sm text-slate-300">
+              Số hóa quy trình vận hành, quản lý dữ liệu, báo giá động, phân quyền nhân sự hoặc hệ sinh thái nội bộ dành riêng cho từng bài toán kinh doanh đặc thù.
+            </p>
+            <ul className="mt-4 space-y-2 text-xs text-slate-400">
+              <li>✓ Kiến trúc hệ thống hiện đại, dễ bảo trì & mở rộng quy mô</li>
+              <li>✓ Kết nối API bên thứ 3 (Zalo ZNS, SMS, Cổng thanh toán, CRM)</li>
+              <li>✓ Bảo mật dữ liệu cao cấp, phân quyền đa cấp bậc</li>
+            </ul>
+          </div>
+
+          <div className="rounded-3xl border border-slate-800 bg-slate-900/40 p-8 backdrop-blur-xl">
+            <div className="text-3xl">🚀</div>
+            <h3 className="mt-4 text-2xl font-bold text-white">Landing Page Tối Ưu Chuyển Đổi (CRO)</h3>
+            <p className="mt-2 text-sm text-slate-300">
+              Trang đích phục vụ chiến dịch quảng cáo Facebook, Google Ads, TikTok Ads hoặc sự kiện mở bán sản phẩm mới. Tối ưu điểm chất lượng quảng cáo và gia tăng đơn hàng.
+            </p>
+            <ul className="mt-4 space-y-2 text-xs text-slate-400">
+              <li>✓ Kỹ thuật tâm lý dẫn dắt khách hàng chốt hành động</li>
+              <li>✓ Đo lường chi tiết sự kiện click, cuộn trang, điền form</li>
+              <li>✓ Tải trang tức thì dưới 1 giây</li>
+            </ul>
+          </div>
         </div>
-      </section>
+
+        {/* CTA */}
+        <div className="mt-16 text-center">
+          <a
+            href={contactChannels.zaloUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 px-8 py-4 text-sm font-bold text-white shadow-xl shadow-blue-500/25 hover:opacity-95"
+          >
+            Liên hệ tư vấn phương án dịch vụ qua Zalo
+          </a>
+        </div>
+      </div>
     </div>
   )
 }
-

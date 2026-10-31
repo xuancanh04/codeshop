@@ -1,165 +1,135 @@
-import { useEffect, useRef, useState } from 'react'
-import { useI18n } from '../context/I18nContext'
+import { useState } from 'react'
 import { contactChannels } from '../config/contactChannels'
-
-function pickBotReply(text, t) {
-  const q = text.trim().toLowerCase()
-  if (!q) return t('chatbot.replyEmpty')
-  if (/^(chào|xin chào|hello|hi|hey|chao)\b|chào bạn/.test(q)) return t('chatbot.replyGreeting')
-  if (/giá|price|bao nhiêu|cost|mua|mua code|purchase|thanh toán|pay/.test(q)) return t('chatbot.replyPrice')
-  if (/liên hệ|contact|zalo|phone|gọi|hotline|sdt|số điện thoại/.test(q)) {
-    return t('chatbot.replyContact', { phone: contactChannels.phoneDisplay })
-  }
-  if (/admin|quản trị|dashboard/.test(q)) return t('chatbot.replyAdmin')
-  return t('chatbot.replyDefault')
-}
+import { SITE_BRAND_NAME } from '../config/branding'
 
 export default function FloatingContactWidget() {
-  const { t } = useI18n()
   const [open, setOpen] = useState(false)
-  const [messages, setMessages] = useState(() => [{ role: 'bot', text: t('chatbot.welcome') }])
+  const [messages, setMessages] = useState([
+    {
+      role: 'bot',
+      text: `Xin chào! Tôi là trợ lý tư vấn số ${SITE_BRAND_NAME}. Bạn đang quan tâm đến thiết kế website doanh nghiệp, bán hàng hay web app theo yêu cầu?`,
+    },
+  ])
   const [draft, setDraft] = useState('')
-  const [busy, setBusy] = useState(false)
-  const listRef = useRef(null)
 
-  useEffect(() => {
-    if (!open) return
-    listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: 'smooth' })
-  }, [messages, open])
-
-  const send = (e) => {
+  const handleSend = (e) => {
     e?.preventDefault()
-    const text = draft.trim()
-    if (!text || busy) return
+    if (!draft.trim()) return
+    const userMsg = draft.trim()
     setDraft('')
-    setMessages((m) => [...m, { role: 'user', text }])
-    setBusy(true)
-    window.setTimeout(() => {
-      const reply = pickBotReply(text, t)
-      setMessages((m) => [...m, { role: 'bot', text: reply }])
-      setBusy(false)
-    }, 500 + Math.random() * 400)
+    setMessages((prev) => [...prev, { role: 'user', text: userMsg }])
+
+    setTimeout(() => {
+      let reply = `Cảm ơn bạn! Đội ngũ ${SITE_BRAND_NAME} có thể thiết kế và bàn giao 100% quyền sở hữu theo nhu cầu của bạn. Bạn có thể kết nối nhanh với chuyên viên tư vấn qua Zalo: ${contactChannels.phoneDisplay} nhé!`
+      if (/giá|chi phí|báo giá|bao nhiêu/.test(userMsg.toLowerCase())) {
+        reply = `Về chi phí, ${SITE_BRAND_NAME} cung cấp Gói Setup (đầu tư 1 lần) và các Gói Vận hành linh hoạt hàng tháng (Basic, Growth, Performance). Bạn có thể gọi hotline ${contactChannels.phoneDisplay} hoặc nhắn Zalo để nhận báo giá chi tiết trong 5 phút!`
+      }
+      setMessages((prev) => [...prev, { role: 'bot', text: reply }])
+    }, 600)
   }
 
   return (
-    <div className="pointer-events-none fixed bottom-4 right-3 z-[70] flex flex-col-reverse items-end gap-2 pb-[env(safe-area-inset-bottom)] sm:bottom-6 sm:right-6 sm:gap-3">
+    <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
+      {/* Khung chat */}
       {open && (
-        <div
-          className="pointer-events-auto mb-1 flex max-h-[min(420px,70vh)] w-[min(calc(100vw-2rem),320px)] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl shadow-slate-900/15 dark:border-slate-700 dark:bg-slate-900 dark:shadow-black/40"
-          role="dialog"
-          aria-label={t('chatbot.title')}
-        >
-          <div className="flex items-center justify-between border-b border-slate-100 bg-gradient-to-r from-blue-600 to-violet-600 px-4 py-3 dark:border-slate-700">
-            <div>
-              <p className="text-sm font-semibold text-white">{t('chatbot.title')}</p>
-              <p className="text-xs text-white/80">{t('chatbot.subtitle')}</p>
+        <div className="w-[min(calc(100vw-2rem),360px)] rounded-2xl border border-slate-800 bg-slate-950 p-4 shadow-2xl backdrop-blur-xl">
+          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div className="flex items-center gap-2">
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-blue-600 font-bold text-white text-xs">
+                C
+              </div>
+              <div>
+                <h4 className="text-xs font-bold text-white">Trợ Lý Số {SITE_BRAND_NAME}</h4>
+                <span className="flex items-center gap-1 text-[10px] text-emerald-400">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" /> Trực tuyến
+                </span>
+              </div>
             </div>
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="rounded-lg p-1 text-white/90 hover:bg-white/10"
-              aria-label={t('common.close')}
+              className="rounded-lg p-1 text-slate-400 hover:text-white"
             >
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
+              ✕
             </button>
           </div>
-          <div ref={listRef} className="flex-1 space-y-3 overflow-y-auto p-3 text-sm" style={{ maxHeight: '280px' }}>
-            {messages.map((msg, i) => (
+
+          {/* Messages list */}
+          <div className="my-3 max-h-60 space-y-2.5 overflow-y-auto text-xs pr-1">
+            {messages.map((m, idx) => (
               <div
-                key={`m-${i}`}
-                className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                key={idx}
+                className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
-                <span
-                  className={`max-w-[85%] rounded-2xl px-3 py-2 leading-relaxed ${
-                    msg.role === 'user'
+                <div
+                  className={`max-w-[85%] rounded-xl px-3 py-2 ${
+                    m.role === 'user'
                       ? 'bg-blue-600 text-white'
-                      : 'bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-100'
+                      : 'border border-slate-800 bg-slate-900 text-slate-200'
                   }`}
                 >
-                  {msg.text}
-                </span>
+                  {m.text}
+                </div>
               </div>
             ))}
-            {busy && (
-              <div className="flex justify-start">
-                <span className="rounded-2xl bg-slate-100 px-3 py-2 text-slate-500 dark:bg-slate-800 dark:text-slate-400">
-                  {t('chatbot.typing')}
-                </span>
-              </div>
-            )}
           </div>
-          <form onSubmit={send} className="border-t border-slate-100 p-2 dark:border-slate-700">
-            <div className="flex gap-2">
-              <input
-                value={draft}
-                onChange={(e) => setDraft(e.target.value)}
-                placeholder={t('chatbot.placeholder')}
-                className="min-w-0 flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 outline-none focus:ring-2 focus:ring-blue-500/30 dark:border-slate-600 dark:bg-slate-950 dark:text-white"
-              />
-              <button
-                type="submit"
-                disabled={busy}
-                className="shrink-0 rounded-xl bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-500 disabled:opacity-50"
-              >
-                {t('chatbot.send')}
-              </button>
-            </div>
+
+          {/* Input */}
+          <form onSubmit={handleSend} className="flex gap-2">
+            <input
+              type="text"
+              value={draft}
+              onChange={(e) => setDraft(e.target.value)}
+              placeholder="Nhập câu hỏi của bạn..."
+              className="flex-1 rounded-xl border border-slate-800 bg-slate-900 px-3 py-2 text-xs text-white placeholder-slate-500 focus:border-blue-500 focus:outline-none"
+            />
+            <button
+              type="submit"
+              className="rounded-xl bg-blue-600 px-3 py-2 text-xs font-bold text-white hover:bg-blue-500"
+            >
+              Gửi
+            </button>
           </form>
+
+          <div className="mt-2 text-center">
+            <a
+              href={contactChannels.zaloUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[11px] font-semibold text-cyan-400 hover:underline"
+            >
+              ⚡ Chat trực tiếp qua Zalo ({contactChannels.phoneDisplay})
+            </a>
+          </div>
         </div>
       )}
 
-      <div className="pointer-events-auto flex flex-col gap-2">
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-violet-600 text-white shadow-lg shadow-blue-500/30 transition hover:scale-105 hover:shadow-xl"
-          aria-expanded={open}
-          aria-label={t('chatbot.open')}
-        >
-          {open ? (
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          ) : (
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-              />
-            </svg>
-          )}
-        </button>
-
+      {/* Buttons liên hệ nhanh */}
+      <div className="flex items-center gap-2">
         <a
           href={contactChannels.zaloUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex h-12 w-12 items-center justify-center rounded-full bg-[#0068FF] text-white shadow-lg shadow-blue-600/30 transition hover:scale-105"
-          aria-label={t('contact.zaloAria')}
-          title={t('contact.zaloAria')}
+          className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg shadow-blue-500/30 transition hover:scale-110"
+          title="Tư vấn qua Zalo"
         >
-          <span className="text-xs font-bold tracking-tight">Zalo</span>
+          <span className="font-bold text-xs">Zalo</span>
         </a>
-
         <a
           href={`tel:${contactChannels.phoneTel}`}
-          className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-600 text-white shadow-lg shadow-emerald-600/30 transition hover:scale-105"
-          aria-label={t('contact.phoneAria')}
-          title={contactChannels.phoneDisplay}
+          className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-600 text-white shadow-lg shadow-emerald-500/30 transition hover:scale-110"
+          title="Gọi hotline"
         >
-          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-            />
-          </svg>
+          <span className="text-lg">📞</span>
         </a>
+        <button
+          type="button"
+          onClick={() => setOpen(!open)}
+          className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/30 transition hover:scale-110"
+          title="Hỗ trợ trực tuyến"
+        >
+          <span className="text-lg">💬</span>
+        </button>
       </div>
     </div>
   )
