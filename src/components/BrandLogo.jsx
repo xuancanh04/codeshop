@@ -17,10 +17,10 @@ export default function BrandLogo({ className = '', onClick }) {
         }}
       />
       <div className="flex flex-col">
-        <span className="text-xl font-black tracking-tight leading-none text-white">
-          Code<span className="text-cyan-400">Hub</span>
+        <span className="text-xl font-black tracking-tight leading-none text-slate-900 dark:text-white">
+          Code<span className="text-blue-600 dark:text-cyan-400">Hub</span>
         </span>
-        <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+        <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
           Digital Solutions & Web Platform
         </span>
       </div>

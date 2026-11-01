@@ -16,36 +16,36 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="bg-slate-950 text-slate-100 py-16 sm:py-24">
+    <div className="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 py-16 sm:py-24 transition-colors duration-300">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">
+          <span className="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-cyan-400">
             LIÊN HỆ VỚI {SITE_BRAND_NAME.toUpperCase()}
           </span>
-          <h1 className="mt-3 text-3xl font-extrabold sm:text-5xl text-white">
+          <h1 className="mt-3 text-3xl font-extrabold sm:text-5xl text-slate-900 dark:text-white">
             Nhận Tư Vấn Phương Án Website Miễn Phí
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-sm sm:text-base text-slate-400">
+          <p className="mx-auto mt-4 max-w-2xl text-sm sm:text-base text-slate-600 dark:text-slate-400">
             Trao đổi trực tiếp về mục tiêu kinh doanh, cấu trúc dự án và nhận bản demo phương án thiết kế phù hợp nhất cho doanh nghiệp của bạn.
           </p>
         </div>
 
         <div className="mt-16 grid gap-10 lg:grid-cols-12">
           {/* Cột thông tin liên hệ */}
-          <div className="lg:col-span-5 rounded-3xl border border-slate-800 bg-slate-900/50 p-8 backdrop-blur-xl">
-            <h3 className="text-xl font-bold text-white">Kênh Kết Nối Nhanh</h3>
-            <p className="mt-2 text-xs text-slate-400 leading-relaxed">
+          <div className="lg:col-span-5 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm backdrop-blur-xl dark:border-slate-800 dark:bg-slate-900/50">
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white">Kênh Kết Nối Nhanh</h3>
+            <p className="mt-2 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
               Đội ngũ kỹ thuật & tư vấn của {SITE_BRAND_NAME} luôn sẵn sàng hỗ trợ bạn xây dựng giải pháp số tối ưu.
             </p>
 
             <div className="mt-8 space-y-6 text-sm">
               <div className="flex items-start gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-600/20 text-indigo-400">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-100 text-blue-600 dark:bg-indigo-600/20 dark:text-indigo-400">
                   ✉️
                 </div>
                 <div>
-                  <span className="text-xs font-semibold uppercase text-slate-400">Email Hỗ Trợ</span>
-                  <p className="mt-1 text-xs text-slate-200">
+                  <span className="text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Email Hỗ Trợ</span>
+                  <p className="mt-1 text-xs text-slate-800 dark:text-slate-200">
                     <a href={`mailto:${contactChannels.supportEmail}`} className="hover:underline">
                       {contactChannels.supportEmail}
                     </a>
@@ -54,45 +54,45 @@ export default function ContactPage() {
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-600/20 text-cyan-400">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-100 text-cyan-600 dark:bg-cyan-600/20 dark:text-cyan-400">
                   📍
                 </div>
                 <div>
-                  <span className="text-xs font-semibold uppercase text-slate-400">Địa Điểm</span>
-                  <p className="mt-1 text-xs text-slate-200">{contactChannels.address}</p>
+                  <span className="text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Địa Điểm</span>
+                  <p className="mt-1 text-xs text-slate-800 dark:text-slate-200">{contactChannels.address}</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Cột Form đăng ký nhận tư vấn */}
-          <div className="lg:col-span-7 rounded-3xl border border-slate-800 bg-slate-900/30 p-8 backdrop-blur-xl">
+          <div className="lg:col-span-7 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm backdrop-blur-xl dark:border-slate-800 dark:bg-slate-900/30">
             {submitted ? (
               <div className="flex flex-col items-center justify-center py-16 text-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20 text-3xl text-emerald-400">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-3xl text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400">
                   ✓
                 </div>
-                <h3 className="mt-4 text-2xl font-bold text-white">Yêu Cầu Đã Được Tiếp Nhận</h3>
-                <p className="mt-2 max-w-md text-sm text-slate-300">
+                <h3 className="mt-4 text-2xl font-bold text-slate-900 dark:text-white">Yêu Cầu Đã Được Tiếp Nhận</h3>
+                <p className="mt-2 max-w-md text-sm text-slate-600 dark:text-slate-300">
                   Cảm ơn bạn! Đội ngũ tư vấn {SITE_BRAND_NAME} sẽ nhanh chóng liên hệ lại để hỗ trợ bạn sớm nhất.
                 </p>
                 <button
                   type="button"
                   onClick={() => setSubmitted(false)}
-                  className="mt-6 rounded-xl border border-slate-700 bg-slate-800 px-6 py-2.5 text-xs font-semibold text-white hover:bg-slate-700"
+                  className="mt-6 rounded-xl border border-slate-300 bg-slate-100 px-6 py-2.5 text-xs font-semibold text-slate-800 hover:bg-slate-200 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700"
                 >
                   Gửi yêu cầu khác
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
-                <h3 className="text-xl font-bold text-white">Gửi Thông Tin Dự Án Của Bạn</h3>
-                <p className="text-xs text-slate-400">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white">Gửi Thông Tin Dự Án Của Bạn</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400">
                   Điền ngắn gọn thông tin dưới đây, chúng tôi sẽ chuẩn bị trước đề xuất và demo phù hợp.
                 </p>
 
                 <div>
-                  <label className="block text-xs font-medium text-slate-300">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300">
                     Họ và tên của bạn / Tên doanh nghiệp *
                   </label>
                   <input
@@ -101,12 +101,12 @@ export default function ContactPage() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Ví dụ: Anh Tuấn (Công ty ABC)"
-                    className="mt-1.5 w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-blue-500 focus:outline-none"
+                    className="mt-1.5 w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:outline-none dark:border-slate-800 dark:bg-slate-950 dark:text-white dark:placeholder-slate-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-slate-300">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300">
                     Thông tin liên hệ (Email hoặc Zalo/SĐT) *
                   </label>
                   <input
@@ -115,18 +115,18 @@ export default function ContactPage() {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="Nhập email hoặc số điện thoại của bạn"
-                    className="mt-1.5 w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-blue-500 focus:outline-none"
+                    className="mt-1.5 w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:outline-none dark:border-slate-800 dark:bg-slate-950 dark:text-white dark:placeholder-slate-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-slate-300">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300">
                     Nhu cầu trọng tâm của bạn
                   </label>
                   <select
                     value={need}
                     onChange={(e) => setNeed(e.target.value)}
-                    className="mt-1.5 w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm text-white focus:border-blue-500 focus:outline-none"
+                    className="mt-1.5 w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 focus:border-blue-500 focus:outline-none dark:border-slate-800 dark:bg-slate-950 dark:text-white"
                   >
                     <option value="Website Doanh Nghiệp">Thiết kế Website Doanh Nghiệp</option>
                     <option value="Website Bán Hàng">Thiết kế Website Bán Hàng (E-Commerce)</option>
@@ -137,7 +137,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-slate-300">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300">
                     Mô tả yêu cầu hoặc website tham khảo (nếu có)
                   </label>
                   <textarea
@@ -145,7 +145,7 @@ export default function ContactPage() {
                     value={note}
                     onChange={(e) => setNote(e.target.value)}
                     placeholder="Mục tiêu kinh doanh, tính năng cần có hoặc thời gian dự kiến ra mắt..."
-                    className="mt-1.5 w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-blue-500 focus:outline-none"
+                    className="mt-1.5 w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:outline-none dark:border-slate-800 dark:bg-slate-950 dark:text-white dark:placeholder-slate-500"
                   />
                 </div>
 

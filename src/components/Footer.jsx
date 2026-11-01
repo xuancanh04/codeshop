@@ -7,62 +7,62 @@ export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-slate-800 bg-slate-950 text-slate-400">
+    <footer className="border-t border-slate-200 bg-white text-slate-600 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-400 transition-colors duration-300">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           {/* Thông tin công ty */}
           <div className="space-y-4 lg:col-span-2">
             <BrandLogo />
-            <p className="max-w-sm text-xs leading-relaxed text-slate-400">
+            <p className="max-w-sm text-xs leading-relaxed text-slate-500 dark:text-slate-400">
               {SITE_BRAND_NAME} — Đơn vị tiên phong cung cấp giải pháp thiết kế website doanh nghiệp, Web App và vận hành số theo mô hình 2 tầng với triết lý coi website là tài sản số độc quyền của khách hàng.
             </p>
-            <div className="space-y-2 text-xs text-slate-300">
+            <div className="space-y-2 text-xs text-slate-600 dark:text-slate-300">
               <p>
-                <strong className="text-white">Email liên hệ:</strong>{' '}
+                <strong className="text-slate-900 dark:text-white">Email liên hệ:</strong>{' '}
                 <a
                   href={`mailto:${contactChannels.supportEmail}`}
-                  className="text-slate-300 hover:underline"
+                  className="text-blue-600 dark:text-cyan-400 hover:underline"
                 >
                   {contactChannels.supportEmail}
                 </a>
               </p>
               <p>
-                <strong className="text-white">Địa chỉ:</strong> {contactChannels.address}
+                <strong className="text-slate-900 dark:text-white">Địa chỉ:</strong> {contactChannels.address}
               </p>
             </div>
           </div>
 
           {/* Dịch vụ cốt lõi */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white">Dịch Vụ Cốt Lõi</h4>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">Dịch Vụ Cốt Lõi</h4>
             <ul className="mt-4 space-y-2 text-xs">
               <li>
-                <a href="/#tier-services" className="hover:text-white transition">
+                <a href="/#tier-services" className="hover:text-blue-600 dark:hover:text-white transition">
                   Gói Setup Nền Móng (Đầu tư 1 lần)
                 </a>
               </li>
               <li>
-                <a href="/#tier-services" className="hover:text-white transition">
+                <a href="/#tier-services" className="hover:text-blue-600 dark:hover:text-white transition">
                   Gói Vận Hành Hàng Tháng (Growth)
                 </a>
               </li>
               <li>
-                <a href="/#tier-services" className="hover:text-white transition">
+                <a href="/#tier-services" className="hover:text-blue-600 dark:hover:text-white transition">
                   Gói Tăng Trưởng Doanh Thu (Performance)
                 </a>
               </li>
               <li>
-                <a href="/#projects" className="hover:text-white transition">
+                <a href="/#projects" className="hover:text-blue-600 dark:hover:text-white transition">
                   Thiết kế Website Doanh Nghiệp
                 </a>
               </li>
               <li>
-                <a href="/#projects" className="hover:text-white transition">
+                <a href="/#projects" className="hover:text-blue-600 dark:hover:text-white transition">
                   Phát triển Web App theo yêu cầu
                 </a>
               </li>
               <li>
-                <a href="/#projects" className="hover:text-white transition">
+                <a href="/#projects" className="hover:text-blue-600 dark:hover:text-white transition">
                   Thiết kế Landing Page chuyển đổi cao
                 </a>
               </li>
@@ -71,30 +71,30 @@ export default function Footer() {
 
           {/* Dự án tiêu biểu */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white">Dự Án Nổi Bật</h4>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">Dự Án Nổi Bật</h4>
             <ul className="mt-4 space-y-2 text-xs">
               <li>
-                <Link to="/product/1" className="hover:text-white transition">
+                <Link to="/product/1" className="hover:text-blue-600 dark:hover:text-white transition">
                   VinFast Huy Hiệu (33+ Mẫu xe 360°)
                 </Link>
               </li>
               <li>
-                <Link to="/product/2" className="hover:text-white transition">
+                <Link to="/product/2" className="hover:text-blue-600 dark:hover:text-white transition">
                   HQN Group (Xây dựng & Kiến trúc)
                 </Link>
               </li>
               <li>
-                <Link to="/product/3" className="hover:text-white transition">
+                <Link to="/product/3" className="hover:text-blue-600 dark:hover:text-white transition">
                   Court Vision (Vợt Pickleball & NFC)
                 </Link>
               </li>
               <li>
-                <Link to="/product/4" className="hover:text-white transition">
+                <Link to="/product/4" className="hover:text-blue-600 dark:hover:text-white transition">
                   Aplus Billiards (Bàn bida thi đấu)
                 </Link>
               </li>
               <li>
-                <Link to="/product/5" className="hover:text-white transition">
+                <Link to="/product/5" className="hover:text-blue-600 dark:hover:text-white transition">
                   LOOP Beer Club (Giao diện Nightlife)
                 </Link>
               </li>
@@ -103,19 +103,19 @@ export default function Footer() {
 
           {/* Cam kết & Chính sách */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white">Cam Kết {SITE_BRAND_NAME}</h4>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">Cam Kết {SITE_BRAND_NAME}</h4>
             <ul className="mt-4 space-y-2 text-xs">
-              <li className="text-slate-300">✓ 100% Khách hàng làm chủ mã nguồn</li>
-              <li className="text-slate-300">✓ Tên miền đứng tên doanh nghiệp</li>
-              <li className="text-slate-300">✓ Báo giá minh bạch, không phí ẩn</li>
-              <li className="text-slate-300">✓ Hỗ trợ kỹ thuật chuyên nghiệp</li>
+              <li className="text-slate-600 dark:text-slate-300">✓ 100% Khách hàng làm chủ mã nguồn</li>
+              <li className="text-slate-600 dark:text-slate-300">✓ Tên miền đứng tên doanh nghiệp</li>
+              <li className="text-slate-600 dark:text-slate-300">✓ Báo giá minh bạch, không phí ẩn</li>
+              <li className="text-slate-600 dark:text-slate-300">✓ Hỗ trợ kỹ thuật chuyên nghiệp</li>
               <li className="pt-2">
-                <Link to="/legal/privacy" className="hover:text-white transition">
+                <Link to="/legal/privacy" className="hover:text-blue-600 dark:hover:text-white transition">
                   Chính sách bảo mật
                 </Link>
               </li>
               <li>
-                <Link to="/legal/terms" className="hover:text-white transition">
+                <Link to="/legal/terms" className="hover:text-blue-600 dark:hover:text-white transition">
                   Quy định sử dụng & Bàn giao
                 </Link>
               </li>
@@ -124,9 +124,9 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-900 pt-6 text-[11px] text-slate-500 sm:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-200 dark:border-slate-900 pt-6 text-[11px] text-slate-500 sm:flex-row">
           <p>© {year} {SITE_BRAND_NAME}. All rights reserved.</p>
-          <div className="flex items-center gap-4 text-slate-400">
+          <div className="flex items-center gap-4 text-slate-500 dark:text-slate-400">
             <span>Nền tảng giải pháp số thế hệ mới</span>
           </div>
         </div>
