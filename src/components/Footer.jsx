@@ -18,22 +18,16 @@ export default function Footer() {
             </p>
             <div className="space-y-2 text-xs text-slate-300">
               <p>
-                <strong className="text-white">Hotline / Zalo:</strong>{' '}
-                <a
-                  href={`tel:${contactChannels.phoneTel}`}
-                  className="font-bold text-cyan-400 hover:underline"
-                >
-                  {contactChannels.phoneDisplay}
-                </a>
-              </p>
-              <p>
-                <strong className="text-white">Email:</strong>{' '}
+                <strong className="text-white">Email liên hệ:</strong>{' '}
                 <a
                   href={`mailto:${contactChannels.supportEmail}`}
                   className="text-slate-300 hover:underline"
                 >
                   {contactChannels.supportEmail}
                 </a>
+              </p>
+              <p>
+                <strong className="text-white">Địa chỉ:</strong> {contactChannels.address}
               </p>
             </div>
           </div>
@@ -114,7 +108,7 @@ export default function Footer() {
               <li className="text-slate-300">✓ 100% Khách hàng làm chủ mã nguồn</li>
               <li className="text-slate-300">✓ Tên miền đứng tên doanh nghiệp</li>
               <li className="text-slate-300">✓ Báo giá minh bạch, không phí ẩn</li>
-              <li className="text-slate-300">✓ Hỗ trợ kỹ thuật tận tâm 24/7</li>
+              <li className="text-slate-300">✓ Hỗ trợ kỹ thuật chuyên nghiệp</li>
               <li className="pt-2">
                 <Link to="/legal/privacy" className="hover:text-white transition">
                   Chính sách bảo mật
@@ -133,7 +127,7 @@ export default function Footer() {
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-900 pt-6 text-[11px] text-slate-500 sm:flex-row">
           <p>© {year} {SITE_BRAND_NAME}. All rights reserved.</p>
           <div className="flex items-center gap-4 text-slate-400">
-            <span>Phong cách nền tảng số hiện đại</span>
+            <span>Nền tảng giải pháp số thế hệ mới</span>
           </div>
         </div>
       </div>

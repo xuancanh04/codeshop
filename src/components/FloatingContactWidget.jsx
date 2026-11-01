@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { contactChannels } from '../config/contactChannels'
+import { Link } from 'react-router-dom'
 import { SITE_BRAND_NAME } from '../config/branding'
 
 export default function FloatingContactWidget() {
@@ -20,9 +20,9 @@ export default function FloatingContactWidget() {
     setMessages((prev) => [...prev, { role: 'user', text: userMsg }])
 
     setTimeout(() => {
-      let reply = `Cảm ơn bạn! Đội ngũ ${SITE_BRAND_NAME} có thể thiết kế và bàn giao 100% quyền sở hữu theo nhu cầu của bạn. Bạn có thể kết nối nhanh với chuyên viên tư vấn qua Zalo: ${contactChannels.phoneDisplay} nhé!`
+      let reply = `Cảm ơn bạn đã quan tâm! Đội ngũ ${SITE_BRAND_NAME} có thể thiết kế và bàn giao 100% quyền sở hữu theo nhu cầu của bạn. Bạn có thể gửi thông tin qua form liên hệ để nhận tư vấn chi tiết nhé!`
       if (/giá|chi phí|báo giá|bao nhiêu/.test(userMsg.toLowerCase())) {
-        reply = `Về chi phí, ${SITE_BRAND_NAME} cung cấp Gói Setup (đầu tư 1 lần) và các Gói Vận hành linh hoạt hàng tháng (Basic, Growth, Performance). Bạn có thể gọi hotline ${contactChannels.phoneDisplay} hoặc nhắn Zalo để nhận báo giá chi tiết trong 5 phút!`
+        reply = `Về chi phí, ${SITE_BRAND_NAME} cung cấp Gói Setup (đầu tư 1 lần) và các Gói Vận hành linh hoạt hàng tháng (Basic, Growth, Performance). Bạn có thể bấm vào trang Liên hệ để nhận đề xuất báo giá phù hợp nhất!`
       }
       setMessages((prev) => [...prev, { role: 'bot', text: reply }])
     }, 600)
@@ -92,36 +92,19 @@ export default function FloatingContactWidget() {
           </form>
 
           <div className="mt-2 text-center">
-            <a
-              href={contactChannels.zaloUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/contact"
+              onClick={() => setOpen(false)}
               className="text-[11px] font-semibold text-cyan-400 hover:underline"
             >
-              ⚡ Chat trực tiếp qua Zalo ({contactChannels.phoneDisplay})
-            </a>
+              ⚡ Gửi yêu cầu tư vấn dự án
+            </Link>
           </div>
         </div>
       )}
 
-      {/* Buttons liên hệ nhanh */}
+      {/* Button kích hoạt chat */}
       <div className="flex items-center gap-2">
-        <a
-          href={contactChannels.zaloUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg shadow-blue-500/30 transition hover:scale-110"
-          title="Tư vấn qua Zalo"
-        >
-          <span className="font-bold text-xs">Zalo</span>
-        </a>
-        <a
-          href={`tel:${contactChannels.phoneTel}`}
-          className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-600 text-white shadow-lg shadow-emerald-500/30 transition hover:scale-110"
-          title="Gọi hotline"
-        >
-          <span className="text-lg">📞</span>
-        </a>
         <button
           type="button"
           onClick={() => setOpen(!open)}

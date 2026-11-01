@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useCatalog } from '../context/CatalogContext'
-import { contactChannels } from '../config/contactChannels'
 
 export default function ProductDetailPage() {
   const { id } = useParams()
@@ -115,24 +114,16 @@ export default function ProductDetailPage() {
               </div>
 
               <div className="mt-6 space-y-3">
-                <a
-                  href={contactChannels.zaloUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  to="/contact"
                   className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 py-3.5 text-sm font-bold text-white shadow-xl shadow-blue-500/25 hover:opacity-95"
                 >
-                  Nhận báo giá dự án tương tự
-                </a>
-                <a
-                  href={`tel:${contactChannels.phoneTel}`}
-                  className="flex w-full items-center justify-center gap-2 rounded-xl border border-slate-700 bg-slate-900 py-3 text-xs font-semibold text-slate-300 hover:bg-slate-800 hover:text-white"
-                >
-                  Gọi hotline tư vấn: {contactChannels.phoneDisplay}
-                </a>
+                  Nhận tư vấn dự án tương tự
+                </Link>
               </div>
 
               <div className="mt-6 rounded-2xl border border-slate-800 bg-slate-950/50 p-4 text-[11px] text-slate-400">
-                💡 <strong className="text-slate-200">XimiTech cam kết:</strong> Báo giá rõ ràng dựa trên mục tiêu thực tế, không chi phí ẩn, bàn giao đầy đủ mã nguồn và hỗ trợ bảo hành kỹ thuật 24/7.
+                💡 <strong className="text-slate-200">Cam kết chất lượng:</strong> Báo giá rõ ràng dựa trên mục tiêu thực tế, không chi phí ẩn, bàn giao đầy đủ mã nguồn và hỗ trợ bảo hành kỹ thuật chu đáo.
               </div>
             </div>
           </div>

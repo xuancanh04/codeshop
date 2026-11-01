@@ -11,7 +11,7 @@ export default function ContactPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (!name.trim() || !phone.trim()) return
+    if (!name.trim()) return
     setSubmitted(true)
   }
 
@@ -40,29 +40,11 @@ export default function ContactPage() {
 
             <div className="mt-8 space-y-6 text-sm">
               <div className="flex items-start gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-600/20 text-cyan-400">
-                  📞
-                </div>
-                <div>
-                  <span className="text-xs font-semibold uppercase text-slate-400">Hotline & Zalo</span>
-                  <p className="mt-1">
-                    <a
-                      href={`tel:${contactChannels.phoneTel}`}
-                      className="text-base font-bold text-cyan-400 hover:underline"
-                    >
-                      {contactChannels.phoneDisplay}
-                    </a>
-                  </p>
-                  <p className="text-[11px] text-slate-400 mt-0.5">Hỗ trợ tư vấn 24/7</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-600/20 text-indigo-400">
                   ✉️
                 </div>
                 <div>
-                  <span className="text-xs font-semibold uppercase text-slate-400">Email</span>
+                  <span className="text-xs font-semibold uppercase text-slate-400">Email Hỗ Trợ</span>
                   <p className="mt-1 text-xs text-slate-200">
                     <a href={`mailto:${contactChannels.supportEmail}`} className="hover:underline">
                       {contactChannels.supportEmail}
@@ -70,17 +52,16 @@ export default function ContactPage() {
                   </p>
                 </div>
               </div>
-            </div>
 
-            <div className="mt-8 pt-6 border-t border-slate-800">
-              <a
-                href={contactChannels.zaloUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 rounded-xl bg-blue-600 py-3 text-center text-xs font-bold text-white shadow-lg shadow-blue-500/25 hover:bg-blue-500"
-              >
-                Nhắn tin nhanh qua Zalo
-              </a>
+              <div className="flex items-start gap-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-600/20 text-cyan-400">
+                  📍
+                </div>
+                <div>
+                  <span className="text-xs font-semibold uppercase text-slate-400">Địa Điểm</span>
+                  <p className="mt-1 text-xs text-slate-200">{contactChannels.address}</p>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -93,7 +74,7 @@ export default function ContactPage() {
                 </div>
                 <h3 className="mt-4 text-2xl font-bold text-white">Yêu Cầu Đã Được Tiếp Nhận</h3>
                 <p className="mt-2 max-w-md text-sm text-slate-300">
-                  Cảm ơn bạn! Đội ngũ tư vấn {SITE_BRAND_NAME} sẽ liên hệ lại qua số điện thoại/Zalo <strong className="text-cyan-400">{phone}</strong> trong vòng 15-30 phút để hỗ trợ.
+                  Cảm ơn bạn! Đội ngũ tư vấn {SITE_BRAND_NAME} sẽ nhanh chóng liên hệ lại để hỗ trợ bạn sớm nhất.
                 </p>
                 <button
                   type="button"
@@ -126,14 +107,14 @@ export default function ContactPage() {
 
                 <div>
                   <label className="block text-xs font-medium text-slate-300">
-                    Số điện thoại / Zalo nhận báo giá *
+                    Thông tin liên hệ (Email hoặc Zalo/SĐT) *
                   </label>
                   <input
-                    type="tel"
+                    type="text"
                     required
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    placeholder="09xx xxx xxx"
+                    placeholder="Nhập email hoặc số điện thoại của bạn"
                     className="mt-1.5 w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-blue-500 focus:outline-none"
                   />
                 </div>

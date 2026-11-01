@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useI18n } from '../context/I18nContext'
-import { contactChannels } from '../config/contactChannels'
 import BrandLogo from './BrandLogo'
 
 export default function Navbar() {
@@ -20,7 +19,7 @@ export default function Navbar() {
   }
 
   const navClass = ({ isActive }) =>
-    `px-3 py-1.5 text-sm font-medium transition-colors duration-200 rounded-lg ${
+    `px-3.5 py-1.5 text-sm font-medium transition-colors duration-200 rounded-lg ${
       isActive
         ? 'text-cyan-400 bg-white/5 font-semibold'
         : 'text-slate-300 hover:text-white hover:bg-white/5'
@@ -40,21 +39,21 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => scrollToSection('tier-services')}
-            className="px-3 py-1.5 text-sm font-medium text-slate-300 transition-colors hover:text-white hover:bg-white/5 rounded-lg"
+            className="px-3.5 py-1.5 text-sm font-medium text-slate-300 transition-colors hover:text-white hover:bg-white/5 rounded-lg"
           >
             {t('nav.services')}
           </button>
           <button
             type="button"
             onClick={() => scrollToSection('projects')}
-            className="px-3 py-1.5 text-sm font-medium text-slate-300 transition-colors hover:text-white hover:bg-white/5 rounded-lg"
+            className="px-3.5 py-1.5 text-sm font-medium text-slate-300 transition-colors hover:text-white hover:bg-white/5 rounded-lg"
           >
             {t('nav.projects')}
           </button>
           <button
             type="button"
             onClick={() => scrollToSection('pricing')}
-            className="px-3 py-1.5 text-sm font-medium text-slate-300 transition-colors hover:text-white hover:bg-white/5 rounded-lg"
+            className="px-3.5 py-1.5 text-sm font-medium text-slate-300 transition-colors hover:text-white hover:bg-white/5 rounded-lg"
           >
             {t('nav.pricing')}
           </button>
@@ -65,34 +64,22 @@ export default function Navbar() {
 
         {/* Right CTA / Contact Action */}
         <div className="hidden items-center gap-3 sm:flex">
-          {/* Hotline pill */}
-          <a
-            href={`tel:${contactChannels.phoneTel}`}
-            className="flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900/80 px-3.5 py-1.5 text-xs font-medium text-slate-300 hover:border-slate-700 hover:text-white transition"
+          <NavLink
+            to="/contact"
+            className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 px-5 py-2 text-xs font-bold text-white shadow-lg shadow-blue-500/25 transition duration-200 hover:opacity-95 hover:shadow-cyan-500/20 active:scale-95"
           >
-            <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="font-semibold text-emerald-400">{contactChannels.phoneDisplay}</span>
-          </a>
-
-          {/* Consultation CTA button */}
-          <a
-            href={contactChannels.zaloUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 px-4 py-2 text-xs font-bold text-white shadow-lg shadow-blue-500/25 transition duration-200 hover:opacity-95 hover:shadow-cyan-500/20 active:scale-95"
-          >
-            Tư vấn Zalo ngay
-          </a>
+            Tư vấn giải pháp
+          </NavLink>
         </div>
 
         {/* Mobile menu button */}
         <div className="flex items-center gap-2 md:hidden">
-          <a
-            href={`tel:${contactChannels.phoneTel}`}
-            className="rounded-lg bg-slate-900 border border-slate-800 p-2 text-xs text-emerald-400 font-bold"
+          <NavLink
+            to="/contact"
+            className="rounded-lg bg-blue-600 px-3 py-1.5 text-xs text-white font-bold"
           >
-            📞 Gọi
-          </a>
+            Tư vấn
+          </NavLink>
           <button
             type="button"
             onClick={() => setOpen(!open)}
@@ -150,14 +137,13 @@ export default function Navbar() {
             {t('nav.contact')}
           </NavLink>
           <div className="pt-2 border-t border-slate-800 flex flex-col gap-2">
-            <a
-              href={contactChannels.zaloUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <NavLink
+              to="/contact"
+              onClick={() => setOpen(false)}
               className="flex items-center justify-center rounded-xl bg-blue-600 px-4 py-2.5 text-center text-sm font-bold text-white shadow-md"
             >
-              Tư vấn trực tiếp qua Zalo ({contactChannels.phoneDisplay})
-            </a>
+              Liên hệ nhận tư vấn ngay
+            </NavLink>
           </div>
         </div>
       )}

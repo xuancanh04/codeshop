@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useCatalog } from '../context/CatalogContext'
-import { contactChannels } from '../config/contactChannels'
 import { SITE_BRAND_NAME } from '../config/branding'
 
 export default function HomePage() {
@@ -61,17 +60,15 @@ export default function HomePage() {
 
           {/* CTA Buttons */}
           <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href={contactChannels.zaloUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/contact"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 px-6 py-3.5 text-sm font-bold text-white shadow-xl shadow-blue-600/30 transition duration-300 hover:scale-105 hover:shadow-cyan-500/25 active:scale-95"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
               </svg>
-              Nhận tư vấn giải pháp Zalo
-            </a>
+              Nhận tư vấn phương án miễn phí
+            </Link>
             <a
               href="#projects"
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-700 bg-slate-900/80 px-6 py-3.5 text-sm font-semibold text-slate-200 backdrop-blur-md transition duration-200 hover:border-slate-500 hover:bg-slate-800 hover:text-white"
@@ -307,14 +304,12 @@ export default function HomePage() {
                     >
                       Chi tiết dự án →
                     </Link>
-                    <a
-                      href={contactChannels.zaloUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Link
+                      to="/contact"
                       className="rounded-lg bg-blue-600/20 px-3 py-1.5 text-xs font-semibold text-blue-400 hover:bg-blue-600 hover:text-white transition"
                     >
                       Báo giá tương tự
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -363,14 +358,12 @@ export default function HomePage() {
                 </ul>
               </div>
 
-              <a
-                href={contactChannels.zaloUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/contact"
                 className="mt-8 block w-full rounded-xl border border-slate-700 bg-slate-900 py-3 text-center text-xs font-bold text-white hover:bg-slate-800"
               >
-                Tư vấn gói Basic
-              </a>
+                Nhận tư vấn gói Basic
+              </Link>
             </div>
 
             {/* Gói Growth (Phổ biến nhất) */}
@@ -401,14 +394,12 @@ export default function HomePage() {
                 </ul>
               </div>
 
-              <a
-                href={contactChannels.zaloUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/contact"
                 className="mt-8 block w-full rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 py-3.5 text-center text-xs font-bold text-white shadow-lg shadow-blue-500/25 hover:opacity-95"
               >
                 Nhận đề xuất gói Growth
-              </a>
+              </Link>
             </div>
 
             {/* Gói Performance */}
@@ -435,14 +426,12 @@ export default function HomePage() {
                 </ul>
               </div>
 
-              <a
-                href={contactChannels.zaloUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/contact"
                 className="mt-8 block w-full rounded-xl border border-slate-700 bg-slate-900 py-3 text-center text-xs font-bold text-white hover:bg-slate-800"
               >
                 Tư vấn gói Performance
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -506,24 +495,16 @@ export default function HomePage() {
             Sẵn sàng biến website thành tài sản sinh lời?
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-slate-300 text-sm sm:text-base">
-            Hãy liên hệ trực tiếp với đội ngũ {SITE_BRAND_NAME} qua Hotline/Zalo để được khảo sát nhu cầu, lên phương án cấu trúc và báo giá tối ưu nhất.
+            Hãy liên hệ trực tiếp với đội ngũ {SITE_BRAND_NAME} để được khảo sát nhu cầu, lên phương án cấu trúc và báo giá tối ưu nhất.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href={contactChannels.zaloUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-bold text-white shadow-xl shadow-blue-600/30 hover:bg-blue-500"
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-8 py-3.5 text-sm font-bold text-white shadow-xl shadow-blue-600/30 hover:bg-blue-500"
             >
-              Nhắn tin Zalo: {contactChannels.phoneDisplay}
-            </a>
-            <a
-              href={`tel:${contactChannels.phoneTel}`}
-              className="inline-flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-900 px-6 py-3.5 text-sm font-semibold text-slate-200 hover:bg-slate-800"
-            >
-              Gọi trực tiếp: {contactChannels.phoneDisplay}
-            </a>
+              Liên hệ nhận tư vấn ngay
+            </Link>
           </div>
         </div>
       </section>
