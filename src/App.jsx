@@ -1,5 +1,4 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
-import ToastStack from './components/ToastStack'
 import ProtectedRoute from './components/ProtectedRoute'
 import AdminProtectedRoute from './components/AdminProtectedRoute'
 import MainLayout from './components/layout/MainLayout'
@@ -21,12 +20,14 @@ import AdminUsersPage from './pages/admin/AdminUsersPage'
 import AdminOrdersPage from './pages/admin/AdminOrdersPage'
 import AmbientDotsBackground from './components/AmbientDotsBackground'
 import FallingPetalsCanvas from './components/FallingPetalsCanvas'
+import TechNetworkCanvas from './components/TechNetworkCanvas'
 import CursorSmoothTrail from './components/CursorSmoothTrail'
 
 export default function App() {
   return (
     <>
       <AmbientDotsBackground />
+      <TechNetworkCanvas />
       <FallingPetalsCanvas />
       <CursorSmoothTrail />
       <Routes>
@@ -82,7 +83,6 @@ export default function App() {
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-      <ToastStack />
     </>
   )
 }

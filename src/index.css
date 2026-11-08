@@ -6,8 +6,7 @@
  * Light theme: MediCare-style — white surfaces, clinical blue, emerald success, violet accent
  */
 @theme {
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji';
+  --font-sans: 'Plus Jakarta Sans', 'Inter', ui-sans-serif, system-ui, sans-serif;
   --color-surface: #ffffff;
   --color-surface-muted: #f4f7fb;
   --color-border: #e2e8f0;
@@ -94,7 +93,7 @@
   --color-zinc-500: #71717a;
 }
 
-/* —— Nền ambient: mesh mềm + chuyển động chậm (không lưới chấm “3D” lộ) —— */
+/* Nền ambient */
 .ambient-dots-root {
   contain: paint;
 }
@@ -102,36 +101,33 @@
 .ambient-dots-base {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(165deg, rgb(248 250 252) 0%, rgb(255 255 255) 42%, rgb(244 247 252) 100%);
+  background: linear-gradient(165deg, rgb(248 250 252) 0%, rgb(255 255 255) 42%, rgb(244 247 252) 100%);
 }
 
 .dark .ambient-dots-base {
   background: linear-gradient(168deg, rgb(8 8 10) 0%, rgb(12 12 16) 45%, rgb(6 6 9) 100%);
 }
 
-/* Lớp ánh sáng lớn, mờ, chuyển động ease-in-out */
 .ambient-dots-glow {
   position: absolute;
   inset: -25%;
   width: 150%;
   height: 150%;
   transform: translateZ(0);
-  backface-visibility: hidden;
   opacity: 0.85;
   background:
-    radial-gradient(ellipse 52% 42% at 18% 24%, rgb(0 105 204 / 0.09), transparent 58%),
-    radial-gradient(ellipse 48% 38% at 88% 16%, rgb(91 60 201 / 0.07), transparent 55%),
-    radial-gradient(ellipse 44% 48% at 52% 92%, rgb(0 168 120 / 0.05), transparent 52%);
-  animation: ambient-breathe-a 36s ease-in-out infinite alternate;
+    radial-gradient(ellipse 52% 42% at 18% 24%, rgb(0 105 204 / 0.12), transparent 58%),
+    radial-gradient(ellipse 48% 38% at 88% 16%, rgb(91 60 201 / 0.1), transparent 55%),
+    radial-gradient(ellipse 44% 48% at 52% 92%, rgb(0 168 120 / 0.08), transparent 52%);
+  animation: ambient-breathe-a 30s ease-in-out infinite alternate;
 }
 
 .dark .ambient-dots-glow {
-  opacity: 0.75;
+  opacity: 0.8;
   background:
-    radial-gradient(ellipse 48% 40% at 22% 28%, rgb(160 0 255 / 0.11), transparent 56%),
-    radial-gradient(ellipse 44% 36% at 80% 20%, rgb(0 132 255 / 0.1), transparent 52%),
-    radial-gradient(ellipse 40% 44% at 48% 88%, rgb(0 208 132 / 0.06), transparent 50%);
+    radial-gradient(ellipse 48% 40% at 22% 28%, rgb(160 0 255 / 0.18), transparent 56%),
+    radial-gradient(ellipse 44% 36% at 80% 20%, rgb(0 132 255 / 0.16), transparent 52%),
+    radial-gradient(ellipse 40% 44% at 48% 88%, rgb(0 208 132 / 0.1), transparent 50%);
 }
 
 .ambient-dots-glow2 {
@@ -142,77 +138,180 @@
   transform: translateZ(0);
   opacity: 0.65;
   background:
-    radial-gradient(ellipse 36% 32% at 72% 72%, rgb(0 105 204 / 0.06), transparent 50%),
-    radial-gradient(ellipse 34% 30% at 28% 68%, rgb(91 60 201 / 0.05), transparent 48%);
-  animation: ambient-breathe-b 52s ease-in-out infinite alternate;
+    radial-gradient(ellipse 36% 32% at 72% 72%, rgb(0 105 204 / 0.08), transparent 50%),
+    radial-gradient(ellipse 34% 30% at 28% 68%, rgb(91 60 201 / 0.07), transparent 48%);
+  animation: ambient-breathe-b 40s ease-in-out infinite alternate;
 }
 
 .dark .ambient-dots-glow2 {
-  opacity: 0.55;
+  opacity: 0.65;
   background:
-    radial-gradient(ellipse 34% 30% at 70% 70%, rgb(0 132 255 / 0.08), transparent 48%),
-    radial-gradient(ellipse 32% 28% at 30% 65%, rgb(160 0 255 / 0.07), transparent 46%);
+    radial-gradient(ellipse 34% 30% at 70% 70%, rgb(0 132 255 / 0.14), transparent 48%),
+    radial-gradient(ellipse 32% 28% at 30% 65%, rgb(160 0 255 / 0.12), transparent 46%);
 }
 
-/* Hạt cực nhỏ, chỉ ở vùng giữa — gợi depth nhẹ */
 .ambient-dots-fine {
   position: absolute;
   inset: 0;
-  opacity: 0.22;
-  background-image: radial-gradient(circle, rgb(15 23 42 / 0.055) 1px, transparent 1px);
-  background-size: 32px 32px;
+  opacity: 0.25;
+  background-image: radial-gradient(circle, rgb(15 23 42 / 0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
   -webkit-mask-image: radial-gradient(ellipse 72% 65% at 50% 44%, #000 0%, transparent 78%);
   mask-image: radial-gradient(ellipse 72% 65% at 50% 44%, #000 0%, transparent 78%);
 }
 
 .dark .ambient-dots-fine {
-  opacity: 0.18;
-  background-image: radial-gradient(circle, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+  opacity: 0.22;
+  background-image: radial-gradient(circle, rgb(255 255 255 / 0.08) 1px, transparent 1px);
 }
 
-/* Viền rất nhẹ — không “bệt” trắng như vignette cũ */
 .ambient-dots-edge {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(
-    ellipse 92% 88% at 50% 48%,
-    transparent 0%,
-    rgb(255 255 255 / 0.14) 100%
-  );
+  background: radial-gradient(ellipse 92% 88% at 50% 48%, transparent 0%, rgb(255 255 255 / 0.14) 100%);
 }
 
 .dark .ambient-dots-edge {
-  background: radial-gradient(
-    ellipse 90% 85% at 50% 45%,
-    transparent 0%,
-    rgb(0 0 0 / 0.35) 100%
-  );
+  background: radial-gradient(ellipse 90% 85% at 50% 45%, transparent 0%, rgb(0 0 0 / 0.35) 100%);
 }
 
 @keyframes ambient-breathe-a {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  100% {
-    transform: translate3d(1.2%, -1.8%, 0) scale(1.04);
-  }
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(2%, -2.5%, 0) scale(1.08); }
 }
 
 @keyframes ambient-breathe-b {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1.02);
+  0% { transform: translate3d(0, 0, 0) scale(1.05); }
+  100% { transform: translate3d(-2.5%, 2%, 0) scale(1); }
+}
+
+/* =========================================================
+ * BỘ SIÊU HIỆU ỨNG (ANIMATIONS, SHINE, GLOW & GRADIENTS)
+ * ========================================================= */
+
+/* 1. Hiệu ứng chữ đổi màu chuyển động vô tận */
+@keyframes text-shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-text-shimmer {
+  background-size: 200% auto;
+  animation: text-shimmer 4s ease-in-out infinite;
+}
+
+/* 2. Hiệu ứng viền phát sáng xoay tròn (Glowing Border Beam) */
+@keyframes border-beam {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.card-glow-border {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.card-glow-border::before {
+  content: '';
+  position: absolute;
+  inset: -150%;
+  background: conic-gradient(from 0deg, transparent 0deg 300deg, #38bdf8 340deg, #818cf8 360deg);
+  animation: border-beam 7s linear infinite;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.card-glow-border:hover::before {
+  opacity: 1;
+}
+
+/* 3. Hiệu ứng tia sáng quét ngang khi hover (Light Sweep / Glare) */
+.shine-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-hover::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 20%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  transition: all 0.75s ease;
+  pointer-events: none;
+}
+
+.shine-hover:hover::after {
+  left: 130%;
+}
+
+/* 4. Hiệu ứng trôi nổi đa tầng (Float Variants) */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-7px) rotate(1deg); }
+}
+
+.animate-float {
+  animation: float-y 5s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+/* 5. Hiệu ứng phát sáng thở theo nhịp (Pulse Glow) */
+@keyframes pulse-glow-ring {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.25), 0 0 30px rgba(6, 182, 212, 0.15);
   }
-  100% {
-    transform: translate3d(-1.5%, 1.2%, 0) scale(1);
+  50% {
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.45), 0 0 45px rgba(6, 182, 212, 0.3);
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .ambient-dots-glow,
-  .ambient-dots-glow2 {
-    animation: none;
-  }
+.glow-active {
+  animation: pulse-glow-ring 3.5s ease-in-out infinite;
+}
+
+/* 6. Hiệu ứng đốm sáng Radar / Radar Ping */
+@keyframes radar-pulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+.animate-radar {
+  animation: radar-pulse 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Lưới nền công nghệ */
+.bg-tech-grid {
+  background-size: 36px 36px;
+  background-image: 
+    linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+}
+
+.dark .bg-tech-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
 }
 
 @layer base {
@@ -226,78 +325,4 @@
   #root {
     @apply relative min-h-svh min-w-0 overflow-x-clip;
   }
-  img,
-  video {
-    max-width: 100%;
-  }
 }
-
-/* Hiệu ứng Hero & Micro-animations */
-@keyframes float-slow {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-@keyframes pulse-glow {
-  0%, 100% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.9;
-    transform: scale(1.05);
-  }
-}
-
-@keyframes gradient-x {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.animate-float {
-  animation: float-slow 6s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 8s ease-in-out infinite;
-}
-
-.text-gradient-hero {
-  background: linear-gradient(135deg, #1e293b 0%, #0284c7 50%, #6366f1 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.dark .text-gradient-hero {
-  background: linear-gradient(135deg, #ffffff 0%, #38bdf8 45%, #a855f7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.glass-card-hero {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
-  box-shadow: 0 20px 40px -15px rgba(0, 105, 204, 0.08);
-}
-
-.dark .glass-card-hero {
-  background: rgba(18, 18, 24, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.5);
-}
-

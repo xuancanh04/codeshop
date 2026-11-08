@@ -13,18 +13,22 @@ export default function HomePage() {
       : projects.filter((p) => p.category === activeCategory)
 
   return (
-    <div className="relative min-w-0 overflow-x-clip bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 selection:bg-blue-600 selection:text-white transition-colors duration-300">
-      {/* Glow Effects Background */}
+    <div className="relative min-w-0 overflow-x-clip bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 selection:bg-blue-600 selection:text-white transition-colors duration-300 bg-tech-grid">
+      {/* Dynamic Animated Glow Orbs in Background */}
       <div
-        className="pointer-events-none absolute left-1/2 top-0 h-[650px] w-[min(100vw,1000px)] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_top,rgba(59,130,246,0.15)_0%,rgba(147,51,234,0.08)_40%,transparent_70%)] blur-3xl dark:bg-[radial-gradient(ellipse_at_top,rgba(59,130,246,0.18)_0%,rgba(147,51,234,0.12)_40%,transparent_70%)]"
+        className="pointer-events-none absolute left-1/2 top-0 h-[650px] w-[min(100vw,1000px)] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_top,rgba(59,130,246,0.2)_0%,rgba(147,51,234,0.12)_40%,transparent_70%)] blur-3xl animate-pulse-glow"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute right-[-10%] top-[400px] h-[500px] w-[500px] rounded-full bg-cyan-500/10 blur-[120px]"
+        className="pointer-events-none absolute right-[-5%] top-[350px] h-[520px] w-[520px] rounded-full bg-cyan-500/15 blur-[130px] animate-float-slow"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute left-[-10%] top-[900px] h-[500px] w-[500px] rounded-full bg-blue-600/10 blur-[120px]"
+        className="pointer-events-none absolute left-[-5%] top-[850px] h-[520px] w-[520px] rounded-full bg-blue-600/15 blur-[130px] animate-float"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute right-[10%] top-[1400px] h-[450px] w-[450px] rounded-full bg-indigo-500/10 blur-[120px] animate-float-slow"
         aria-hidden
       />
 
@@ -33,18 +37,21 @@ export default function HomePage() {
          ======================================================== */}
       <section className="relative pt-12 pb-20 sm:pt-20 sm:pb-28">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 text-center">
-          {/* Top Pill Kicker */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-50/80 px-4 py-1.5 text-xs font-semibold text-blue-700 shadow-sm backdrop-blur-md dark:border-blue-500/30 dark:bg-blue-950/60 dark:text-blue-300 dark:shadow-blue-500/10">
-            <span className="flex h-2 w-2 rounded-full bg-blue-600 dark:bg-cyan-400 animate-pulse" />
+          {/* Top Pill Kicker với hiệu ứng Radar Pulse */}
+          <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-50/80 px-4 py-1.5 text-xs font-semibold text-blue-700 shadow-sm backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-blue-500/60 dark:border-blue-500/30 dark:bg-blue-950/60 dark:text-blue-300 dark:shadow-blue-500/10">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-radar absolute inline-flex h-full w-full rounded-full bg-blue-600 dark:bg-cyan-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-600 dark:bg-cyan-400" />
+            </span>
             <span className="tracking-wide uppercase">TRIẾT LÝ DỊCH VỤ SỐ {SITE_BRAND_NAME.toUpperCase()}</span>
             <span className="text-blue-400 dark:text-blue-500">•</span>
             <span className="font-normal text-slate-600 dark:text-slate-300">Doanh nghiệp sở hữu 100%</span>
           </div>
 
-          {/* Hero Main Heading */}
+          {/* Hero Main Heading với hiệu ứng Text Shimmer đổi màu đa tầng */}
           <h1 className="mx-auto mt-7 max-w-4xl text-4xl font-black tracking-tight text-slate-900 sm:text-6xl lg:text-7xl leading-[1.12] dark:text-white">
             Website là{' '}
-            <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 bg-clip-text text-transparent dark:from-blue-400 dark:via-cyan-300 dark:to-indigo-300">
+            <span className="animate-text-shimmer bg-gradient-to-r from-blue-600 via-cyan-400 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:via-cyan-300 dark:to-indigo-300 drop-shadow-sm">
               tài sản số
             </span>
             .<br />
@@ -58,46 +65,46 @@ export default function HomePage() {
             <span className="font-semibold text-blue-600 dark:text-cyan-400">vận hành hàng tháng</span> để liên tục mang lại khách hàng & doanh thu.
           </p>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons với hiệu ứng tia sáng quét (Shine sweep) */}
           <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
             <Link
               to="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 px-6 py-3.5 text-sm font-bold text-white shadow-xl shadow-blue-600/30 transition duration-300 hover:scale-105 hover:shadow-cyan-500/25 active:scale-95"
+              className="shine-hover inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 px-7 py-4 text-sm font-bold text-white shadow-xl shadow-blue-600/30 transition-all duration-300 hover:scale-105 hover:shadow-cyan-500/30 active:scale-95 glow-active"
             >
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-5 h-5 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
               </svg>
               Nhận tư vấn phương án miễn phí
             </Link>
             <a
               href="#projects"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white/80 px-6 py-3.5 text-sm font-semibold text-slate-700 shadow-sm backdrop-blur-md transition duration-200 hover:border-slate-400 hover:bg-slate-50 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:border-slate-500 dark:hover:bg-slate-800 dark:hover:text-white"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-300 bg-white/90 px-7 py-4 text-sm font-semibold text-slate-700 shadow-md backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-400 hover:bg-slate-50 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:border-cyan-500/50 dark:hover:bg-slate-800 dark:hover:text-white"
             >
               Khám phá 150+ dự án
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </a>
           </div>
 
-          {/* 4 Stat Highlights */}
+          {/* 4 Stat Highlights với hiệu ứng nổi 3D khi hover */}
           <div className="mx-auto mt-14 grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-4">
-            <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 shadow-sm backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-900/40">
-              <div className="text-3xl font-extrabold text-blue-600 dark:text-cyan-400">150+</div>
-              <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">Dự án đã triển khai</div>
-            </div>
-            <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 shadow-sm backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-900/40">
-              <div className="text-3xl font-extrabold text-indigo-600 dark:text-blue-400">100%</div>
-              <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">Bàn giao toàn bộ quyền</div>
-            </div>
-            <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 shadow-sm backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-900/40">
-              <div className="text-3xl font-extrabold text-blue-700 dark:text-indigo-400">2 Tầng</div>
-              <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">Setup & Vận hành tháng</div>
-            </div>
-            <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 shadow-sm backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-900/40">
-              <div className="text-3xl font-extrabold text-emerald-600 dark:text-emerald-400">24/7</div>
-              <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">Bảo mật & Giám sát uptime</div>
-            </div>
+            {[
+              { num: '150+', label: 'Dự án đã triển khai', color: 'text-blue-600 dark:text-cyan-400', border: 'hover:border-cyan-500/40' },
+              { num: '100%', label: 'Bàn giao toàn bộ quyền', color: 'text-indigo-600 dark:text-blue-400', border: 'hover:border-blue-500/40' },
+              { num: '2 Tầng', label: 'Setup & Vận hành tháng', color: 'text-blue-700 dark:text-indigo-400', border: 'hover:border-indigo-500/40' },
+              { num: '24/7', label: 'Bảo mật & Giám sát uptime', color: 'text-emerald-600 dark:text-emerald-400', border: 'hover:border-emerald-500/40' },
+            ].map((stat, idx) => (
+              <div
+                key={idx}
+                className={`group rounded-2xl border border-slate-200 bg-white/80 p-5 shadow-sm backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl dark:border-slate-800/80 dark:bg-slate-900/50 ${stat.border}`}
+              >
+                <div className={`text-3xl font-black transition-transform duration-300 group-hover:scale-110 ${stat.color}`}>
+                  {stat.num}
+                </div>
+                <div className="mt-1 text-xs text-slate-500 dark:text-slate-400 font-medium">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -120,9 +127,9 @@ export default function HomePage() {
           </div>
 
           <div className="mt-12 grid gap-8 lg:grid-cols-2">
-            {/* Tầng 01: Setup */}
-            <div className="relative rounded-3xl border border-blue-200 bg-white p-8 shadow-xl backdrop-blur-xl dark:border-blue-500/30 dark:bg-gradient-to-b dark:from-blue-950/40 dark:via-slate-900/60 dark:to-slate-950">
-              <div className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-500/20 dark:text-blue-300">
+            {/* Tầng 01: Setup với hiệu ứng xoay viền phát sáng */}
+            <div className="card-glow-border group relative rounded-3xl border border-blue-200 bg-white p-8 shadow-xl backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-blue-500/30 dark:bg-gradient-to-b dark:from-blue-950/40 dark:via-slate-900/60 dark:to-slate-950">
+              <div className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-3.5 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-500/20 dark:text-blue-300">
                 TẦNG 01 • ĐẦU TƯ MỘT LẦN
               </div>
               <h3 className="mt-4 text-2xl font-bold text-slate-900 dark:text-white">
@@ -140,7 +147,7 @@ export default function HomePage() {
                   'Cài đặt công cụ đo lường chuyển đổi (GA4, Google Search Console)',
                   'Bàn giao 100% mã nguồn, tên miền, dữ liệu & tài khoản quản trị cao nhất',
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-3">
+                  <div key={idx} className="flex items-start gap-3 transition-transform duration-200 hover:translate-x-1">
                     <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-100 text-xs font-bold text-blue-600 dark:bg-blue-500/20 dark:text-blue-400">
                       ✓
                     </span>
@@ -149,7 +156,7 @@ export default function HomePage() {
                 ))}
               </div>
 
-              <div className="mt-8 rounded-2xl border border-blue-200 bg-blue-50/50 p-4 dark:border-blue-500/20 dark:bg-blue-900/20">
+              <div className="mt-8 rounded-2xl border border-blue-200 bg-blue-50/50 p-4 transition duration-300 group-hover:bg-blue-50 dark:border-blue-500/20 dark:bg-blue-900/20 dark:group-hover:bg-blue-900/30">
                 <span className="text-xs font-bold uppercase text-blue-700 dark:text-cyan-300">Cam kết bản quyền:</span>
                 <p className="mt-1 text-xs text-slate-600 dark:text-slate-300">
                   Doanh nghiệp đứng tên trực tiếp tên miền, sở hữu toàn vẹn source code, không lo bị gián đoạn hay phụ thuộc kỹ thuật.
@@ -157,9 +164,9 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Tầng 02: Vận hành hàng tháng */}
-            <div className="relative rounded-3xl border border-indigo-200 bg-white p-8 shadow-xl backdrop-blur-xl dark:border-indigo-500/30 dark:bg-gradient-to-b dark:from-indigo-950/40 dark:via-slate-900/60 dark:to-slate-950">
-              <div className="inline-flex items-center gap-2 rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-300">
+            {/* Tầng 02: Vận hành hàng tháng với hiệu ứng viền phát sáng */}
+            <div className="card-glow-border group relative rounded-3xl border border-indigo-200 bg-white p-8 shadow-xl backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-indigo-500/30 dark:bg-gradient-to-b dark:from-indigo-950/40 dark:via-slate-900/60 dark:to-slate-950">
+              <div className="inline-flex items-center gap-2 rounded-full bg-indigo-100 px-3.5 py-1 text-xs font-semibold text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-300">
                 TẦNG 02 • ĐỒNG HÀNH DÀI LÂU
               </div>
               <h3 className="mt-4 text-2xl font-bold text-slate-900 dark:text-white">
@@ -177,7 +184,7 @@ export default function HomePage() {
                   'Tối ưu hóa tỷ lệ chuyển đổi (CRO) trên từng trang đích',
                   'Báo cáo hiệu suất số liệu minh bạch hàng tháng qua dashboard trực quan',
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-3">
+                  <div key={idx} className="flex items-start gap-3 transition-transform duration-200 hover:translate-x-1">
                     <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-400">
                       ✓
                     </span>
@@ -186,7 +193,7 @@ export default function HomePage() {
                 ))}
               </div>
 
-              <div className="mt-8 rounded-2xl border border-indigo-200 bg-indigo-50/50 p-4 dark:border-indigo-500/20 dark:bg-indigo-900/20">
+              <div className="mt-8 rounded-2xl border border-indigo-200 bg-indigo-50/50 p-4 transition duration-300 group-hover:bg-indigo-50 dark:border-indigo-500/20 dark:bg-indigo-900/20 dark:group-hover:bg-indigo-900/30">
                 <span className="text-xs font-bold uppercase text-indigo-700 dark:text-indigo-300">Linh hoạt theo giai đoạn:</span>
                 <p className="mt-1 text-xs text-slate-600 dark:text-slate-300">
                   Chọn gói Basic (Giữ gìn an toàn), Growth (Phát triển SEO & nội dung) hoặc Performance (Tăng trưởng doanh thu & quảng cáo).
@@ -215,7 +222,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* Category Filter Pills */}
+            {/* Category Filter Pills với animation click */}
             <div className="flex flex-wrap gap-2">
               {[
                 { id: 'all', label: 'Tất cả' },
@@ -228,7 +235,7 @@ export default function HomePage() {
                   key={c.id}
                   type="button"
                   onClick={() => setActiveCategory(c.id)}
-                  className={`rounded-full px-4 py-2 text-xs font-semibold transition ${
+                  className={`rounded-full px-4 py-2 text-xs font-semibold transition-all duration-300 hover:scale-105 active:scale-95 ${
                     activeCategory === c.id
                       ? 'bg-blue-600 text-white shadow-md shadow-blue-500/30'
                       : 'border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white'
@@ -245,22 +252,22 @@ export default function HomePage() {
             {filteredProjects.map((p) => (
               <div
                 key={p.id}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-md transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-500/50 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900/60 dark:shadow-xl dark:hover:shadow-2xl dark:hover:shadow-blue-500/10"
+                className="group flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-md transition-all duration-500 hover:-translate-y-2 hover:border-blue-500/50 hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900/60 dark:shadow-xl dark:hover:border-cyan-500/40 dark:hover:shadow-cyan-500/10"
               >
-                {/* Project Image */}
+                {/* Project Image với zoom scale mượt */}
                 <div className="relative aspect-video w-full overflow-hidden bg-slate-100 dark:bg-slate-950">
                   <img
                     src={p.image}
                     alt={p.title}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent dark:from-slate-950 dark:via-slate-950/20" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80 dark:from-slate-950 dark:via-slate-950/30" />
                   <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
-                    <span className="rounded-full bg-slate-900/80 px-2.5 py-1 text-[11px] font-bold text-white backdrop-blur-md dark:bg-slate-950/80 dark:text-cyan-400">
+                    <span className="rounded-full bg-slate-900/85 px-3 py-1 text-[11px] font-bold text-white backdrop-blur-md dark:bg-slate-950/85 dark:text-cyan-400">
                       {p.client}
                     </span>
-                    <span className="rounded-full bg-blue-600/90 px-2.5 py-1 text-[11px] font-semibold text-white backdrop-blur-md">
+                    <span className="rounded-full bg-blue-600/90 px-3 py-1 text-[11px] font-semibold text-white backdrop-blur-md shadow-sm">
                       ⏱ {p.timeline}
                     </span>
                   </div>
@@ -272,14 +279,14 @@ export default function HomePage() {
                     {p.tags.map((tag, i) => (
                       <span
                         key={i}
-                        className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-medium text-slate-700 dark:bg-slate-800/90 dark:text-slate-300"
+                        className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-medium text-slate-700 transition duration-200 group-hover:bg-blue-50 group-hover:text-blue-600 dark:bg-slate-800/90 dark:text-slate-300 dark:group-hover:bg-cyan-950/50 dark:group-hover:text-cyan-300"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  <h3 className="mt-3 text-lg font-bold text-slate-900 transition group-hover:text-blue-600 dark:text-white dark:group-hover:text-cyan-400">
+                  <h3 className="mt-3 text-lg font-bold text-slate-900 transition-colors duration-300 group-hover:text-blue-600 dark:text-white dark:group-hover:text-cyan-400">
                     {p.title}
                   </h3>
 
@@ -290,7 +297,7 @@ export default function HomePage() {
                   <div className="mt-4 space-y-1.5 border-t border-slate-100 pt-4 dark:border-slate-800/80">
                     {p.features.slice(0, 3).map((f, idx) => (
                       <div key={idx} className="flex items-center gap-2 text-[11px] text-slate-600 dark:text-slate-300">
-                        <span className="text-blue-600 dark:text-cyan-400">✦</span>
+                        <span className="text-blue-600 dark:text-cyan-400 font-bold">✦</span>
                         <span className="line-clamp-1">{f}</span>
                       </div>
                     ))}
@@ -300,13 +307,13 @@ export default function HomePage() {
                   <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between dark:border-slate-800/60">
                     <Link
                       to={`/product/${p.id}`}
-                      className="text-xs font-semibold text-blue-600 hover:text-blue-700 hover:underline dark:text-cyan-400 dark:hover:text-cyan-300"
+                      className="inline-flex items-center gap-1 text-xs font-semibold text-blue-600 transition-all duration-200 hover:gap-2 hover:text-blue-700 dark:text-cyan-400 dark:hover:text-cyan-300"
                     >
-                      Chi tiết dự án →
+                      Chi tiết dự án <span>→</span>
                     </Link>
                     <Link
                       to="/contact"
-                      className="rounded-lg bg-blue-50 px-3 py-1.5 text-xs font-semibold text-blue-600 hover:bg-blue-600 hover:text-white transition dark:bg-blue-600/20 dark:text-blue-400 dark:hover:bg-blue-600 dark:hover:text-white"
+                      className="rounded-xl bg-blue-50 px-3.5 py-1.5 text-xs font-semibold text-blue-600 transition-all duration-200 hover:bg-blue-600 hover:text-white hover:shadow-md dark:bg-blue-600/20 dark:text-blue-400 dark:hover:bg-blue-600 dark:hover:text-white"
                     >
                       Báo giá tương tự
                     </Link>
@@ -338,7 +345,7 @@ export default function HomePage() {
           {/* Pricing Cards */}
           <div className="mt-12 grid gap-8 lg:grid-cols-3">
             {/* Gói Basic */}
-            <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm flex flex-col justify-between dark:border-slate-800 dark:bg-slate-950">
+            <div className="group rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col justify-between dark:border-slate-800 dark:bg-slate-950">
               <div>
                 <span className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">VẬN HÀNH DUY TRÌ</span>
                 <h3 className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">Gói Basic</h3>
@@ -360,15 +367,15 @@ export default function HomePage() {
 
               <Link
                 to="/contact"
-                className="mt-8 block w-full rounded-xl border border-slate-300 bg-slate-50 py-3 text-center text-xs font-bold text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
+                className="mt-8 block w-full rounded-2xl border border-slate-300 bg-slate-50 py-3.5 text-center text-xs font-bold text-slate-700 transition duration-200 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
               >
                 Nhận tư vấn gói Basic
               </Link>
             </div>
 
-            {/* Gói Growth (Phổ biến nhất) */}
-            <div className="relative rounded-3xl border-2 border-blue-600 bg-white p-8 shadow-2xl flex flex-col justify-between dark:border-blue-500 dark:bg-gradient-to-b dark:from-blue-950/60 dark:to-slate-950">
-              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 px-3.5 py-1 text-[11px] font-black uppercase text-white tracking-wider shadow-md">
+            {/* Gói Growth (Phổ biến nhất - Có hiệu ứng Pulse Glow & Shine) */}
+            <div className="relative rounded-3xl border-2 border-blue-600 bg-white p-8 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-blue-500/20 flex flex-col justify-between dark:border-blue-500 dark:bg-gradient-to-b dark:from-blue-950/60 dark:to-slate-950 glow-active">
+              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 px-4 py-1 text-[11px] font-black uppercase text-white tracking-wider shadow-lg">
                 Phổ biến nhất
               </div>
 
@@ -396,14 +403,14 @@ export default function HomePage() {
 
               <Link
                 to="/contact"
-                className="mt-8 block w-full rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 py-3.5 text-center text-xs font-bold text-white shadow-lg shadow-blue-500/25 hover:opacity-95"
+                className="shine-hover mt-8 block w-full rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-500 py-3.5 text-center text-xs font-bold text-white shadow-lg shadow-blue-500/25 transition duration-200 hover:opacity-95"
               >
                 Nhận đề xuất gói Growth
               </Link>
             </div>
 
             {/* Gói Performance */}
-            <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm flex flex-col justify-between dark:border-slate-800 dark:bg-slate-950">
+            <div className="group rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col justify-between dark:border-slate-800 dark:bg-slate-950">
               <div>
                 <span className="text-xs font-bold uppercase text-indigo-600 dark:text-indigo-400">BỨT PHÁ DOANH THU</span>
                 <h3 className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">Gói Performance</h3>
@@ -428,7 +435,7 @@ export default function HomePage() {
 
               <Link
                 to="/contact"
-                className="mt-8 block w-full rounded-xl border border-slate-300 bg-slate-50 py-3 text-center text-xs font-bold text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
+                className="mt-8 block w-full rounded-2xl border border-slate-300 bg-slate-50 py-3.5 text-center text-xs font-bold text-slate-700 transition duration-200 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
               >
                 Tư vấn gói Performance
               </Link>
@@ -472,12 +479,13 @@ export default function HomePage() {
             ].map((faq, i) => (
               <div
                 key={i}
-                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/60"
+                className="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-blue-400 hover:shadow-md dark:border-slate-800 dark:bg-slate-900/60 dark:hover:border-cyan-500/40"
               >
                 <h4 className="text-base font-bold text-slate-900 flex items-center gap-2 dark:text-white">
-                  <span className="text-blue-600 dark:text-cyan-400">?</span> {faq.q}
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-100 text-xs font-bold text-blue-600 dark:bg-cyan-950/70 dark:text-cyan-400">?</span>
+                  {faq.q}
                 </h4>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                <p className="mt-3 pl-8 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
                   {faq.a}
                 </p>
               </div>
@@ -501,7 +509,7 @@ export default function HomePage() {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-8 py-3.5 text-sm font-bold text-white shadow-xl shadow-blue-600/30 hover:bg-blue-500"
+              className="shine-hover inline-flex items-center gap-2 rounded-2xl bg-blue-600 px-9 py-4 text-sm font-bold text-white shadow-xl shadow-blue-600/30 transition-all duration-300 hover:scale-105 hover:bg-blue-500 glow-active"
             >
               Liên hệ nhận tư vấn ngay
             </Link>
