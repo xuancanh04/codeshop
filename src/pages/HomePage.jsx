@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useCatalog } from '../context/CatalogContext'
+import { useI18n } from '../context/I18nContext'
 import { SITE_BRAND_NAME } from '../config/branding'
 
 export default function HomePage() {
+  const { t } = useI18n()
   const { projects } = useCatalog()
   const [activeCategory, setActiveCategory] = useState('all')
 
@@ -43,19 +45,18 @@ export default function HomePage() {
               {/* Kicker Tag */}
               <div className="inline-flex items-center gap-1.5 text-xs font-bold tracking-widest text-slate-500 uppercase dark:text-slate-400">
                 <span className="text-cyan-500 font-extrabold text-sm">/</span>
-                <span>THIẾT KẾ & PHÁT TRIỂN</span>
+                <span>{t('hero.kicker')}</span>
               </div>
 
               {/* Massive Title: WEBSITE LÀ TÀI SẢN */}
               <h1 className="mt-4 text-5xl font-black tracking-tight text-slate-950 sm:text-7xl xl:text-8xl leading-[0.95] dark:text-white uppercase font-sans">
-                WEBSITE<br />
-                LÀ TÀI SẢN
+                {t('hero.mainTitle')}
               </h1>
 
               {/* Sub-line with Lime / Green Highlight Underline */}
               <div className="mt-3 relative inline-block">
                 <div className="text-2xl sm:text-4xl xl:text-5xl font-extrabold text-blue-600 dark:text-cyan-400 lowercase tracking-normal">
-                  số của doanh nghiệp.
+                  {t('hero.subHighlight')}
                 </div>
                 <div className="absolute -bottom-1 left-0 right-0 h-2 sm:h-2.5 bg-lime-400/80 -rotate-1 rounded-sm -z-10" />
               </div>
@@ -69,7 +70,7 @@ export default function HomePage() {
                   <span className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-600 text-[10px] font-black text-white dark:bg-slate-900">
                     💬
                   </span>
-                  <span>Trao đổi về dự án</span>
+                  <span>{t('hero.ctaChat')}</span>
                   <span className="text-xs">↗</span>
                 </Link>
 
@@ -77,7 +78,7 @@ export default function HomePage() {
                   href="#projects"
                   className="group inline-flex items-center gap-1.5 text-xs font-bold text-slate-900 hover:text-blue-600 dark:text-slate-200 dark:hover:text-cyan-400 transition-colors py-2 px-3 underline decoration-slate-300 underline-offset-4 hover:decoration-blue-500"
                 >
-                  <span>Xem dự án đã thực hiện</span>
+                  <span>{t('hero.ctaViewProjects')}</span>
                   <span className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
                 </a>
               </div>
@@ -111,26 +112,26 @@ export default function HomePage() {
 
               {/* Subtitle paragraph đúng văn phong XimiTech nhưng mang thương hiệu người dùng */}
               <p className="text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-300">
-                Đa số chủ doanh nghiệp coi website là khoản chi làm một lần rồi để đó. {SITE_BRAND_NAME} coi đó là tài sản: xây dựng nền móng, anh chị sở hữu <span className="font-bold text-slate-900 dark:text-white">100%</span>, rồi chúng tôi bảo vệ, giữ gìn và phát triển nó mỗi tháng để website mang về khách hàng.
+                {t('hero.philosophy', { brand: SITE_BRAND_NAME })}
               </p>
 
               {/* Stats Highlights khớp ảnh: 150+ và 100% */}
               <div className="grid grid-cols-2 gap-6 pt-2 border-t border-slate-200/80 dark:border-slate-800">
                 <div>
                   <div className="text-3xl sm:text-4xl font-black text-slate-950 dark:text-white">
-                    150+
+                    {t('hero.stat1Number')}
                   </div>
                   <div className="mt-1 text-[11px] leading-snug font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                    DỰ ÁN ĐÃ TRIỂN KHAI, TÍNH CẢ TRƯỚC KHI LẬP CÔNG TY
+                    {t('hero.stat1Label')}
                   </div>
                 </div>
 
                 <div>
                   <div className="text-3xl sm:text-4xl font-black text-slate-950 dark:text-white">
-                    100%
+                    {t('hero.stat2Number')}
                   </div>
                   <div className="mt-1 text-[11px] leading-snug font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                    MÃ NGUỒN, TÊN MIỀN, DỮ LIỆU ĐỨNG TÊN DOANH NGHIỆP
+                    {t('hero.stat2Label')}
                   </div>
                 </div>
               </div>

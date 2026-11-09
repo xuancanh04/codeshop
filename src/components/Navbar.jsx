@@ -5,7 +5,7 @@ import { useMarketplace } from '../context/MarketplaceContext'
 import BrandLogo from './BrandLogo'
 
 export default function Navbar() {
-  const { t } = useI18n()
+  const { t, locale, setLanguage } = useI18n()
   const { theme, toggleTheme } = useMarketplace()
   const isDark = theme === 'dark'
   const navigate = useNavigate()
@@ -213,10 +213,15 @@ export default function Navbar() {
             {isDark ? '☀️' : '🌙'}
           </button>
 
-          {/* Lang Selector Pill EN/VI */}
-          <span className="hidden sm:inline-flex items-center justify-center rounded-lg border border-slate-200 bg-white px-2.5 py-1 text-xs font-bold text-slate-700 shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300">
-            EN
-          </span>
+          {/* Lang Selector Pill EN/VI (Nhấn để chuyển đổi ngôn ngữ) */}
+          <button
+            type="button"
+            onClick={() => setLanguage(locale === 'vi' ? 'en' : 'vi')}
+            className="inline-flex items-center justify-center rounded-lg border border-slate-200 bg-white px-2.5 py-1 text-xs font-bold text-slate-700 shadow-sm transition hover:bg-slate-100 hover:text-blue-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-cyan-400"
+            title={locale === 'vi' ? 'Switch to English' : 'Chuyển sang Tiếng Việt'}
+          >
+            {locale === 'vi' ? 'EN' : 'VI'}
+          </button>
 
           {/* Zalo / Liên hệ ngay Button dạng viên thuốc màu xanh cyan đúng chuẩn ảnh */}
           <Link
@@ -348,6 +353,16 @@ export default function Navbar() {
           </Link>
 
           <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex flex-col gap-2">
+            <div className="flex items-center justify-between px-2 py-1">
+              <span className="text-xs text-slate-500 dark:text-slate-400">Ngôn ngữ / Language:</span>
+              <button
+                type="button"
+                onClick={() => setLanguage(locale === 'vi' ? 'en' : 'vi')}
+                className="rounded-lg border border-slate-200 bg-white px-3 py-1 text-xs font-bold text-slate-800 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+              >
+                {locale === 'vi' ? '🇺🇸 English (EN)' : '🇻🇳 Tiếng Việt (VI)'}
+              </button>
+            </div>
             <Link
               to="/contact"
               onClick={() => setOpen(false)}
