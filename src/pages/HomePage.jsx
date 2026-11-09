@@ -35,76 +35,106 @@ export default function HomePage() {
       {/* ========================================================
           1. HERO SECTION: Triết lý "Website là tài sản"
          ======================================================== */}
-      <section className="relative pt-12 pb-20 sm:pt-20 sm:pb-28">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 text-center">
-          {/* Top Pill Kicker với hiệu ứng Radar Pulse */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-50/80 px-4 py-1.5 text-xs font-semibold text-blue-700 shadow-sm backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-blue-500/60 dark:border-blue-500/30 dark:bg-blue-950/60 dark:text-blue-300 dark:shadow-blue-500/10">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-radar absolute inline-flex h-full w-full rounded-full bg-blue-600 dark:bg-cyan-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-600 dark:bg-cyan-400" />
-            </span>
-            <span className="tracking-wide uppercase">TRIẾT LÝ DỊCH VỤ SỐ {SITE_BRAND_NAME.toUpperCase()}</span>
-            <span className="text-blue-400 dark:text-blue-500">•</span>
-            <span className="font-normal text-slate-600 dark:text-slate-300">Doanh nghiệp sở hữu 100%</span>
-          </div>
-
-          {/* Hero Main Heading với hiệu ứng Text Shimmer đổi màu đa tầng */}
-          <h1 className="mx-auto mt-7 max-w-4xl text-4xl font-black tracking-tight text-slate-900 sm:text-6xl lg:text-7xl leading-[1.12] dark:text-white">
-            Website là{' '}
-            <span className="animate-text-shimmer bg-gradient-to-r from-blue-600 via-cyan-400 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:via-cyan-300 dark:to-indigo-300 drop-shadow-sm">
-              tài sản số
-            </span>
-            .<br />
-            Không phải khoản phí bỏ quên.
-          </h1>
-
-          {/* Subtitle */}
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg dark:text-slate-300">
-            {SITE_BRAND_NAME} định vị website là kênh sinh lời và tài sản lâu dài của doanh nghiệp. Chúng tôi bàn giao{' '}
-            <span className="font-semibold text-slate-900 dark:text-white">100% mã nguồn & quyền sở hữu</span>, kết hợp đồng hành{' '}
-            <span className="font-semibold text-blue-600 dark:text-cyan-400">vận hành hàng tháng</span> để liên tục mang lại khách hàng & doanh thu.
-          </p>
-
-          {/* CTA Buttons với hiệu ứng tia sáng quét (Shine sweep) */}
-          <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              to="/contact"
-              className="shine-hover inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 px-7 py-4 text-sm font-bold text-white shadow-xl shadow-blue-600/30 transition-all duration-300 hover:scale-105 hover:shadow-cyan-500/30 active:scale-95 glow-active"
-            >
-              <svg className="w-5 h-5 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-              </svg>
-              Nhận tư vấn phương án miễn phí
-            </Link>
-            <a
-              href="#projects"
-              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-300 bg-white/90 px-7 py-4 text-sm font-semibold text-slate-700 shadow-md backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-400 hover:bg-slate-50 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:border-cyan-500/50 dark:hover:bg-slate-800 dark:hover:text-white"
-            >
-              Khám phá 150+ dự án
-              <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </a>
-          </div>
-
-          {/* 4 Stat Highlights với hiệu ứng nổi 3D khi hover */}
-          <div className="mx-auto mt-14 grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-4">
-            {[
-              { num: '150+', label: 'Dự án đã triển khai', color: 'text-blue-600 dark:text-cyan-400', border: 'hover:border-cyan-500/40' },
-              { num: '100%', label: 'Bàn giao toàn bộ quyền', color: 'text-indigo-600 dark:text-blue-400', border: 'hover:border-blue-500/40' },
-              { num: '2 Tầng', label: 'Setup & Vận hành tháng', color: 'text-blue-700 dark:text-indigo-400', border: 'hover:border-indigo-500/40' },
-              { num: '24/7', label: 'Bảo mật & Giám sát uptime', color: 'text-emerald-600 dark:text-emerald-400', border: 'hover:border-emerald-500/40' },
-            ].map((stat, idx) => (
-              <div
-                key={idx}
-                className={`group rounded-2xl border border-slate-200 bg-white/80 p-5 shadow-sm backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl dark:border-slate-800/80 dark:bg-slate-900/50 ${stat.border}`}
-              >
-                <div className={`text-3xl font-black transition-transform duration-300 group-hover:scale-110 ${stat.color}`}>
-                  {stat.num}
-                </div>
-                <div className="mt-1 text-xs text-slate-500 dark:text-slate-400 font-medium">{stat.label}</div>
+      <section className="relative pt-8 pb-16 sm:pt-14 sm:pb-24 overflow-hidden">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-12 lg:grid-cols-12">
+            {/* Left Column: Big Bold Typography */}
+            <div className="lg:col-span-7 text-left">
+              {/* Kicker Tag */}
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold tracking-widest text-slate-500 uppercase dark:text-slate-400">
+                <span className="text-cyan-500 font-extrabold text-sm">/</span>
+                <span>THIẾT KẾ & PHÁT TRIỂN</span>
               </div>
-            ))}
+
+              {/* Massive Title: WEBSITE LÀ TÀI SẢN */}
+              <h1 className="mt-4 text-5xl font-black tracking-tight text-slate-950 sm:text-7xl xl:text-8xl leading-[0.95] dark:text-white uppercase font-sans">
+                WEBSITE<br />
+                LÀ TÀI SẢN
+              </h1>
+
+              {/* Sub-line with Lime / Green Highlight Underline */}
+              <div className="mt-3 relative inline-block">
+                <div className="text-2xl sm:text-4xl xl:text-5xl font-extrabold text-blue-600 dark:text-cyan-400 lowercase tracking-normal">
+                  số của doanh nghiệp.
+                </div>
+                <div className="absolute -bottom-1 left-0 right-0 h-2 sm:h-2.5 bg-lime-400/80 -rotate-1 rounded-sm -z-10" />
+              </div>
+
+              {/* Buttons: Trao đổi về dự án + Xem dự án đã thực hiện */}
+              <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-4">
+                <Link
+                  to="/contact"
+                  className="shine-hover inline-flex items-center gap-2 rounded-full bg-slate-950 px-6 py-3.5 text-xs font-bold text-white shadow-xl transition-all duration-300 hover:bg-blue-600 hover:scale-105 active:scale-95 dark:bg-white dark:text-slate-950 dark:hover:bg-cyan-400"
+                >
+                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-600 text-[10px] font-black text-white dark:bg-slate-900">
+                    💬
+                  </span>
+                  <span>Trao đổi về dự án</span>
+                  <span className="text-xs">↗</span>
+                </Link>
+
+                <a
+                  href="#projects"
+                  className="group inline-flex items-center gap-1.5 text-xs font-bold text-slate-900 hover:text-blue-600 dark:text-slate-200 dark:hover:text-cyan-400 transition-colors py-2 px-3 underline decoration-slate-300 underline-offset-4 hover:decoration-blue-500"
+                >
+                  <span>Xem dự án đã thực hiện</span>
+                  <span className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Right Column: Hero Philosophy + Floating Preview Mockups + Key Stats */}
+            <div className="lg:col-span-5 text-left space-y-8">
+              {/* Floating UI Mockup Cards (Phong cách kính mờ giống ảnh mẫu) */}
+              <div className="relative rounded-3xl border border-slate-200/80 bg-white/70 p-5 shadow-2xl backdrop-blur-xl dark:border-slate-800/80 dark:bg-slate-900/60">
+                <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+                  <div className="flex items-center gap-1.5">
+                    <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
+                  </div>
+                  <span className="text-[10px] font-mono text-slate-400">codehub-digital-assets.vn</span>
+                </div>
+
+                <div className="mt-4 grid grid-cols-3 gap-3">
+                  <div className="h-20 rounded-xl bg-gradient-to-br from-blue-100 to-cyan-50 dark:from-blue-950/60 dark:to-cyan-950/40 p-2 flex flex-col justify-end">
+                    <span className="text-[9px] font-bold text-blue-600 dark:text-cyan-300">SETUP 1 LẦN</span>
+                  </div>
+                  <div className="h-20 rounded-xl bg-gradient-to-br from-cyan-100 to-emerald-50 dark:from-cyan-950/60 dark:to-emerald-950/40 p-2 flex flex-col justify-end">
+                    <span className="text-[9px] font-bold text-emerald-600 dark:text-emerald-300">100% SỞ HỮU</span>
+                  </div>
+                  <div className="h-20 rounded-xl bg-gradient-to-br from-indigo-100 to-purple-50 dark:from-indigo-950/60 dark:to-purple-950/40 p-2 flex flex-col justify-end">
+                    <span className="text-[9px] font-bold text-indigo-600 dark:text-indigo-300">VẬN HÀNH THÁNG</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Subtitle paragraph đúng văn phong XimiTech nhưng mang thương hiệu người dùng */}
+              <p className="text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-300">
+                Đa số chủ doanh nghiệp coi website là khoản chi làm một lần rồi để đó. {SITE_BRAND_NAME} coi đó là tài sản: xây dựng nền móng, anh chị sở hữu <span className="font-bold text-slate-900 dark:text-white">100%</span>, rồi chúng tôi bảo vệ, giữ gìn và phát triển nó mỗi tháng để website mang về khách hàng.
+              </p>
+
+              {/* Stats Highlights khớp ảnh: 150+ và 100% */}
+              <div className="grid grid-cols-2 gap-6 pt-2 border-t border-slate-200/80 dark:border-slate-800">
+                <div>
+                  <div className="text-3xl sm:text-4xl font-black text-slate-950 dark:text-white">
+                    150+
+                  </div>
+                  <div className="mt-1 text-[11px] leading-snug font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                    DỰ ÁN ĐÃ TRIỂN KHAI, TÍNH CẢ TRƯỚC KHI LẬP CÔNG TY
+                  </div>
+                </div>
+
+                <div>
+                  <div className="text-3xl sm:text-4xl font-black text-slate-950 dark:text-white">
+                    100%
+                  </div>
+                  <div className="mt-1 text-[11px] leading-snug font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                    MÃ NGUỒN, TÊN MIỀN, DỮ LIỆU ĐỨNG TÊN DOANH NGHIỆP
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

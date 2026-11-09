@@ -200,8 +200,8 @@ export default function Navbar() {
           </Link>
         </nav>
 
-        {/* Right CTA / Theme Toggle */}
-        <div className="hidden items-center gap-3 sm:flex">
+        {/* Right Actions: EN, Sound/Speaker, Zalo Liên hệ ngay, Hamburger Menu */}
+        <div className="flex items-center gap-2 sm:gap-3">
           {/* Theme Toggle Button */}
           <button
             type="button"
@@ -213,41 +213,34 @@ export default function Navbar() {
             {isDark ? '☀️' : '🌙'}
           </button>
 
-          <Link
-            to="/contact"
-            className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 px-4 py-2 text-xs font-bold text-white shadow-lg shadow-blue-500/25 transition duration-200 hover:opacity-95 hover:shadow-cyan-500/20 active:scale-95"
-          >
-            Tư vấn giải pháp
-          </Link>
-        </div>
+          {/* Lang Selector Pill EN/VI */}
+          <span className="hidden sm:inline-flex items-center justify-center rounded-lg border border-slate-200 bg-white px-2.5 py-1 text-xs font-bold text-slate-700 shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300">
+            EN
+          </span>
 
-        {/* Mobile controls */}
-        <div className="flex items-center gap-2 lg:hidden">
-          <button
-            type="button"
-            onClick={toggleTheme}
-            className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 bg-white text-xs text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300"
-            aria-label="Toggle Theme"
-          >
-            {isDark ? '☀️' : '🌙'}
-          </button>
+          {/* Zalo / Liên hệ ngay Button dạng viên thuốc màu xanh cyan đúng chuẩn ảnh */}
           <Link
             to="/contact"
-            className="rounded-lg bg-blue-600 px-3 py-1.5 text-xs text-white font-bold"
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 px-4 py-2 text-xs font-bold text-white shadow-md shadow-blue-500/25 transition duration-200 hover:opacity-95 active:scale-95"
           >
-            Tư vấn
+            <span className="flex h-4 w-4 items-center justify-center rounded-full bg-white text-[10px] font-black text-blue-600">
+              💬
+            </span>
+            <span>Liên hệ ngay</span>
           </Link>
+
+          {/* Menu Drawer Toggle Button */}
           <button
             type="button"
             onClick={() => setOpen(!open)}
-            className="rounded-lg border border-slate-200 bg-white p-2 text-slate-700 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-white"
+            className="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 shadow-sm hover:text-slate-900 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-white"
             aria-label="Toggle Menu"
           >
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               {open ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
               ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 7h16M4 12h16M4 17h16" />
               )}
             </svg>
           </button>
@@ -256,7 +249,7 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       {open && (
-        <div className="mt-3 rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-2xl backdrop-blur-xl lg:hidden space-y-1.5 dark:border-slate-800 dark:bg-slate-950/95 max-h-[85vh] overflow-y-auto">
+        <div className="mt-3 rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-2xl backdrop-blur-xl space-y-1.5 dark:border-slate-800 dark:bg-slate-950/95 max-h-[85vh] overflow-y-auto">
           <button
             type="button"
             onClick={() => scrollToSection('home')}
