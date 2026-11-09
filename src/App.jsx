@@ -22,10 +22,12 @@ import AmbientDotsBackground from './components/AmbientDotsBackground'
 import FallingPetalsCanvas from './components/FallingPetalsCanvas'
 import TechNetworkCanvas from './components/TechNetworkCanvas'
 import CursorSmoothTrail from './components/CursorSmoothTrail'
+import PreloaderScreen from './components/PreloaderScreen'
 
 export default function App() {
   return (
     <>
+      <PreloaderScreen />
       <AmbientDotsBackground />
       <TechNetworkCanvas />
       <FallingPetalsCanvas />
