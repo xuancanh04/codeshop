@@ -13,6 +13,9 @@ import CheckoutPage from './pages/CheckoutPage'
 import ProfilePage from './pages/ProfilePage'
 import ContactPage from './pages/ContactPage'
 import ServicesPage from './pages/ServicesPage'
+import BlogPage from './pages/BlogPage'
+import ProfileCapacityPage from './pages/ProfileCapacityPage'
+import CareersPage from './pages/CareersPage'
 import LegalNoticePage from './pages/LegalNoticePage'
 import AdminDashboardPage from './pages/admin/AdminDashboardPage'
 import AdminProductsPage from './pages/admin/AdminProductsPage'
@@ -39,6 +42,9 @@ export default function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/services" element={<ServicesPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/profile-capacity" element={<ProfileCapacityPage />} />
+          <Route path="/careers" element={<CareersPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/legal/:doc" element={<LegalNoticePage />} />
           <Route path="/dashboard" element={<Navigate to="/admin" replace />} />

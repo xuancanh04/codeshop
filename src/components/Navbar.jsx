@@ -13,8 +13,17 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
 
-  // Xác định tab đang active: nếu ở trang /contact thì ưu tiên contact
-  const currentTab = location.pathname === '/contact' ? 'contact' : activeSection
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false)
+
+  // Xác định tab đang active: dựa theo path hoặc section
+  const currentTab = (() => {
+    if (location.pathname === '/blog') return 'blog'
+    if (location.pathname === '/profile-capacity') return 'profileCapacity'
+    if (location.pathname === '/careers') return 'careers'
+    if (location.pathname === '/services') return 'services'
+    if (location.pathname === '/contact') return 'contact'
+    return activeSection
+  })()
 
   // Lắng nghe scroll để tự động đổi màu xanh theo vị trí cuộn trang
   useEffect(() => {
@@ -61,9 +70,18 @@ export default function Navbar() {
     }
   }
 
+  const serviceSubItems = [
+    { title: 'Tất cả dịch vụ', desc: 'Hệ sinh thái giải pháp số trọn gói', path: '/services', icon: '🌐' },
+    { title: 'Website Doanh nghiệp', desc: 'Khẳng định uy tín thương hiệu số', path: '/services?type=enterprise', icon: '🏢' },
+    { title: 'Website Bán hàng', desc: 'Thương mại điện tử & VietQR tự động', path: '/services?type=ecommerce', icon: '🛒' },
+    { title: 'Web App Theo Yêu Cầu', desc: 'Số hóa quy trình nghiệp vụ chuyên sâu', path: '/services?type=webapp', icon: '⚙️' },
+    { title: 'Dịch vụ SEO & Tối ưu', desc: 'Audit kỹ thuật & bứt phá thứ hạng Google', path: '/services?type=seo', icon: '📈' },
+    { title: 'Landing Page CRO', desc: 'Trang đích tối ưu chuyển đổi quảng cáo', path: '/services?type=landing', icon: '🚀' },
+  ]
+
   const getItemClass = (id) => {
     const isCurrentActive = currentTab === id
-    return `px-3.5 py-1.5 text-sm font-medium transition-all duration-200 rounded-lg ${
+    return `px-3 py-1.5 text-xs font-semibold transition-all duration-200 rounded-lg whitespace-nowrap ${
       isCurrentActive
         ? 'text-blue-600 bg-blue-50 shadow-sm dark:text-cyan-400 dark:bg-white/10 font-bold'
         : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/50 dark:text-slate-300 dark:hover:text-white dark:hover:bg-white/5'
@@ -71,13 +89,14 @@ export default function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 px-3 py-3 sm:px-6 backdrop-blur-xl bg-white/80 dark:bg-slate-950/80 border-b border-slate-200/80 dark:border-slate-800/70 transition-all duration-300 shadow-sm dark:shadow-none">
+    <header className="sticky top-0 z-50 px-3 py-2.5 sm:px-6 backdrop-blur-xl bg-white/80 dark:bg-slate-950/80 border-b border-slate-200/80 dark:border-slate-800/70 transition-all duration-300 shadow-sm dark:shadow-none">
       <div className="mx-auto flex max-w-7xl items-center justify-between">
         {/* Brand */}
         <BrandLogo onClick={() => setOpen(false)} />
 
         {/* Center Desktop Navigation */}
-        <nav className="hidden items-center gap-1 rounded-full border border-slate-200 bg-slate-100/70 p-1.5 backdrop-blur-md md:flex shadow-inner dark:border-slate-800 dark:bg-slate-900/60">
+        <nav className="hidden items-center gap-0.5 rounded-full border border-slate-200 bg-slate-100/70 p-1 backdrop-blur-md lg:flex shadow-inner dark:border-slate-800 dark:bg-slate-900/60">
+          {/* Trang chủ */}
           <button
             type="button"
             onClick={() => scrollToSection('home')}
@@ -85,13 +104,60 @@ export default function Navbar() {
           >
             {t('nav.home')}
           </button>
-          <button
-            type="button"
-            onClick={() => scrollToSection('tier-services')}
-            className={getItemClass('tier-services')}
+
+          {/* Dịch vụ (Dropdown Menu đầy đủ dịch vụ) */}
+          <div
+            className="relative"
+            onMouseEnter={() => setServicesDropdownOpen(true)}
+            onMouseLeave={() => setServicesDropdownOpen(false)}
           >
-            {t('nav.services')}
-          </button>
+            <button
+              type="button"
+              onClick={() => {
+                navigate('/services')
+                setServicesDropdownOpen(false)
+              }}
+              className={`inline-flex items-center gap-1 ${getItemClass('services')}`}
+            >
+              <span>{t('nav.services')}</span>
+              <svg
+                className={`w-3.5 h-3.5 transition-transform duration-200 ${servicesDropdownOpen ? 'rotate-180' : ''}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            {/* Dropdown Menu Box */}
+            {servicesDropdownOpen && (
+              <div className="absolute left-0 top-full pt-2 w-72 z-50">
+                <div className="rounded-2xl border border-slate-200 bg-white/95 p-2 shadow-2xl backdrop-blur-xl dark:border-slate-800 dark:bg-slate-950/95 space-y-1">
+                  {serviceSubItems.map((item, idx) => (
+                    <Link
+                      key={idx}
+                      to={item.path}
+                      onClick={() => setServicesDropdownOpen(false)}
+                      className="flex items-start gap-3 rounded-xl p-2.5 transition hover:bg-slate-100 dark:hover:bg-slate-900 group"
+                    >
+                      <span className="text-xl shrink-0 mt-0.5">{item.icon}</span>
+                      <div>
+                        <div className="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-cyan-400">
+                          {item.title}
+                        </div>
+                        <div className="text-[11px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5">
+                          {item.desc}
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Dự án */}
           <button
             type="button"
             onClick={() => scrollToSection('projects')}
@@ -99,6 +165,16 @@ export default function Navbar() {
           >
             {t('nav.projects')}
           </button>
+
+          {/* Blog */}
+          <Link
+            to="/blog"
+            className={getItemClass('blog')}
+          >
+            {t('nav.blog')}
+          </Link>
+
+          {/* Bảng giá */}
           <button
             type="button"
             onClick={() => scrollToSection('pricing')}
@@ -106,11 +182,21 @@ export default function Navbar() {
           >
             {t('nav.pricing')}
           </button>
+
+          {/* Hồ sơ năng lực */}
           <Link
-            to="/contact"
-            className={getItemClass('contact')}
+            to="/profile-capacity"
+            className={getItemClass('profileCapacity')}
           >
-            {t('nav.contact')}
+            {t('nav.profileCapacity')}
+          </Link>
+
+          {/* Tuyển dụng */}
+          <Link
+            to="/careers"
+            className={getItemClass('careers')}
+          >
+            {t('nav.careers')}
           </Link>
         </nav>
 
@@ -129,14 +215,14 @@ export default function Navbar() {
 
           <Link
             to="/contact"
-            className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 px-5 py-2 text-xs font-bold text-white shadow-lg shadow-blue-500/25 transition duration-200 hover:opacity-95 hover:shadow-cyan-500/20 active:scale-95"
+            className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 px-4 py-2 text-xs font-bold text-white shadow-lg shadow-blue-500/25 transition duration-200 hover:opacity-95 hover:shadow-cyan-500/20 active:scale-95"
           >
             Tư vấn giải pháp
           </Link>
         </div>
 
         {/* Mobile controls */}
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <button
             type="button"
             onClick={toggleTheme}
@@ -170,7 +256,7 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       {open && (
-        <div className="mt-3 rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-2xl backdrop-blur-xl md:hidden space-y-2 dark:border-slate-800 dark:bg-slate-950/95">
+        <div className="mt-3 rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-2xl backdrop-blur-xl lg:hidden space-y-1.5 dark:border-slate-800 dark:bg-slate-950/95 max-h-[85vh] overflow-y-auto">
           <button
             type="button"
             onClick={() => scrollToSection('home')}
@@ -182,17 +268,32 @@ export default function Navbar() {
           >
             {t('nav.home')}
           </button>
-          <button
-            type="button"
-            onClick={() => scrollToSection('tier-services')}
-            className={`block w-full text-left rounded-lg px-3 py-2 text-sm font-medium ${
-              currentTab === 'tier-services'
-                ? 'text-blue-600 bg-blue-50 font-bold dark:text-cyan-400 dark:bg-white/10'
-                : 'text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-900'
-            }`}
-          >
-            {t('nav.services')}
-          </button>
+
+          {/* Dịch vụ Mobile */}
+          <div>
+            <div className="flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-900">
+              <Link
+                to="/services"
+                onClick={() => setOpen(false)}
+                className={currentTab === 'services' ? 'text-blue-600 font-bold dark:text-cyan-400' : ''}
+              >
+                {t('nav.services')}
+              </Link>
+            </div>
+            <div className="pl-4 space-y-1 border-l-2 border-slate-200 dark:border-slate-800 ml-3 my-1">
+              {serviceSubItems.map((sub, i) => (
+                <Link
+                  key={i}
+                  to={sub.path}
+                  onClick={() => setOpen(false)}
+                  className="block rounded-md px-3 py-1.5 text-xs text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-cyan-400"
+                >
+                  {sub.icon} {sub.title}
+                </Link>
+              ))}
+            </div>
+          </div>
+
           <button
             type="button"
             onClick={() => scrollToSection('projects')}
@@ -204,6 +305,19 @@ export default function Navbar() {
           >
             {t('nav.projects')}
           </button>
+
+          <Link
+            to="/blog"
+            onClick={() => setOpen(false)}
+            className={`block rounded-lg px-3 py-2 text-sm font-medium ${
+              currentTab === 'blog'
+                ? 'text-blue-600 bg-blue-50 font-bold dark:text-cyan-400 dark:bg-white/10'
+                : 'text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-900'
+            }`}
+          >
+            {t('nav.blog')}
+          </Link>
+
           <button
             type="button"
             onClick={() => scrollToSection('pricing')}
@@ -215,18 +329,32 @@ export default function Navbar() {
           >
             {t('nav.pricing')}
           </button>
+
           <Link
-            to="/contact"
+            to="/profile-capacity"
             onClick={() => setOpen(false)}
             className={`block rounded-lg px-3 py-2 text-sm font-medium ${
-              currentTab === 'contact'
+              currentTab === 'profileCapacity'
                 ? 'text-blue-600 bg-blue-50 font-bold dark:text-cyan-400 dark:bg-white/10'
                 : 'text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-900'
             }`}
           >
-            {t('nav.contact')}
+            {t('nav.profileCapacity')}
           </Link>
-          <div className="pt-2 border-t border-slate-200 dark:border-slate-800 flex flex-col gap-2">
+
+          <Link
+            to="/careers"
+            onClick={() => setOpen(false)}
+            className={`block rounded-lg px-3 py-2 text-sm font-medium ${
+              currentTab === 'careers'
+                ? 'text-blue-600 bg-blue-50 font-bold dark:text-cyan-400 dark:bg-white/10'
+                : 'text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-900'
+            }`}
+          >
+            {t('nav.careers')}
+          </Link>
+
+          <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex flex-col gap-2">
             <Link
               to="/contact"
               onClick={() => setOpen(false)}
