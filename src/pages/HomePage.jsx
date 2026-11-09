@@ -147,13 +147,13 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <span className="text-xs font-bold tracking-widest uppercase text-blue-600 dark:text-cyan-400">
-              MÔ HÌNH HOẠT ĐỘNG KHÁC BIỆT
+              {t('tier.kicker')}
             </span>
             <h2 className="mt-3 text-3xl font-extrabold text-slate-900 sm:text-4xl dark:text-white">
-              Dịch Vụ Số Hai Tầng Lấy Website Làm Trọng Tâm
+              {t('tier.title')}
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-slate-600 text-sm sm:text-base dark:text-slate-400">
-              Khác với cách làm web truyền thống bàn giao xong bỏ mặc, {SITE_BRAND_NAME} kiến tạo nền móng vững chắc rồi cùng doanh nghiệp phát triển bền vững.
+              {t('tier.subtitle', { brand: SITE_BRAND_NAME })}
             </p>
           </div>
 
@@ -161,13 +161,13 @@ export default function HomePage() {
             {/* Tầng 01: Setup với hiệu ứng xoay viền phát sáng */}
             <div className="card-glow-border group relative rounded-3xl border border-blue-200 bg-white p-8 shadow-xl backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-blue-500/30 dark:bg-gradient-to-b dark:from-blue-950/40 dark:via-slate-900/60 dark:to-slate-950">
               <div className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-3.5 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-500/20 dark:text-blue-300">
-                TẦNG 01 • ĐẦU TƯ MỘT LẦN
+                {t('tier1.pill')}
               </div>
               <h3 className="mt-4 text-2xl font-bold text-slate-900 dark:text-white">
-                Xây Dựng Nền Móng (Gói Setup)
+                {t('tier1.title')}
               </h3>
               <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
-                Thiết kế & lập trình website doanh nghiệp, bán hàng hoặc Web App với triết lý trao trả trọn vẹn 100% quyền kiểm soát cho khách hàng.
+                {t('tier1.desc')}
               </p>
 
               <div className="mt-6 space-y-3.5">
@@ -188,9 +188,9 @@ export default function HomePage() {
               </div>
 
               <div className="mt-8 rounded-2xl border border-blue-200 bg-blue-50/50 p-4 transition duration-300 group-hover:bg-blue-50 dark:border-blue-500/20 dark:bg-blue-900/20 dark:group-hover:bg-blue-900/30">
-                <span className="text-xs font-bold uppercase text-blue-700 dark:text-cyan-300">Cam kết bản quyền:</span>
+                <span className="text-xs font-bold uppercase text-blue-700 dark:text-cyan-300">{t('tier1.commitmentLabel')}</span>
                 <p className="mt-1 text-xs text-slate-600 dark:text-slate-300">
-                  Doanh nghiệp đứng tên trực tiếp tên miền, sở hữu toàn vẹn source code, không lo bị gián đoạn hay phụ thuộc kỹ thuật.
+                  {t('tier1.commitment')}
                 </p>
               </div>
             </div>
@@ -198,13 +198,13 @@ export default function HomePage() {
             {/* Tầng 02: Vận hành hàng tháng với hiệu ứng viền phát sáng */}
             <div className="card-glow-border group relative rounded-3xl border border-indigo-200 bg-white p-8 shadow-xl backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-indigo-500/30 dark:bg-gradient-to-b dark:from-indigo-950/40 dark:via-slate-900/60 dark:to-slate-950">
               <div className="inline-flex items-center gap-2 rounded-full bg-indigo-100 px-3.5 py-1 text-xs font-semibold text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-300">
-                TẦNG 02 • ĐỒNG HÀNH DÀI LÂU
+                {t('tier2.pill')}
               </div>
               <h3 className="mt-4 text-2xl font-bold text-slate-900 dark:text-white">
-                Vận Hành Hằng Tháng (Growth & Performance)
+                {t('tier2.title')}
               </h3>
               <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
-                Chăm sóc, bảo vệ và phát triển tài sản số hàng tháng để website không bị nguội lạnh, liên tục tạo ra khách hàng tiềm năng.
+                {t('tier2.desc')}
               </p>
 
               <div className="mt-6 space-y-3.5">
@@ -225,9 +225,9 @@ export default function HomePage() {
               </div>
 
               <div className="mt-8 rounded-2xl border border-indigo-200 bg-indigo-50/50 p-4 transition duration-300 group-hover:bg-indigo-50 dark:border-indigo-500/20 dark:bg-indigo-900/20 dark:group-hover:bg-indigo-900/30">
-                <span className="text-xs font-bold uppercase text-indigo-700 dark:text-indigo-300">Linh hoạt theo giai đoạn:</span>
+                <span className="text-xs font-bold uppercase text-indigo-700 dark:text-indigo-300">{t('tier2.commitmentLabel')}</span>
                 <p className="mt-1 text-xs text-slate-600 dark:text-slate-300">
-                  Chọn gói Basic (Giữ gìn an toàn), Growth (Phát triển SEO & nội dung) hoặc Performance (Tăng trưởng doanh thu & quảng cáo).
+                  {t('tier2.commitment')}
                 </p>
               </div>
             </div>
@@ -243,23 +243,23 @@ export default function HomePage() {
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row md:items-end">
             <div>
               <span className="text-xs font-bold tracking-widest uppercase text-blue-600 dark:text-cyan-400">
-                HỒ SƠ NĂNG LỰC THỰC CHIẾN
+                {t('projects.kicker')}
               </span>
               <h2 className="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl dark:text-white">
-                150+ Dự Án Đã Triển Khai
+                {t('projects.title')}
               </h2>
               <p className="mt-2 text-slate-600 text-sm dark:text-slate-400">
-                Minh chứng năng lực triển khai thực tế đa ngành: Doanh nghiệp, Bán hàng, Web App, Giải trí...
+                {t('projects.subtitle')}
               </p>
             </div>
 
             {/* Category Filter Pills với animation click */}
             <div className="flex flex-wrap gap-2">
               {[
-                { id: 'all', label: 'Tất cả' },
-                { id: 'ecommerce', label: 'Bán hàng (E-Commerce)' },
-                { id: 'enterprise', label: 'Website Doanh Nghiệp' },
-                { id: 'webapp', label: 'Web App Tùy Biến' },
+                { id: 'all', label: t('projects.filterAll') },
+                { id: 'ecommerce', label: 'E-Commerce' },
+                { id: 'enterprise', label: 'Enterprise' },
+                { id: 'webapp', label: 'Web App' },
                 { id: 'landing', label: 'Landing Page' },
               ].map((c) => (
                 <button
@@ -363,13 +363,13 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <span className="text-xs font-bold tracking-widest uppercase text-blue-600 dark:text-cyan-400">
-              BẢNG GIÁ DỊCH VỤ RÕ RÀNG
+              {t('pricing.kicker')}
             </span>
             <h2 className="mt-3 text-3xl font-extrabold text-slate-900 sm:text-4xl dark:text-white">
-              Đầu Tư Minh Bạch — Không Chi Phí Ẩn
+              {t('pricing.title')}
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-slate-600 text-sm dark:text-slate-400">
-              Lựa chọn linh hoạt giữa xây dựng nền móng ban đầu và các cấp độ vận hành hằng tháng.
+              {t('pricing.subtitle')}
             </p>
           </div>
 
@@ -378,10 +378,10 @@ export default function HomePage() {
             {/* Gói Basic */}
             <div className="group rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col justify-between dark:border-slate-800 dark:bg-slate-950">
               <div>
-                <span className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">VẬN HÀNH DUY TRÌ</span>
-                <h3 className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">Gói Basic</h3>
+                <span className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">{t('pricing.basicBadge')}</span>
+                <h3 className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">{t('pricing.basicTitle')}</h3>
                 <p className="mt-2 text-xs text-slate-600 dark:text-slate-400">
-                  Dành cho website đã có nền tảng tốt, cần bảo vệ an ninh và ổn định 24/7.
+                  {t('pricing.basicDesc')}
                 </p>
                 <div className="mt-6 flex items-baseline gap-1">
                   <span className="text-3xl font-black text-slate-900 dark:text-white">Liên hệ</span>
@@ -400,21 +400,21 @@ export default function HomePage() {
                 to="/contact"
                 className="mt-8 block w-full rounded-2xl border border-slate-300 bg-slate-50 py-3.5 text-center text-xs font-bold text-slate-700 transition duration-200 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
               >
-                Nhận tư vấn gói Basic
+                {t('pricing.basicCta')}
               </Link>
             </div>
 
             {/* Gói Growth (Phổ biến nhất - Có hiệu ứng Pulse Glow & Shine) */}
             <div className="relative rounded-3xl border-2 border-blue-600 bg-white p-8 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-blue-500/20 flex flex-col justify-between dark:border-blue-500 dark:bg-gradient-to-b dark:from-blue-950/60 dark:to-slate-950 glow-active">
               <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 px-4 py-1 text-[11px] font-black uppercase text-white tracking-wider shadow-lg">
-                Phổ biến nhất
+                {t('pricing.growthPopular')}
               </div>
 
               <div>
-                <span className="text-xs font-bold uppercase text-blue-600 dark:text-cyan-400">PHÁT TRIỂN TÀI SẢN</span>
-                <h3 className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">Gói Growth</h3>
+                <span className="text-xs font-bold uppercase text-blue-600 dark:text-cyan-400">{t('pricing.growthBadge')}</span>
+                <h3 className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">{t('pricing.growthTitle')}</h3>
                 <p className="mt-2 text-xs text-slate-600 dark:text-slate-300">
-                  Dành cho doanh nghiệp muốn mở rộng khách hàng tự nhiên qua Google & nội dung.
+                  {t('pricing.growthDesc')}
                 </p>
                 <div className="mt-6 flex items-baseline gap-1">
                   <span className="text-3xl font-black text-blue-600 dark:text-cyan-400">Ưu đãi</span>
@@ -436,17 +436,17 @@ export default function HomePage() {
                 to="/contact"
                 className="shine-hover mt-8 block w-full rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-500 py-3.5 text-center text-xs font-bold text-white shadow-lg shadow-blue-500/25 transition duration-200 hover:opacity-95"
               >
-                Nhận đề xuất gói Growth
+                {t('pricing.growthCta')}
               </Link>
             </div>
 
             {/* Gói Performance */}
             <div className="group rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col justify-between dark:border-slate-800 dark:bg-slate-950">
               <div>
-                <span className="text-xs font-bold uppercase text-indigo-600 dark:text-indigo-400">BỨT PHÁ DOANH THU</span>
-                <h3 className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">Gói Performance</h3>
+                <span className="text-xs font-bold uppercase text-indigo-600 dark:text-indigo-400">{t('pricing.perfBadge')}</span>
+                <h3 className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">{t('pricing.perfTitle')}</h3>
                 <p className="mt-2 text-xs text-slate-600 dark:text-slate-400">
-                  Dành cho doanh nghiệp đặt mục tiêu số lượng lead, đơn hàng và doanh thu cụ thể.
+                  {t('pricing.perfDesc')}
                 </p>
                 <div className="mt-6 flex items-baseline gap-1">
                   <span className="text-3xl font-black text-slate-900 dark:text-white">Tùy biến</span>
@@ -468,7 +468,7 @@ export default function HomePage() {
                 to="/contact"
                 className="mt-8 block w-full rounded-2xl border border-slate-300 bg-slate-50 py-3.5 text-center text-xs font-bold text-slate-700 transition duration-200 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
               >
-                Tư vấn gói Performance
+                {t('pricing.perfCta')}
               </Link>
             </div>
           </div>
@@ -482,30 +482,30 @@ export default function HomePage() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <span className="text-xs font-bold tracking-widest uppercase text-blue-600 dark:text-cyan-400">
-              GIẢI ĐÁP BĂN KHOĂN
+              {t('faq.kicker')}
             </span>
             <h2 className="mt-3 text-3xl font-extrabold text-slate-900 dark:text-white">
-              Câu Hỏi Thường Gặp Của Doanh Nghiệp
+              {t('faq.title')}
             </h2>
           </div>
 
           <div className="mt-10 space-y-4">
             {[
               {
-                q: 'Sau khi hoàn thành, tôi có được bàn giao mã nguồn không?',
-                a: `Có, 100%. Triết lý cốt lõi của ${SITE_BRAND_NAME} là khách hàng là chủ nhân thực sự của tài sản số. Toàn bộ mã nguồn, tên miền, database và tài khoản quản trị đều được chuyển giao cho bạn, không giữ bất kỳ quyền nào để ràng buộc.`,
+                q: t('faq.q1'),
+                a: t('faq.a1'),
               },
               {
-                q: 'Website của tôi mất bao lâu để hoàn thành?',
-                a: 'Thời gian thực hiện phụ thuộc vào quy mô dự án: Landing Page thường mất từ 5-7 ngày; Website doanh nghiệp/bán hàng tiêu chuẩn từ 2-3 tuần; Hệ thống Web App nghiệp vụ từ 3-6 tuần.',
+                q: t('faq.q2'),
+                a: t('faq.a2'),
               },
               {
-                q: `Tôi chưa có tên miền và hosting thì ${SITE_BRAND_NAME} có hỗ trợ không?`,
-                a: `${SITE_BRAND_NAME} sẽ tư vấn và hỗ trợ bạn đăng ký tên miền chính chủ mang tên bạn hoặc doanh nghiệp, đồng thời cấu hình máy chủ/hosting tốc độ cao, cài đặt chứng chỉ bảo mật SSL miễn phí trọn đời.`,
+                q: t('faq.q3'),
+                a: t('faq.a3'),
               },
               {
-                q: 'Gói vận hành hàng tháng có bắt buộc không?',
-                a: 'Hoàn toàn không bắt buộc. Sau khi nhận bàn giao Gói Setup, nếu bạn có đội ngũ tự vận hành thì có thể tự quản lý. Gói vận hành hàng tháng là giải pháp dành cho doanh nghiệp muốn có chuyên gia kỹ thuật đồng hành chăm sóc và gia tăng khách hàng mà không cần tốn chi phí thuê nhân sự toàn thời gian.',
+                q: t('faq.q4'),
+                a: t('faq.a4'),
               },
             ].map((faq, i) => (
               <div
@@ -531,10 +531,10 @@ export default function HomePage() {
       <section className="relative border-t border-slate-200 bg-gradient-to-b from-blue-50 to-white py-16 dark:border-slate-800/80 dark:from-blue-950/40 dark:to-slate-950">
         <div className="mx-auto max-w-5xl px-4 text-center">
           <h2 className="text-3xl font-extrabold text-slate-900 sm:text-4xl dark:text-white">
-            Sẵn sàng biến website thành tài sản sinh lời?
+            {t('cta.title')}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-slate-600 text-sm sm:text-base dark:text-slate-300">
-            Hãy liên hệ trực tiếp với đội ngũ {SITE_BRAND_NAME} để được khảo sát nhu cầu, lên phương án cấu trúc và báo giá tối ưu nhất.
+            {t('cta.subtitle')}
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
@@ -542,7 +542,7 @@ export default function HomePage() {
               to="/contact"
               className="shine-hover inline-flex items-center gap-2 rounded-2xl bg-blue-600 px-9 py-4 text-sm font-bold text-white shadow-xl shadow-blue-600/30 transition-all duration-300 hover:scale-105 hover:bg-blue-500 glow-active"
             >
-              Liên hệ nhận tư vấn ngay
+              {t('cta.btn')}
             </Link>
           </div>
         </div>
