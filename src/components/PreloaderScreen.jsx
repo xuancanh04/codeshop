@@ -46,9 +46,14 @@ export default function PreloaderScreen() {
       sessionStorage.setItem('codehub_preloaded', 'true')
       const timer = setTimeout(() => {
         setIsDone(true)
-        setTimeout(() => setShouldRender(false), 600) // Thời gian fade-out biến mất
       }, 350)
-      return () => clearTimeout(timer)
+      const removeTimer = setTimeout(() => {
+        setShouldRender(false)
+      }, 950)
+      return () => {
+        clearTimeout(timer)
+        clearTimeout(removeTimer)
+      }
     }
   }, [progress])
 

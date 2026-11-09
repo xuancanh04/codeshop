@@ -6,7 +6,7 @@ export const messages = {
   vi: {
     // Navigation
     'nav.home': 'Trang chủ',
-    'nav.about': 'Về XimiTech',
+    'nav.about': 'Về CodeHub',
     'nav.services': 'Dịch vụ',
     'nav.projects': 'Dự án',
     'nav.blog': 'Blog',
